@@ -1,0 +1,1 @@
+0 2 * * * /usr/bin/python3 /Users/bahakizil/Downloads/mypage/scripts/rate-limited-social-updater.py

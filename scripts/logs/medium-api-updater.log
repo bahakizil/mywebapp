@@ -1,0 +1,15 @@
+2025-06-07 18:34:07,606 - INFO - 📅 Starting daily Medium API update
+2025-06-07 18:34:07,606 - INFO - 🚀 Starting Medium API data fetch...
+2025-06-07 18:34:08,462 - INFO - ✅ Got user ID: 60a0e4269377
+2025-06-07 18:34:09,387 - INFO - ✅ Got 3 article IDs
+2025-06-07 18:34:10,411 - INFO - ✅ Fetched: Smart Traffic Analysis With Yolo... - 37 claps
+2025-06-07 18:34:11,070 - INFO - ✅ Fetched: Threat Detection... - 1 claps
+2025-06-07 18:34:11,926 - INFO - ✅ Fetched: Kahve Satış Tahmininde Derin Öğrenme: Günlük Satış... - 0 claps
+2025-06-07 18:34:11,927 - INFO - ✅ Saved 3 articles to /Users/bahakizil/Downloads/mypage/scripts/../data/medium-articles.json
+2025-06-07 18:34:11,927 - INFO - 📊 Total engagement: 38 claps, 470 views, 0 responses
+2025-06-07 18:34:11,927 - INFO - 🎉 Daily Medium API update completed successfully
+2025-06-08 02:00:05,085 - INFO - 📅 Starting daily Medium API update
+2025-06-08 02:00:05,085 - INFO - 🚀 Starting Medium API data fetch...
+2025-06-08 02:00:05,814 - ERROR - API request failed for /user/id_for/bahakizil: 403 Client Error: Forbidden for url: https://medium2.p.rapidapi.com/user/id_for/bahakizil
+2025-06-08 02:00:05,815 - ERROR - ❌ Failed to fetch Medium data: 403 Client Error: Forbidden for url: https://medium2.p.rapidapi.com/user/id_for/bahakizil
+2025-06-08 02:00:05,827 - ERROR - ❌ No articles fetched, keeping existing data

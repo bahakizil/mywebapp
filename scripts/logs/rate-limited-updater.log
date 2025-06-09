@@ -1,0 +1,96 @@
+2025-06-07 18:43:11,774 - INFO - 🚀 Starting rate-limited social media updater...
+2025-06-07 18:43:11,774 - INFO - 🔄 No previous update found, proceeding with update
+2025-06-07 18:43:11,774 - INFO - 📊 API Budget: 40 requests/month per service
+2025-06-07 18:43:11,774 - INFO - 🔄 Update frequency: Every 2 days
+2025-06-07 18:43:11,774 - INFO - 📈 Monthly usage: ~15 requests per service
+2025-06-07 18:43:11,774 - INFO - 📰 Starting Medium API update...
+2025-06-07 18:43:12,733 - INFO - ✅ Got user ID: 60a0e4269377
+2025-06-07 18:43:14,034 - INFO - ✅ Got 3 articles
+2025-06-07 18:43:15,130 - INFO - ✅ Processed article: Smart Traffic Analysis With Yolo - 37 claps
+2025-06-07 18:43:15,865 - INFO - ✅ Processed article: Threat Detection - 1 claps
+2025-06-07 18:43:16,766 - INFO - ✅ Processed article: Kahve Satış Tahmininde Derin Öğrenme: Günlük Satışların Analizi ve Geleceğin Öngörülmesi - 0 claps
+2025-06-07 18:43:16,769 - INFO - ✅ Medium data updated with 3 articles
+2025-06-07 18:43:16,769 - INFO - 💼 Starting LinkedIn API update...
+2025-06-07 18:43:17,791 - ERROR - ❌ LinkedIn API update failed: 404 Client Error: Not Found for url: https://linkedin-data-scraper-api1.p.rapidapi.com/profile?profile_url=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fbahakizil
+2025-06-07 18:43:17,792 - INFO - ✅ Saved last update timestamp
+2025-06-07 18:43:17,792 - INFO - ✅ Update completed successfully (1/2 services)
+2025-06-07 18:47:08,906 - INFO - 🚀 Starting rate-limited social media updater...
+2025-06-07 18:47:08,907 - INFO - ⏰ Too early to update. Next update scheduled for: 2025-06-09 18:43:17.791841
+2025-06-07 18:47:08,907 - INFO - ⏸️ Skipping update due to rate limiting
+2025-06-07 18:49:54,795 - INFO - 🚀 Starting rate-limited social media updater...
+2025-06-07 18:49:54,796 - INFO - ⏰ Too early to update. Next update scheduled for: 2025-06-09 18:43:17.791841
+2025-06-07 18:49:54,796 - INFO - ⏸️ Skipping update due to rate limiting
+2025-06-07 18:50:09,342 - INFO - 🚀 Starting rate-limited social media updater...
+2025-06-07 18:50:09,343 - INFO - 🔥 Force update mode - bypassing rate limits
+2025-06-07 18:50:09,343 - INFO - 📊 API Budget: 40 requests/month per service
+2025-06-07 18:50:09,343 - INFO - 🔄 Update frequency: Every 2 days
+2025-06-07 18:50:09,343 - INFO - 📈 Monthly usage: ~15 requests per service
+2025-06-07 18:50:09,343 - INFO - 📰 Starting Medium API update...
+2025-06-07 18:50:10,404 - INFO - ✅ Got user ID: 60a0e4269377
+2025-06-07 18:50:11,601 - INFO - ✅ Got 3 articles
+2025-06-07 18:50:12,498 - INFO - ✅ Processed article: Smart Traffic Analysis With Yolo - 37 claps
+2025-06-07 18:50:13,329 - INFO - ✅ Processed article: Threat Detection - 1 claps
+2025-06-07 18:50:14,192 - INFO - ✅ Processed article: Kahve Satış Tahmininde Derin Öğrenme: Günlük Satışların Analizi ve Geleceğin Öngörülmesi - 0 claps
+2025-06-07 18:50:14,194 - INFO - ✅ Medium data updated with 3 articles
+2025-06-07 18:50:14,195 - INFO - 💼 Starting LinkedIn API update...
+2025-06-07 18:50:14,195 - INFO - 📱 No LinkedIn post URLs configured - creating placeholder data
+2025-06-07 18:50:14,196 - INFO - ✅ LinkedIn placeholder data saved
+2025-06-07 18:50:14,196 - INFO - ✅ Saved last update timestamp
+2025-06-07 18:50:14,197 - INFO - ✅ Update completed successfully (2/2 services)
+2025-06-07 18:53:31,410 - INFO - 🚀 Starting rate-limited social media updater...
+2025-06-07 18:53:31,410 - INFO - 🔥 Force update mode - bypassing rate limits
+2025-06-07 18:53:31,410 - INFO - 📊 API Budget: 40 requests/month per service
+2025-06-07 18:53:31,410 - INFO - 🔄 Update frequency: Every 6 days
+2025-06-07 18:53:31,410 - INFO - 📈 Monthly usage: ~5 requests per service (ayda 5 kere)
+2025-06-07 18:53:31,410 - INFO - 📰 Starting Medium API update...
+2025-06-07 18:53:32,616 - INFO - ✅ Got user ID: 60a0e4269377
+2025-06-07 18:53:33,578 - INFO - ✅ Got 3 articles
+2025-06-07 18:53:34,433 - INFO - ✅ Processed article: Smart Traffic Analysis With Yolo - 37 claps
+2025-06-07 18:53:35,325 - INFO - ✅ Processed article: Threat Detection - 1 claps
+2025-06-07 18:53:36,188 - INFO - ✅ Processed article: Kahve Satış Tahmininde Derin Öğrenme: Günlük Satışların Analizi ve Geleceğin Öngörülmesi - 0 claps
+2025-06-07 18:53:36,190 - INFO - ✅ Medium data updated with 3 articles
+2025-06-07 18:53:36,190 - INFO - 💼 Starting LinkedIn API update...
+2025-06-07 18:53:36,190 - INFO - 📱 No LinkedIn post URLs configured - creating placeholder data
+2025-06-07 18:53:36,191 - INFO - ✅ LinkedIn placeholder data saved
+2025-06-07 18:53:36,191 - INFO - ✅ Saved last update timestamp
+2025-06-07 18:53:36,191 - INFO - ✅ Update completed successfully (2/2 services)
+2025-06-07 19:10:11,306 - INFO - 🚀 Starting rate-limited social media updater...
+2025-06-07 19:10:11,306 - INFO - 🔥 Force update mode - bypassing rate limits
+2025-06-07 19:10:11,306 - INFO - 📊 API Budget: 40 requests/month per service
+2025-06-07 19:10:11,306 - INFO - 🔄 Update frequency: Every 6 days
+2025-06-07 19:10:11,306 - INFO - 📈 Monthly usage: ~5 requests per service (ayda 5 kere)
+2025-06-07 19:10:11,306 - INFO - 📰 Starting Medium API update...
+2025-06-07 19:10:12,604 - INFO - ✅ Got user ID: 60a0e4269377
+2025-06-07 19:10:13,845 - INFO - ✅ Got 3 articles
+2025-06-07 19:10:14,569 - INFO - ✅ Processed article: Smart Traffic Analysis With Yolo - 37 claps
+2025-06-07 19:10:15,409 - INFO - ✅ Processed article: Threat Detection - 1 claps
+2025-06-07 19:10:16,311 - INFO - ✅ Processed article: Kahve Satış Tahmininde Derin Öğrenme: Günlük Satışların Analizi ve Geleceğin Öngörülmesi - 0 claps
+2025-06-07 19:10:16,311 - INFO - ✅ Medium data updated with 3 articles
+2025-06-07 19:10:16,312 - INFO - 💼 Starting LinkedIn API update...
+2025-06-07 19:10:19,713 - INFO - 🔍 LinkedIn API Response: success=True, posts=20
+2025-06-07 19:10:19,714 - INFO - 📄 LinkedIn Post: AI-Powered Security System Project
+
+I developed an... - 120 likes, 7 comments, 5 shares
+2025-06-07 19:10:19,714 - INFO - 📄 LinkedIn Post: 𝗦𝗺𝗮𝗿𝘁 𝗧𝗿𝗮𝗳𝗳𝗶𝗰 𝗠𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴: 𝗥𝗲𝗮𝗹-𝗧𝗶𝗺𝗲 𝗖𝗖𝗧𝗩 𝗔𝗻𝗮𝗹𝘆𝘀𝗶𝘀 ... - 751 likes, 22 comments, 49 shares
+2025-06-07 19:10:19,714 - INFO - 📄 LinkedIn Post: 𝗦𝗺𝗮𝗿𝘁 𝗧𝗿𝗮𝗳𝗳𝗶𝗰 𝗠𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴: 𝗥𝗲𝗮𝗹-𝗧𝗶𝗺𝗲 𝗖𝗖𝗧𝗩 𝗔𝗻𝗮𝗹𝘆𝘀𝗶𝘀 ... - 751 likes, 22 comments, 49 shares
+2025-06-07 19:10:19,714 - INFO - 📄 LinkedIn Post: 🚦Real-Time Traffic Management with Computer Vision... - 537 likes, 15 comments, 47 shares
+2025-06-07 19:10:19,714 - INFO - 📄 LinkedIn Post: 𝗦𝗺𝗮𝗿𝘁 𝗧𝗿𝗮𝗳𝗳𝗶𝗰 𝗠𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴: 𝗥𝗲𝗮𝗹-𝗧𝗶𝗺𝗲 𝗖𝗖𝗧𝗩 𝗔𝗻𝗮𝗹𝘆𝘀𝗶𝘀 ... - 751 likes, 22 comments, 49 shares
+2025-06-07 19:10:19,714 - INFO - 📄 LinkedIn Post: 🚀 𝗙𝗶𝗻𝗲-𝗧𝘂𝗻𝗶𝗻𝗴 𝗬𝗢𝗟𝗢𝘃𝟭𝟮𝗻 𝗳𝗼𝗿 𝗙𝗶𝗿𝗲 & 𝗦𝗺𝗼𝗸𝗲 𝗗𝗲𝘁𝗲𝗰𝘁𝗶𝗼𝗻!... - 812 likes, 22 comments, 40 shares
+2025-06-07 19:10:19,714 - INFO - 📄 LinkedIn Post: 🚀 𝗙𝗶𝗻𝗲-𝗧𝘂𝗻𝗶𝗻𝗴 𝗬𝗢𝗟𝗢𝘃𝟭𝟮𝗻 𝗳𝗼𝗿 𝗙𝗶𝗿𝗲 & 𝗦𝗺𝗼𝗸𝗲 𝗗𝗲𝘁𝗲𝗰𝘁𝗶𝗼𝗻!... - 812 likes, 22 comments, 40 shares
+2025-06-07 19:10:19,714 - INFO - 📄 LinkedIn Post: 🚀 𝗙𝗶𝗻𝗲-𝗧𝘂𝗻𝗶𝗻𝗴 𝗬𝗢𝗟𝗢𝘃𝟭𝟮𝗻 𝗳𝗼𝗿 𝗙𝗶𝗿𝗲 & 𝗦𝗺𝗼𝗸𝗲 𝗗𝗲𝘁𝗲𝗰𝘁𝗶𝗼𝗻!... - 812 likes, 22 comments, 40 shares
+2025-06-07 19:10:19,714 - INFO - 📄 LinkedIn Post: Sizin gibi öğrencilerim olduğu için çok şanslıyım ... - 21 likes, 2 comments, 0 shares
+2025-06-07 19:10:19,714 - INFO - 📄 LinkedIn Post: Dün, üniversitemde aldığım AI in Education dersind... - 36 likes, 1 comments, 1 shares
+2025-06-07 19:10:19,714 - INFO - 📄 LinkedIn Post: Baykar Technologies'de Simulation Systems Intern o... - 50 likes, 16 comments, 0 shares
+2025-06-07 19:10:19,715 - INFO - 📄 LinkedIn Post: Merhaba LinkedIn! ⚽🏟️
+Yeni geliştirdiğim Futbol Ma... - 57 likes, 5 comments, 2 shares
+2025-06-07 19:10:19,715 - INFO - 📄 LinkedIn Post: Güncel yapay zeka araçlarını kullanarak, kod geliş... - 61 likes, 59 comments, 12 shares
+2025-06-07 19:10:19,715 - INFO - 📄 LinkedIn Post: I'm happy to share that I'm starting a new positio... - 86 likes, 15 comments, 0 shares
+2025-06-07 19:10:19,715 - INFO - 📄 LinkedIn Post: Thrilled to complete the UiPath Academy Test Autom... - 17 likes, 3 comments, 0 shares
+2025-06-07 19:10:19,715 - INFO - 📄 LinkedIn Post: I’m proud to have completed the UiPath Academy Aut... - 12 likes, 2 comments, 0 shares
+2025-06-07 19:10:19,715 - INFO - 📄 LinkedIn Post: Daisy projemizin uluslararası workshop'unu Philips... - 67 likes, 1 comments, 0 shares
+2025-06-07 19:10:19,715 - INFO - 📄 LinkedIn Post: I’m happy to share that I’ve started my Master of ... - 68 likes, 23 comments, 0 shares
+2025-06-07 19:10:19,715 - INFO - 📄 LinkedIn Post: I’m happy to share that I’ve started my Master of ... - 56 likes, 10 comments, 0 shares
+2025-06-07 19:10:19,715 - INFO - 📄 LinkedIn Post: I would like to share with you that I have been ac... - 103 likes, 24 comments, 0 shares
+2025-06-07 19:10:19,717 - INFO - ✅ LinkedIn data saved: 20 posts with real engagement data
+2025-06-07 19:10:19,719 - INFO - ✅ Saved last update timestamp
+2025-06-07 19:10:19,719 - INFO - ✅ Update completed successfully (2/2 services)

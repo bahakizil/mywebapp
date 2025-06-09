@@ -1,0 +1,130 @@
+{
+  "lastUpdated": "2025-06-09T18:41:45.026Z",
+  "repos": [
+    {
+      "id": 999020874,
+      "name": "Smart_Growbox",
+      "full_name": "bahakizil/Smart_Growbox",
+      "description": null,
+      "html_url": "https://github.com/bahakizil/Smart_Growbox",
+      "stargazers_count": 0,
+      "language": "Python",
+      "updated_at": "2025-06-09T16:10:29Z",
+      "topics": []
+    },
+    {
+      "id": 999020471,
+      "name": "Smart-Growbox",
+      "full_name": "bahakizil/Smart-Growbox",
+      "description": "AI-powered smart growbox system with real-time sensor monitoring, actuator control, YOLO-based image detection, and GPT chatbot integration.",
+      "html_url": "https://github.com/bahakizil/Smart-Growbox",
+      "stargazers_count": 0,
+      "language": null,
+      "updated_at": "2025-06-09T16:02:53Z",
+      "topics": []
+    },
+    {
+      "id": 828230021,
+      "name": "bahakizil",
+      "full_name": "bahakizil/bahakizil",
+      "description": "Config files for my GitHub profile.",
+      "html_url": "https://github.com/bahakizil/bahakizil",
+      "stargazers_count": 0,
+      "language": null,
+      "updated_at": "2025-06-09T02:01:07Z",
+      "topics": [
+        "config",
+        "github-config"
+      ]
+    },
+    {
+      "id": 968178068,
+      "name": "deepstream-pipeline",
+      "full_name": "bahakizil/deepstream-pipeline",
+      "description": null,
+      "html_url": "https://github.com/bahakizil/deepstream-pipeline",
+      "stargazers_count": 1,
+      "language": "Python",
+      "updated_at": "2025-05-28T09:17:53Z",
+      "topics": []
+    },
+    {
+      "id": 944608309,
+      "name": "Smart-Traffic-Analysis-With-Yolo",
+      "full_name": "bahakizil/Smart-Traffic-Analysis-With-Yolo",
+      "description": "Smart Traffic Monitoring: Real-Time CCTV Analysis with YOLOv12N",
+      "html_url": "https://github.com/bahakizil/Smart-Traffic-Analysis-With-Yolo",
+      "stargazers_count": 24,
+      "language": "Python",
+      "updated_at": "2025-05-12T07:05:44Z",
+      "topics": []
+    },
+    {
+      "id": 976343944,
+      "name": "AI_Web_App",
+      "full_name": "bahakizil/AI_Web_App",
+      "description": null,
+      "html_url": "https://github.com/bahakizil/AI_Web_App",
+      "stargazers_count": 0,
+      "language": null,
+      "updated_at": "2025-05-02T00:09:33Z",
+      "topics": []
+    }
+  ],
+  "articles": [
+    {
+      "title": "AI Supported Smart Growbox : Building an Edge-to-Cloud AI System That Sees, Thinks and Grows Your…",
+      "link": "https://medium.com/@bahakizil/ai-supported-smart-growbox-building-an-edge-to-cloud-ai-system-that-sees-thinks-and-grows-your-766d9d555770?source=rss-60a0e4269377------2",
+      "publishedDate": "2025-06-09T17:03:32.000Z",
+      "description": "No description available...",
+      "author": "Baha Kizil"
+    },
+    {
+      "title": "Smart Traffic Analysis With Yolo",
+      "link": "https://medium.com/@bahakizil/smart-traffic-analysiswith-yolo-7eef0441ca91?source=rss-60a0e4269377------2",
+      "publishedDate": "2025-03-07T17:04:38.000Z",
+      "description": "No description available...",
+      "author": "Baha Kizil"
+    },
+    {
+      "title": "Threat Detection",
+      "link": "https://medium.com/@bahakizil/threat-detection-bde7fff47e06?source=rss-60a0e4269377------2",
+      "publishedDate": "2025-02-21T16:25:23.000Z",
+      "description": "No description available...",
+      "author": "Baha Kizil"
+    },
+    {
+      "title": "Kahve Satış Tahmininde Derin Öğrenme: Günlük Satışların Analizi ve Geleceğin Öngörülmesi",
+      "link": "https://medium.com/@bahakizil/kahve-sat%C4%B1%C5%9F-tahmininde-derin-%C3%B6%C4%9Frenme-g%C3%BCnl%C3%BCk-sat%C4%B1%C5%9Flar%C4%B1n-analizi-ve-gelece%C4%9Fin-%C3%B6ng%C3%B6r%C3%BClmesi-6d575ebb5a4b?source=rss-60a0e4269377------2",
+      "publishedDate": "2024-07-13T18:22:44.000Z",
+      "description": "No description available...",
+      "author": "Baha Kizil"
+    }
+  ],
+  "linkedinPosts": [
+    {
+      "id": "mock-1",
+      "text": "I'm happy to share that I've been accepted into the AI Bootcamp organized by Kairu. It's a great opportunity to improve my skills in AI engineering.\n\nThanks to the Kairu team for this opportunity!",
+      "date": "2025-06-07T18:41:45.654Z",
+      "likes": 0,
+      "comments": 0,
+      "url": "https://linkedin.com/in/bahakizil"
+    },
+    {
+      "id": "mock-2",
+      "text": "🚦Real-Time Traffic Management with Computer Vision 🕶️\n\nAn innovative project that turns ordinary CCTV cameras into powerful traffic analysis tools! 🚦🔍\n\n• Integrated Supervision Polygon Tool with CCTV footage\n• Used OpenCV for image processing and analysis\n• Implemented lane-by-lane traffic monitoring capabilities\n\nReal-Time Insights Delivered:\n🚓 Unauthorized emergency lane usage detection\n🔄 Lane-specific traffic flow analysis (speed and density)\n🚕 Vehicle counting with classification\n📊 Traffic pattern analysis",
+      "date": "2025-06-04T18:41:45.654Z",
+      "likes": 0,
+      "comments": 0,
+      "url": "https://linkedin.com/in/bahakizil"
+    },
+    {
+      "id": "mock-3",
+      "text": "𝗦𝗺𝗮𝗿𝘁 𝗧𝗿𝗮𝗳𝗳𝗶𝗰 𝗠𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴: 𝗥𝗲𝗮𝗹-𝗧𝗶𝗺𝗲 𝗖𝗖𝗧𝗩 𝗔𝗻𝗮𝗹𝘆𝘀𝗶𝘀 🚗📊\n\nI am excited to share my latest project, which aims to detect traffic violations and contribute to smart city infrastructure.\n\nKey Features:\n• Real-time vehicle detection using YOLOv12N\n• Traffic flow analysis and monitoring\n• Emergency lane violation detection\n• Performance optimization for edge deployment",
+      "date": "2025-06-02T18:41:45.654Z",
+      "likes": 0,
+      "comments": 0,
+      "url": "https://linkedin.com/in/bahakizil"
+    }
+  ]
+}

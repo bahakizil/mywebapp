@@ -1,0 +1,1975 @@
+
+> ai-engineer-portfolio@0.1.0 dev
+> NODE_OPTIONS='--max_old_space_size=4096' next dev
+
+   ▲ Next.js 15.3.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.191.230:3000
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Compiled /instrumentation in 167ms (20 modules)
+ ✓ Ready in 1677ms
+ ○ Compiling /api/medium ...
+ ✓ Compiled /api/medium in 1119ms (413 modules)
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles?next=1625519209064
+Medium API request failed: Error: API request failed: 400 Bad Request
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+Failed to get user articles: Error: API request failed: 400 Bad Request
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API integration failed: Error: API request failed: 400 Bad Request
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API failed: Error: API request failed: 400 Bad Request
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+📄 Using fallback Medium articles data
+ GET /api/medium 200 in 2183ms
+ ✓ Compiled in 43ms (136 modules)
+ ✓ Compiled in 33ms (136 modules)
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+📚 Medium User Articles Response: { id: '60a0e4269377', count: 3, total_articles: 3 }
+✅ Got article IDs: [ '7eef0441ca91', 'bde7fff47e06', '6d575ebb5a4b' ]
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/7eef0441ca91
+📄 Article 7eef0441ca91: {
+  title: 'Smart Traffic Analysis With Yolo...',
+  claps: 37,
+  voters: 2,
+  responses: 0
+}
+✅ Fetched: Smart Traffic Analysis With Yolo... - 37 claps, 2 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/bde7fff47e06
+📄 Article bde7fff47e06: { title: 'Threat Detection...', claps: 1, voters: 1, responses: 0 }
+✅ Fetched: Threat Detection... - 1 claps, 1 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/6d575ebb5a4b
+📄 Article 6d575ebb5a4b: {
+  title: 'Kahve Satış Tahmininde Derin Öğrenme: Günlük Satış...',
+  claps: 0,
+  voters: 0,
+  responses: 0
+}
+✅ Fetched: Kahve Satış Tahmininde Derin Öğrenme: Gü... - 0 claps, 0 voters
+🎉 Successfully fetched 3 articles with real engagement data
+📊 API Articles received: 3
+🔍 Processing API articles...
+✅ Successfully converted API data
+📊 Real engagement stats:
+   - Smart Traffic Analysis With Yo...: 37 claps, 864 views
+   - Threat Detection...: 1 claps, 127 views
+   - Kahve Satış Tahmininde Derin Ö...: 0 claps, 50 views
+ GET /api/medium 200 in 2622ms
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+📚 Medium User Articles Response: { id: '60a0e4269377', count: 3, total_articles: 3 }
+✅ Got article IDs: [ '7eef0441ca91', 'bde7fff47e06', '6d575ebb5a4b' ]
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/7eef0441ca91
+📄 Article 7eef0441ca91: {
+  title: 'Smart Traffic Analysis With Yolo...',
+  claps: 37,
+  voters: 2,
+  responses: 0
+}
+✅ Fetched: Smart Traffic Analysis With Yolo... - 37 claps, 2 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/bde7fff47e06
+📄 Article bde7fff47e06: { title: 'Threat Detection...', claps: 1, voters: 1, responses: 0 }
+✅ Fetched: Threat Detection... - 1 claps, 1 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/6d575ebb5a4b
+📄 Article 6d575ebb5a4b: {
+  title: 'Kahve Satış Tahmininde Derin Öğrenme: Günlük Satış...',
+  claps: 0,
+  voters: 0,
+  responses: 0
+}
+✅ Fetched: Kahve Satış Tahmininde Derin Öğrenme: Gü... - 0 claps, 0 voters
+🎉 Successfully fetched 3 articles with real engagement data
+📊 API Articles received: 3
+🔍 Processing API articles...
+✅ Successfully converted API data
+📊 Real engagement stats:
+   - Smart Traffic Analysis With Yo...: 37 claps, 818 views
+   - Threat Detection...: 1 claps, 142 views
+   - Kahve Satış Tahmininde Derin Ö...: 0 claps, 90 views
+ GET /api/medium 200 in 2651ms
+ ✓ Compiled in 81ms (297 modules)
+ ✓ Compiled in 42ms (277 modules)
+ ✓ Compiled in 78ms (297 modules)
+ ✓ Compiled /api/huggingface in 80ms (409 modules)
+ GET /api/huggingface 200 in 109ms
+ ○ Compiling /huggingface ...
+
+warn - As of Tailwind CSS v3.3, the `@tailwindcss/line-clamp` plugin is now included by default.
+warn - Remove it from the `plugins` array in your configuration to eliminate this warning.
+(node:99424) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ Compiled /huggingface in 4.1s (1776 modules)
+ GET /huggingface 200 in 4453ms
+ ✓ Compiled in 237ms (804 modules)
+ ✓ Compiled in 514ms (739 modules)
+ ✓ Compiled in 222ms (733 modules)
+ ✓ Compiled in 387ms (733 modules)
+ ✓ Compiled in 267ms (733 modules)
+ ✓ Compiled in 291ms (733 modules)
+ ✓ Compiled in 387ms (733 modules)
+ ✓ Compiled in 240ms (733 modules)
+ ✓ Compiled in 247ms (733 modules)
+ ✓ Compiled in 213ms (733 modules)
+ ✓ Compiled in 362ms (733 modules)
+ ✓ Compiled in 232ms (733 modules)
+ ✓ Compiled in 285ms (733 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 1757ms (1857 modules)
+ GET / 200 in 2253ms
+ GET / 200 in 656ms
+ ○ Compiling /api/linkedin ...
+ ✓ Compiled /api/linkedin in 798ms (1891 modules)
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+ GET /api/huggingface? 200 in 1090ms
+ GET /android-chrome-192x192.png 404 in 1136ms
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+ GET /api/linkedin 200 in 1407ms
+Fetched 6 repositories from GitHub API
+ GET /api/repos 200 in 1697ms
+📚 Medium User Articles Response: { id: '60a0e4269377', count: 3, total_articles: 3 }
+✅ Got article IDs: [ '7eef0441ca91', 'bde7fff47e06', '6d575ebb5a4b' ]
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/7eef0441ca91
+📄 Article 7eef0441ca91: {
+  title: 'Smart Traffic Analysis With Yolo...',
+  claps: 37,
+  voters: 2,
+  responses: 0
+}
+✅ Fetched: Smart Traffic Analysis With Yolo... - 37 claps, 2 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/bde7fff47e06
+📄 Article bde7fff47e06: { title: 'Threat Detection...', claps: 1, voters: 1, responses: 0 }
+✅ Fetched: Threat Detection... - 1 claps, 1 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/6d575ebb5a4b
+📄 Article 6d575ebb5a4b: {
+  title: 'Kahve Satış Tahmininde Derin Öğrenme: Günlük Satış...',
+  claps: 0,
+  voters: 0,
+  responses: 0
+}
+✅ Fetched: Kahve Satış Tahmininde Derin Öğrenme: Gü... - 0 claps, 0 voters
+🎉 Successfully fetched 3 articles with real engagement data
+📊 API Articles received: 3
+🔍 Processing API articles...
+✅ Successfully converted API data
+📊 Real engagement stats:
+   - Smart Traffic Analysis With Yo...: 37 claps, 892 views
+   - Threat Detection...: 1 claps, 79 views
+   - Kahve Satış Tahmininde Derin Ö...: 0 claps, 51 views
+ GET /api/medium 200 in 3860ms
+ GET /api/huggingface 200 in 26ms
+ ✓ Compiled in 1096ms (1889 modules)
+ GET / 200 in 118ms
+ ✓ Compiled /_not-found in 856ms (1879 modules)
+ GET /android-chrome-192x192.png 404 in 681ms
+ GET / 200 in 256ms
+ GET /android-chrome-192x192.png 404 in 44ms
+ GET /api/huggingface 200 in 12ms
+ GET / 200 in 701ms
+ GET /android-chrome-192x192.png 404 in 139ms
+ ✓ Compiled /api/repos in 207ms (1022 modules)
+ ✓ Compiled (1029 modules)
+ GET /api/huggingface? 200 in 384ms
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+ GET /api/linkedin 200 in 672ms
+Fetched 6 repositories from GitHub API
+ GET /api/repos 200 in 930ms
+📚 Medium User Articles Response: { id: '60a0e4269377', count: 3, total_articles: 3 }
+✅ Got article IDs: [ '7eef0441ca91', 'bde7fff47e06', '6d575ebb5a4b' ]
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/7eef0441ca91
+📄 Article 7eef0441ca91: {
+  title: 'Smart Traffic Analysis With Yolo...',
+  claps: 37,
+  voters: 2,
+  responses: 0
+}
+✅ Fetched: Smart Traffic Analysis With Yolo... - 37 claps, 2 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/bde7fff47e06
+📄 Article bde7fff47e06: { title: 'Threat Detection...', claps: 1, voters: 1, responses: 0 }
+✅ Fetched: Threat Detection... - 1 claps, 1 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/6d575ebb5a4b
+📄 Article 6d575ebb5a4b: {
+  title: 'Kahve Satış Tahmininde Derin Öğrenme: Günlük Satış...',
+  claps: 0,
+  voters: 0,
+  responses: 0
+}
+✅ Fetched: Kahve Satış Tahmininde Derin Öğrenme: Gü... - 0 claps, 0 voters
+🎉 Successfully fetched 3 articles with real engagement data
+📊 API Articles received: 3
+🔍 Processing API articles...
+✅ Successfully converted API data
+📊 Real engagement stats:
+   - Smart Traffic Analysis With Yo...: 37 claps, 887 views
+   - Threat Detection...: 1 claps, 127 views
+   - Kahve Satış Tahmininde Derin Ö...: 0 claps, 50 views
+ GET /api/medium 200 in 3053ms
+ ✓ Compiled in 528ms (1905 modules)
+ GET / 200 in 93ms
+ GET / 200 in 94ms
+ GET /android-chrome-192x192.png 404 in 240ms
+ GET /android-chrome-192x192.png 404 in 51ms
+ GET /api/huggingface 200 in 8ms
+ GET /api/huggingface 200 in 6ms
+ GET / 200 in 169ms
+ GET /api/huggingface? 200 in 12ms
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+ ○ Compiling /_error ...
+📚 Medium User Articles Response: { id: '60a0e4269377', count: 3, total_articles: 3 }
+✅ Got article IDs: [ '7eef0441ca91', 'bde7fff47e06', '6d575ebb5a4b' ]
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/7eef0441ca91
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+ GET /api/linkedin 200 in 782ms
+Fetched 6 repositories from GitHub API
+ GET /api/repos 200 in 841ms
+ ✓ Compiled /_error in 1202ms (2223 modules)
+ GET / 200 in 647ms
+ GET / 200 in 650ms
+ GET / 200 in 14ms
+ GET / 200 in 14ms
+ GET /android-chrome-192x192.png 404 in 1664ms
+📄 Article 7eef0441ca91: {
+  title: 'Smart Traffic Analysis With Yolo...',
+  claps: 37,
+  voters: 2,
+  responses: 0
+}
+✅ Fetched: Smart Traffic Analysis With Yolo... - 37 claps, 2 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/bde7fff47e06
+ GET /android-chrome-192x192.png 404 in 159ms
+ GET /android-chrome-192x192.png 404 in 37ms
+📄 Article bde7fff47e06: { title: 'Threat Detection...', claps: 1, voters: 1, responses: 0 }
+✅ Fetched: Threat Detection... - 1 claps, 1 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/6d575ebb5a4b
+📄 Article 6d575ebb5a4b: {
+  title: 'Kahve Satış Tahmininde Derin Öğrenme: Günlük Satış...',
+  claps: 0,
+  voters: 0,
+  responses: 0
+}
+✅ Fetched: Kahve Satış Tahmininde Derin Öğrenme: Gü... - 0 claps, 0 voters
+🎉 Successfully fetched 3 articles with real engagement data
+📊 API Articles received: 3
+🔍 Processing API articles...
+✅ Successfully converted API data
+📊 Real engagement stats:
+   - Smart Traffic Analysis With Yo...: 37 claps, 842 views
+   - Threat Detection...: 1 claps, 149 views
+   - Kahve Satış Tahmininde Derin Ö...: 0 claps, 95 views
+ GET /api/medium 200 in 2926ms
+ ✓ Compiled in 661ms (2160 modules)
+ GET / 200 in 144ms
+ GET / 200 in 145ms
+ ✓ Compiled /_not-found in 277ms (2150 modules)
+ GET /android-chrome-192x192.png 404 in 540ms
+ GET /android-chrome-192x192.png 404 in 55ms
+ ✓ Compiled /api/huggingface in 203ms (1063 modules)
+ GET /api/huggingface 200 in 320ms
+ GET / 200 in 70ms
+ GET / 200 in 71ms
+ GET /android-chrome-192x192.png 404 in 192ms
+ GET /android-chrome-192x192.png 404 in 43ms
+ GET /api/huggingface 200 in 3ms
+ GET /api/huggingface 200 in 5ms
+ GET / 200 in 199ms
+ GET /api/huggingface? 200 in 17ms
+ GET /android-chrome-192x192.png 404 in 72ms
+ ✓ Compiled /api/medium in 142ms (1068 modules)
+ ✓ Compiled /api/linkedin in 140ms (1071 modules)
+ ✓ Compiled (1075 modules)
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+ GET /api/linkedin 200 in 728ms
+Fetched 6 repositories from GitHub API
+ GET /api/repos 200 in 980ms
+📚 Medium User Articles Response: { id: '60a0e4269377', count: 3, total_articles: 3 }
+✅ Got article IDs: [ '7eef0441ca91', 'bde7fff47e06', '6d575ebb5a4b' ]
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/7eef0441ca91
+📄 Article 7eef0441ca91: {
+  title: 'Smart Traffic Analysis With Yolo...',
+  claps: 37,
+  voters: 2,
+  responses: 0
+}
+✅ Fetched: Smart Traffic Analysis With Yolo... - 37 claps, 2 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/bde7fff47e06
+📄 Article bde7fff47e06: { title: 'Threat Detection...', claps: 1, voters: 1, responses: 0 }
+✅ Fetched: Threat Detection... - 1 claps, 1 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/6d575ebb5a4b
+📄 Article 6d575ebb5a4b: {
+  title: 'Kahve Satış Tahmininde Derin Öğrenme: Günlük Satış...',
+  claps: 0,
+  voters: 0,
+  responses: 0
+}
+✅ Fetched: Kahve Satış Tahmininde Derin Öğrenme: Gü... - 0 claps, 0 voters
+🎉 Successfully fetched 3 articles with real engagement data
+📊 API Articles received: 3
+🔍 Processing API articles...
+✅ Successfully converted API data
+📊 Real engagement stats:
+   - Smart Traffic Analysis With Yo...: 37 claps, 804 views
+   - Threat Detection...: 1 claps, 61 views
+   - Kahve Satış Tahmininde Derin Ö...: 0 claps, 82 views
+ GET /api/medium 200 in 7690ms
+ ✓ Compiled in 404ms (2194 modules)
+ GET / 200 in 97ms
+ GET / 200 in 98ms
+ ✓ Compiled /_error in 386ms (2223 modules)
+ GET /android-chrome-192x192.png 404 in 650ms
+ GET /android-chrome-192x192.png 404 in 226ms
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+ GET /api/linkedin 200 in 248ms
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+📚 Medium User Articles Response: { id: '60a0e4269377', count: 3, total_articles: 3 }
+✅ Got article IDs: [ '7eef0441ca91', 'bde7fff47e06', '6d575ebb5a4b' ]
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/7eef0441ca91
+📄 Article 7eef0441ca91: {
+  title: 'Smart Traffic Analysis With Yolo...',
+  claps: 37,
+  voters: 2,
+  responses: 0
+}
+✅ Fetched: Smart Traffic Analysis With Yolo... - 37 claps, 2 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/bde7fff47e06
+📄 Article bde7fff47e06: { title: 'Threat Detection...', claps: 1, voters: 1, responses: 0 }
+✅ Fetched: Threat Detection... - 1 claps, 1 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/6d575ebb5a4b
+📄 Article 6d575ebb5a4b: {
+  title: 'Kahve Satış Tahmininde Derin Öğrenme: Günlük Satış...',
+  claps: 0,
+  voters: 0,
+  responses: 0
+}
+✅ Fetched: Kahve Satış Tahmininde Derin Öğrenme: Gü... - 0 claps, 0 voters
+🎉 Successfully fetched 3 articles with real engagement data
+📊 API Articles received: 3
+🔍 Processing API articles...
+✅ Successfully converted API data
+📊 Real engagement stats:
+   - Smart Traffic Analysis With Yo...: 37 claps, 802 views
+   - Threat Detection...: 1 claps, 63 views
+   - Kahve Satış Tahmininde Derin Ö...: 0 claps, 64 views
+ GET /api/medium 200 in 9337ms
+ ✓ Compiled in 236ms (1065 modules)
+ ✓ Compiled in 116ms (1065 modules)
+ GET / 200 in 347ms
+ GET / 200 in 349ms
+ ✓ Compiled /_not-found in 228ms (2171 modules)
+ GET /android-chrome-192x192.png 404 in 441ms
+ GET /android-chrome-192x192.png 404 in 36ms
+ ✓ Compiled /api/huggingface in 101ms (1068 modules)
+ GET /api/huggingface 200 in 132ms
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+📚 Medium User Articles Response: { id: '60a0e4269377', count: 3, total_articles: 3 }
+✅ Got article IDs: [ '7eef0441ca91', 'bde7fff47e06', '6d575ebb5a4b' ]
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/7eef0441ca91
+📄 Article 7eef0441ca91: {
+  title: 'Smart Traffic Analysis With Yolo...',
+  claps: 37,
+  voters: 2,
+  responses: 0
+}
+✅ Fetched: Smart Traffic Analysis With Yolo... - 37 claps, 2 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/bde7fff47e06
+📄 Article bde7fff47e06: { title: 'Threat Detection...', claps: 1, voters: 1, responses: 0 }
+✅ Fetched: Threat Detection... - 1 claps, 1 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/6d575ebb5a4b
+📄 Article 6d575ebb5a4b: {
+  title: 'Kahve Satış Tahmininde Derin Öğrenme: Günlük Satış...',
+  claps: 0,
+  voters: 0,
+  responses: 0
+}
+✅ Fetched: Kahve Satış Tahmininde Derin Öğrenme: Gü... - 0 claps, 0 voters
+🎉 Successfully fetched 3 articles with real engagement data
+📊 API Articles received: 3
+🔍 Processing API articles...
+✅ Successfully converted API data
+📊 Real engagement stats:
+   - Smart Traffic Analysis With Yo...: 37 claps, 854 views
+   - Threat Detection...: 1 claps, 59 views
+   - Kahve Satış Tahmininde Derin Ö...: 0 claps, 51 views
+ GET /api/medium 200 in 8762ms
+ ✓ Compiled /api/linkedin in 231ms (1072 modules)
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+ GET /api/linkedin 200 in 619ms
+ GET / 200 in 277ms
+ GET /api/huggingface? 200 in 16ms
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+ GET /android-chrome-192x192.png 404 in 69ms
+ ✓ Compiled /api/repos in 122ms (1075 modules)
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+ GET /api/linkedin 200 in 536ms
+📚 Medium User Articles Response: { id: '60a0e4269377', count: 3, total_articles: 3 }
+✅ Got article IDs: [ '7eef0441ca91', 'bde7fff47e06', '6d575ebb5a4b' ]
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/7eef0441ca91
+Fetched 6 repositories from GitHub API
+ GET /api/repos 200 in 961ms
+📄 Article 7eef0441ca91: {
+  title: 'Smart Traffic Analysis With Yolo...',
+  claps: 37,
+  voters: 2,
+  responses: 0
+}
+✅ Fetched: Smart Traffic Analysis With Yolo... - 37 claps, 2 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/bde7fff47e06
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+ GET /api/linkedin 200 in 85ms
+📄 Article bde7fff47e06: { title: 'Threat Detection...', claps: 1, voters: 1, responses: 0 }
+✅ Fetched: Threat Detection... - 1 claps, 1 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/6d575ebb5a4b
+📄 Article 6d575ebb5a4b: {
+  title: 'Kahve Satış Tahmininde Derin Öğrenme: Günlük Satış...',
+  claps: 0,
+  voters: 0,
+  responses: 0
+}
+✅ Fetched: Kahve Satış Tahmininde Derin Öğrenme: Gü... - 0 claps, 0 voters
+🎉 Successfully fetched 3 articles with real engagement data
+📊 API Articles received: 3
+🔍 Processing API articles...
+✅ Successfully converted API data
+📊 Real engagement stats:
+   - Smart Traffic Analysis With Yo...: 37 claps, 826 views
+   - Threat Detection...: 1 claps, 85 views
+   - Kahve Satış Tahmininde Derin Ö...: 0 claps, 79 views
+ GET /api/medium 200 in 9377ms
+ ✓ Compiled in 666ms (2194 modules)
+ GET / 200 in 68ms
+ GET / 200 in 69ms
+ GET /android-chrome-192x192.png 404 in 167ms
+ GET /android-chrome-192x192.png 404 in 34ms
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+ GET /api/linkedin 200 in 290ms
+ GET / 200 in 184ms
+ GET /api/huggingface? 200 in 12ms
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+ GET /android-chrome-192x192.png 404 in 81ms
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+ GET /api/linkedin 200 in 235ms
+Fetched 6 repositories from GitHub API
+ GET /api/repos 200 in 543ms
+Medium API request failed: Error: API request failed: 502 Bad Gateway
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+Failed to get user articles: Error: API request failed: 502 Bad Gateway
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API integration failed: Error: API request failed: 502 Bad Gateway
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API failed: Error: API request failed: 502 Bad Gateway
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+📄 Using fallback Medium articles data
+ GET /api/medium 200 in 13339ms
+ ✓ Compiled in 205ms (1075 modules)
+ GET / 200 in 108ms
+ GET / 200 in 110ms
+ ✓ Compiled in 524ms (2180 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /android-chrome-192x192.png 404 in 554ms
+ GET /_next/static/webpack/45faf5bee25b5170.webpack.hot-update.json 404 in 307ms
+ GET /android-chrome-192x192.png 404 in 55ms
+ GET / 200 in 123ms
+ GET /api/huggingface? 200 in 13ms
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+ GET /android-chrome-192x192.png 404 in 84ms
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+ GET /api/linkedin 200 in 358ms
+Fetched 6 repositories from GitHub API
+ GET /api/repos 200 in 505ms
+📚 Medium User Articles Response: { id: '60a0e4269377', count: 3, total_articles: 3 }
+✅ Got article IDs: [ '7eef0441ca91', 'bde7fff47e06', '6d575ebb5a4b' ]
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/7eef0441ca91
+📄 Article 7eef0441ca91: {
+  title: 'Smart Traffic Analysis With Yolo...',
+  claps: 37,
+  voters: 2,
+  responses: 0
+}
+✅ Fetched: Smart Traffic Analysis With Yolo... - 37 claps, 2 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/bde7fff47e06
+📄 Article bde7fff47e06: { title: 'Threat Detection...', claps: 1, voters: 1, responses: 0 }
+✅ Fetched: Threat Detection... - 1 claps, 1 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/6d575ebb5a4b
+📄 Article 6d575ebb5a4b: {
+  title: 'Kahve Satış Tahmininde Derin Öğrenme: Günlük Satış...',
+  claps: 0,
+  voters: 0,
+  responses: 0
+}
+✅ Fetched: Kahve Satış Tahmininde Derin Öğrenme: Gü... - 0 claps, 0 voters
+🎉 Successfully fetched 3 articles with real engagement data
+📊 API Articles received: 3
+🔍 Processing API articles...
+✅ Successfully converted API data
+📊 Real engagement stats:
+   - Smart Traffic Analysis With Yo...: 37 claps, 839 views
+   - Threat Detection...: 1 claps, 80 views
+   - Kahve Satış Tahmininde Derin Ö...: 0 claps, 66 views
+ GET /api/medium 200 in 6091ms
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+ GET /api/linkedin 200 in 205ms
+ GET /api/huggingface 200 in 4ms
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+📚 Medium User Articles Response: { id: '60a0e4269377', count: 3, total_articles: 3 }
+✅ Got article IDs: [ '7eef0441ca91', 'bde7fff47e06', '6d575ebb5a4b' ]
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/7eef0441ca91
+📄 Article 7eef0441ca91: {
+  title: 'Smart Traffic Analysis With Yolo...',
+  claps: 37,
+  voters: 2,
+  responses: 0
+}
+✅ Fetched: Smart Traffic Analysis With Yolo... - 37 claps, 2 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/bde7fff47e06
+📄 Article bde7fff47e06: { title: 'Threat Detection...', claps: 1, voters: 1, responses: 0 }
+✅ Fetched: Threat Detection... - 1 claps, 1 voters
+🌐 Making API request to: https://medium2.p.rapidapi.com/article/6d575ebb5a4b
+📄 Article 6d575ebb5a4b: {
+  title: 'Kahve Satış Tahmininde Derin Öğrenme: Günlük Satış...',
+  claps: 0,
+  voters: 0,
+  responses: 0
+}
+✅ Fetched: Kahve Satış Tahmininde Derin Öğrenme: Gü... - 0 claps, 0 voters
+🎉 Successfully fetched 3 articles with real engagement data
+📊 API Articles received: 3
+🔍 Processing API articles...
+✅ Successfully converted API data
+📊 Real engagement stats:
+   - Smart Traffic Analysis With Yo...: 37 claps, 886 views
+   - Threat Detection...: 1 claps, 72 views
+   - Kahve Satış Tahmininde Derin Ö...: 0 claps, 68 views
+ GET /api/medium 200 in 4753ms
+ GET / 200 in 146ms
+ GET /api/huggingface? 200 in 11ms
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+ GET /android-chrome-192x192.png 404 in 79ms
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+ GET /api/linkedin 200 in 327ms
+Fetched 6 repositories from GitHub API
+ GET /api/repos 200 in 524ms
+Medium API request failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+Failed to get user articles: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API integration failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+📄 Using fallback Medium articles data
+ GET /api/medium 200 in 937ms
+ GET / 200 in 138ms
+ GET /api/huggingface? 200 in 9ms
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+ GET /android-chrome-192x192.png 404 in 77ms
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+ GET /api/linkedin 200 in 280ms
+ GET /api/repos 200 in 532ms
+Medium API request failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+Failed to get user articles: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API integration failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+📄 Using fallback Medium articles data
+ GET /api/medium 200 in 860ms
+Fetched 6 repositories from GitHub API
+ ✓ Compiled in 328ms (1044 modules)
+ ✓ Compiled /api/medium in 106ms (1065 modules)
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+ GET / 200 in 74ms
+ GET / 200 in 76ms
+ GET / 200 in 34ms
+ ✓ Compiled /_not-found in 276ms (2171 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /android-chrome-192x192.png 404 in 546ms
+Medium API request failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+Failed to get user articles: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API integration failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+📄 Using fallback Medium articles data
+ GET /api/medium 200 in 1132ms
+ GET /_next/static/webpack/45faf5bee25b5170.webpack.hot-update.json 404 in 504ms
+ GET /android-chrome-192x192.png 404 in 406ms
+ GET /_next/static/webpack/45faf5bee25b5170.webpack.hot-update.json 404 in 406ms
+ GET /android-chrome-192x192.png 404 in 335ms
+ GET / 200 in 373ms
+ GET / 200 in 123ms
+ GET /android-chrome-192x192.png 404 in 85ms
+ ✓ Compiled /api/linkedin in 408ms (2180 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /api/huggingface? 200 in 557ms
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+ GET /android-chrome-192x192.png 404 in 526ms
+ GET /_next/static/webpack/45faf5bee25b5170.webpack.hot-update.json 404 in 306ms
+Medium API request failed: Error: API request failed: 429 Too Many Requests
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+Failed to get user articles: Error: API request failed: 429 Too Many Requests
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API integration failed: Error: API request failed: 429 Too Many Requests
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API failed: Error: API request failed: 429 Too Many Requests
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+📄 Using fallback Medium articles data
+ GET /api/medium 200 in 812ms
+ GET /api/linkedin 200 in 821ms
+ GET /api/repos 200 in 821ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /api/huggingface? 200 in 49ms
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+ GET / 200 in 310ms
+ GET /_next/static/webpack/45faf5bee25b5170.webpack.hot-update.json 404 in 62ms
+Medium API request failed: Error: API request failed: 429 Too Many Requests
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+Failed to get user articles: Error: API request failed: 429 Too Many Requests
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API integration failed: Error: API request failed: 429 Too Many Requests
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API failed: Error: API request failed: 429 Too Many Requests
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+📄 Using fallback Medium articles data
+ GET /api/medium 200 in 271ms
+ GET /api/repos 200 in 276ms
+ GET /api/linkedin 200 in 277ms
+ GET / 200 in 223ms
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+Fetched 6 repositories from GitHub API
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+ GET /android-chrome-192x192.png 404 in 39ms
+ GET /api/huggingface? 200 in 11ms
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+Fetched 6 repositories from GitHub API
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+ GET /api/linkedin 200 in 91ms
+ GET /android-chrome-192x192.png 404 in 33ms
+ GET /api/huggingface? 200 in 7ms
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+Fetched 6 repositories from GitHub API
+ GET /api/repos 200 in 293ms
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+ GET /api/linkedin 200 in 88ms
+Medium API request failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+Failed to get user articles: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API integration failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+📄 Using fallback Medium articles data
+ GET /api/medium 200 in 857ms
+Fetched 6 repositories from GitHub API
+ GET /api/repos 200 in 448ms
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+Medium API request failed: Error: API request failed: 429 Too Many Requests
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+Failed to get user articles: Error: API request failed: 429 Too Many Requests
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API integration failed: Error: API request failed: 429 Too Many Requests
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API failed: Error: API request failed: 429 Too Many Requests
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+📄 Using fallback Medium articles data
+ GET /api/medium 200 in 338ms
+ GET / 200 in 154ms
+ GET /api/huggingface? 200 in 27ms
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+ GET /android-chrome-192x192.png 404 in 72ms
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+ GET /api/linkedin 200 in 272ms
+ GET /api/repos 200 in 144ms
+Medium API request failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+Failed to get user articles: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API integration failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+📄 Using fallback Medium articles data
+ GET /api/medium 200 in 897ms
+Fetched 6 repositories from GitHub API
+ GET / 200 in 137ms
+ GET /api/huggingface? 200 in 17ms
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+ GET /android-chrome-192x192.png 404 in 43ms
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+ GET /api/linkedin 200 in 290ms
+Fetched 6 repositories from GitHub API
+ GET /api/repos 200 in 599ms
+Medium API request failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+Failed to get user articles: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API integration failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+📄 Using fallback Medium articles data
+ GET /api/medium 200 in 893ms
+ ✓ Compiled in 222ms (1075 modules)
+ ✓ Compiled in 207ms (1075 modules)
+ GET / 200 in 373ms
+ GET / 200 in 376ms
+ GET / 200 in 16ms
+ GET /android-chrome-192x192.png 404 in 153ms
+ GET /android-chrome-192x192.png 404 in 71ms
+ GET /android-chrome-192x192.png 404 in 37ms
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+Medium API request failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+Failed to get user articles: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API integration failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+📄 Using fallback Medium articles data
+ GET /api/medium 200 in 926ms
+ GET / 200 in 189ms
+ GET /api/huggingface? 200 in 21ms
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+ GET /android-chrome-192x192.png 404 in 51ms
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+ GET /api/linkedin 200 in 337ms
+Medium API request failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+Failed to get user articles: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API integration failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+📄 Using fallback Medium articles data
+ GET /api/medium 200 in 891ms
+Fetched 6 repositories from GitHub API
+ GET /api/repos 200 in 721ms
+ ✓ Compiled in 368ms (1073 modules)
+ ✓ Compiled in 146ms (1075 modules)
+ GET / 200 in 363ms
+ GET / 200 in 362ms
+ GET / 200 in 27ms
+ GET / 200 in 44ms
+ GET / 200 in 29ms
+ GET / 200 in 18ms
+ GET /android-chrome-192x192.png 404 in 241ms
+ GET /android-chrome-192x192.png 404 in 78ms
+ GET /android-chrome-192x192.png 404 in 44ms
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+Medium API request failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+Failed to get user articles: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API integration failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+📄 Using fallback Medium articles data
+ GET /api/medium 200 in 818ms
+ GET / 200 in 192ms
+ GET /api/huggingface? 200 in 14ms
+🎯 Starting with verified real LinkedIn posts
+🚫 Scraped data temporarily disabled, using only curated real posts
+🚀 Fetching real LinkedIn data via API...
+🔍 Fetching own LinkedIn posts via profile_posts API...
+🔄 getMediumArticles called
+🚀 Fetching real Medium data via API...
+📦 Medium API module imported
+🚀 Starting real Medium API data fetch...
+👤 Using user ID: 60a0e4269377
+🌐 Making API request to: https://medium2.p.rapidapi.com/user/60a0e4269377/articles
+ GET /android-chrome-192x192.png 404 in 83ms
+✅ Final result: 3 unique LinkedIn posts
+📊 Real posts: 3, Additional sources: 0
+ GET /api/linkedin 200 in 314ms
+ GET /api/repos 200 in 503ms
+Fetched 6 repositories from GitHub API
+Medium API request failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+Failed to get user articles: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API integration failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+❌ Medium API failed: Error: API request failed: 403 Forbidden
+    at makeAPIRequest (lib/medium-api.ts:55:12)
+    at async getUserArticles (lib/medium-api.ts:67:21)
+    at async getMediumArticlesWithRealData (lib/medium-api.ts:117:23)
+    at async getMediumArticles (lib/medium.ts:122:26)
+    at async GET (app/api/medium/route.ts:9:21)
+  53 |
+  54 |     if (!response.ok) {
+> 55 |       throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+     |            ^
+  56 |     }
+  57 |
+  58 |     return await response.json();
+📄 Using fallback Medium articles data
+ GET /api/medium 200 in 1155ms
+ ✓ Compiled in 1345ms (2160 modules)
+ ✓ Compiled in 466ms (2160 modules)
+ ✓ Compiled in 688ms (2160 modules)
+ ✓ Compiled in 1528ms (2160 modules)
+ ✓ Compiled in 1331ms (2150 modules)
+ GET / 200 in 366ms
+ ✓ Compiled in 912ms (2150 modules)
+ ✓ Compiled in 672ms (2150 modules)
+ ✓ Compiled in 718ms (2150 modules)
+ ✓ Compiled in 805ms (2150 modules)
+ ✓ Compiled in 830ms (2150 modules)
+ ✓ Compiled in 633ms (2150 modules)
+ GET / 200 in 264ms
+ ✓ Compiled in 949ms (2150 modules)
+ ✓ Compiled in 645ms (2150 modules)
+ ✓ Compiled in 995ms (2150 modules)
+ ✓ Compiled in 424ms (2150 modules)
+ ✓ Compiled in 400ms (2150 modules)
+ ✓ Compiled in 1009ms (2150 modules)
+ GET / 200 in 247ms
+ ✓ Compiled in 847ms (2150 modules)
+ ✓ Compiled in 589ms (2150 modules)
+ ✓ Compiled in 432ms (2150 modules)
+ ✓ Compiled in 813ms (2150 modules)
+ ✓ Compiled in 743ms (2150 modules)
+ ✓ Compiled in 417ms (2150 modules)
+ ✓ Compiled in 568ms (2150 modules)
+ GET / 200 in 161ms
+ ✓ Compiled in 1094ms (2150 modules)
+ ✓ Compiled in 967ms (2150 modules)
+ ✓ Compiled in 418ms (2150 modules)
+ ✓ Compiled in 934ms (2148 modules)
+ ✓ Compiled in 362ms (2148 modules)
+ ✓ Compiled in 298ms (1110 modules)
+ ✓ Compiled in 262ms (1110 modules)
+ ✓ Compiled in 235ms (1110 modules)
+ ✓ Compiled in 268ms (1110 modules)
+ ✓ Compiled in 272ms (1110 modules)
+ ✓ Compiled in 257ms (1110 modules)
+ ✓ Compiled in 530ms (2148 modules)
+ ✓ Compiled in 643ms (2148 modules)
+ ✓ Compiled in 1222ms (2164 modules)
+ ✓ Compiled in 250ms (1118 modules)
+ ✓ Compiled in 327ms (1118 modules)
+ ✓ Compiled in 244ms (1118 modules)
+ ✓ Compiled in 1147ms (2164 modules)
+ ✓ Compiled in 518ms (2166 modules)
+ ✓ Compiled in 424ms (2166 modules)
+ ✓ Compiled in 1240ms (2166 modules)
+ ✓ Compiled in 608ms (2166 modules)
+ ✓ Compiled in 618ms (2166 modules)
+ ✓ Compiled in 821ms (2166 modules)
+ ✓ Compiled in 420ms (2166 modules)
+ ✓ Compiled in 519ms (2166 modules)
+ GET / 200 in 322ms
+ ✓ Compiled in 414ms (1119 modules)
+ ✓ Compiled in 263ms (1119 modules)
+ ✓ Compiled in 250ms (1119 modules)
+ ✓ Compiled in 289ms (1119 modules)
+ ✓ Compiled in 477ms (1119 modules)
+ ✓ Compiled in 265ms (1119 modules)
+ ✓ Compiled in 244ms (1119 modules)
+ ✓ Compiled in 271ms (1119 modules)
+ ✓ Compiled in 282ms (1119 modules)
+ ✓ Compiled in 495ms (2166 modules)
+ ✓ Compiled in 417ms (2166 modules)
+ ✓ Compiled in 538ms (2166 modules)
+ ✓ Compiled in 452ms (2166 modules)
+ ✓ Compiled in 877ms (2168 modules)
+ ✓ Compiled in 1005ms (2170 modules)
+ ✓ Compiled in 376ms (2170 modules)
+ ⨯ ./app/page.tsx
+Error:   [31mx[0m Unexpected token `ScrollProvider`. Expected jsx identifier
+     ,-[[36;1;4m/Users/bahakizil/Downloads/mypage/app/page.tsx[0m:183:1]
+ [2m180[0m | 
+ [2m181[0m | 
+ [2m182[0m |   return (
+ [2m183[0m |     <ScrollProvider>
+     : [35;1m     ^^^^^^^^^^^^^^[0m
+ [2m184[0m |       <ScrollProgress />
+ [2m185[0m |       <AnimatedGradient />
+ [2m186[0m |       <FloatingParticles />
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Error:   [31mx[0m Unexpected token `ScrollProvider`. Expected jsx identifier
+     ,-[[36;1;4m/Users/bahakizil/Downloads/mypage/app/page.tsx[0m:183:1]
+ [2m180[0m | 
+ [2m181[0m | 
+ [2m182[0m |   return (
+ [2m183[0m |     <ScrollProvider>
+     : [35;1m     ^^^^^^^^^^^^^^[0m
+ [2m184[0m |       <ScrollProgress />
+ [2m185[0m |       <AnimatedGradient />
+ [2m186[0m |       <FloatingParticles />
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ✓ Compiled in 1094ms (2172 modules)
+ ✓ Compiled in 456ms (2172 modules)
+ ✓ Compiled in 401ms (2172 modules)
+ ✓ Compiled in 481ms (2172 modules)
+ ⨯ ./app/page.tsx
+Error:   [31mx[0m Unexpected token `ScrollProvider`. Expected jsx identifier
+     ,-[[36;1;4m/Users/bahakizil/Downloads/mypage/app/page.tsx[0m:183:1]
+ [2m180[0m | 
+ [2m181[0m | 
+ [2m182[0m |   return (
+ [2m183[0m |     <ScrollProvider>
+     : [35;1m     ^^^^^^^^^^^^^^[0m
+ [2m184[0m |       <ScrollProgress />
+ [2m185[0m |       <AnimatedGradient />
+ [2m186[0m |       <FloatingParticles />
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ✓ Compiled in 1542ms (2172 modules)
+ ✓ Compiled in 1359ms (2172 modules)
+ ⨯ ./app/page.tsx
+Error:   [31mx[0m Unexpected token `ScrollProvider`. Expected jsx identifier
+     ,-[[36;1;4m/Users/bahakizil/Downloads/mypage/app/page.tsx[0m:183:1]
+ [2m180[0m | 
+ [2m181[0m | 
+ [2m182[0m |   return (
+ [2m183[0m |     <ScrollProvider>
+     : [35;1m     ^^^^^^^^^^^^^^[0m
+ [2m184[0m |       <ScrollProgress />
+ [2m185[0m |       <AnimatedGradient />
+ [2m186[0m |       <FloatingParticles />
+     `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./app/page.tsx
+ ✓ Compiled in 1249ms (2172 modules)
+ ✓ Compiled in 1118ms (2172 modules)
+ ✓ Compiled in 952ms (2172 modules)
+ ✓ Compiled in 1075ms (2174 modules)
+ ✓ Compiled in 749ms (2174 modules)
+ ✓ Compiled in 982ms (2174 modules)
+ ✓ Compiled in 393ms (2174 modules)
+ ✓ Compiled in 1559ms (2174 modules)
+ ✓ Compiled in 429ms (2174 modules)
+ ✓ Compiled in 532ms (2174 modules)
+ ⨯ ./app/page.tsx
+Module parse failed: Identifier 'bgParallax' has already been declared (55:10)
+|     const { refreshScrollTrigger } = useGSAPAnimations();
+|     // Parallax effects
+>     const bgParallax = useParallax(100);
+|     const contentParallax = useParallax(-50);
+|     // Load data from APIs
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Module parse failed: Identifier 'bgParallax' has already been declared (55:10)
+|     const { refreshScrollTrigger } = useGSAPAnimations();
+|     // Parallax effects
+>     const bgParallax = useParallax(100);
+|     const contentParallax = useParallax(-50);
+|     // Load data from APIs
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Module parse failed: Identifier 'bgParallax' has already been declared (55:10)
+|     const { refreshScrollTrigger } = useGSAPAnimations();
+|     // Parallax effects
+>     const bgParallax = useParallax(100);
+|     const contentParallax = useParallax(-50);
+|     // Load data from APIs
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./app/page.tsx
+Module parse failed: Identifier 'bgParallax' has already been declared (55:10)
+|     const { refreshScrollTrigger } = useGSAPAnimations();
+|     // Parallax effects
+>     const bgParallax = useParallax(100);
+|     const contentParallax = useParallax(-50);
+|     // Load data from APIs
+
+Import trace for requested module:
+./app/page.tsx
+ ✓ Compiled in 2.9s (2174 modules)
+ ✓ Compiled in 523ms (1123 modules)
+ ✓ Compiled in 333ms (1123 modules)
+ ✓ Compiled in 553ms (1123 modules)
+ ✓ Compiled in 295ms (1123 modules)
+ ✓ Compiled in 241ms (1123 modules)
+ ✓ Compiled in 710ms (2174 modules)
+ ✓ Compiled in 499ms (2177 modules)
+ ✓ Compiled in 568ms (2177 modules)
+ ✓ Compiled in 377ms (2177 modules)
+ ✓ Compiled in 429ms (2177 modules)
+ ✓ Compiled in 899ms (2177 modules)
+ ✓ Compiled in 1147ms (2179 modules)
+ ✓ Compiled in 378ms (2179 modules)
+ ✓ Compiled in 350ms (1125 modules)
+ ✓ Compiled in 334ms (1125 modules)
+ ✓ Compiled in 400ms (1125 modules)
+ ✓ Compiled in 318ms (1125 modules)
+ ✓ Compiled in 251ms (1125 modules)
+ ✓ Compiled in 288ms (1125 modules)
+ ✓ Compiled in 253ms (1125 modules)
+ ✓ Compiled in 262ms (1125 modules)
+ ✓ Compiled in 239ms (1125 modules)
+ ✓ Compiled in 269ms (1125 modules)
+ ✓ Compiled in 296ms (1125 modules)
+ ✓ Compiled in 329ms (1125 modules)
+ ✓ Compiled in 446ms (1125 modules)
+ ✓ Compiled in 257ms (1125 modules)
+ ✓ Compiled in 275ms (1125 modules)
+ ✓ Compiled in 261ms (1125 modules)
+ ✓ Compiled in 1261ms (2179 modules)
+ ✓ Compiled in 1281ms (2179 modules)
+ ⨯ ./components/navbar.tsx
+Error:   [31mx[0m Unexpected token `motion`. Expected jsx identifier
+    ,-[[36;1;4m/Users/bahakizil/Downloads/mypage/components/navbar.tsx[0m:71:1]
+ [2m68[0m |   };
+ [2m69[0m | 
+ [2m70[0m |   return (
+ [2m71[0m |     <motion.header
+    : [35;1m     ^^^^^^[0m
+ [2m72[0m |       style={{ y: navbarY, opacity: navbarOpacity }}
+ [2m73[0m |       className={cn(
+ [2m74[0m |         "fixed top-0 z-50 w-full transition-all duration-300 backdrop-blur-md navbar-bg",
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/navbar.tsx
+./app/layout.tsx
+ ✓ Compiled in 844ms (2179 modules)
+ ✓ Compiled in 969ms (2175 modules)
+ ⨯ ./components/footer.tsx
+Error:   [31mx[0m Unexpected token `footer`. Expected jsx identifier
+    ,-[[36;1;4m/Users/bahakizil/Downloads/mypage/components/footer.tsx[0m:22:1]
+ [2m19[0m |   const currentYear = new Date().getFullYear();
+ [2m20[0m | 
+ [2m21[0m |   return (
+ [2m22[0m |     <footer className="w-full border-t bg-background py-8">
+    : [35;1m     ^^^^^^[0m
+ [2m23[0m |       <ScrollReveal direction="up" delay={0.2}>
+ [2m24[0m |         <div className="container mx-auto px-4 md:px-6 max-w-7xl flex flex-col items-center justify-between gap-4 md:flex-row">
+ [2m25[0m |         <div className="flex flex-col items-center gap-4 md:items-start">
+    `----
+
+Caused by:
+    Syntax Error
+
+Import trace for requested module:
+./components/footer.tsx
+./app/layout.tsx
+ ✓ Compiled in 1224ms (2175 modules)
+ ✓ Compiled in 1610ms (2175 modules)
+ ✓ Compiled in 255ms (1127 modules)
+ ✓ Compiled in 530ms (1127 modules)
+ ✓ Compiled in 262ms (1127 modules)
+ ✓ Compiled in 413ms (1127 modules)
+ ✓ Compiled in 408ms (1127 modules)
+ ○ Compiling /api/contact ...
+ ✓ Compiled /api/contact in 853ms (2248 modules)
+✅ Email sent successfully: { data: { id: '8331e3d7-f1c2-463e-8f5e-8a8242ff6d8b' }, error: null }
+ POST /api/contact 200 in 2265ms
+ ✓ Compiled in 531ms (1127 modules)

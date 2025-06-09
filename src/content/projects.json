@@ -1,0 +1,68 @@
+[
+  {
+    "id": "rag-system",
+    "title": "Enterprise RAG System",
+    "description": "A production-grade Retrieval Augmented Generation system that enables organizations to search through their document databases using natural language queries.",
+    "longDescription": "Built a highly scalable Retrieval Augmented Generation (RAG) system that processes, indexes, and enables natural language search across enterprise documents. The system features document chunking strategies, vector embeddings with FAISS, context-aware prompting, and real-time result filtering. Achieved a 78% improvement in answer relevance compared to baseline LLM implementations.",
+    "image": "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "techStack": ["Python", "PyTorch", "Hugging Face", "LangChain", "Pinecone", "FastAPI", "Docker"],
+    "demoUrl": "https://demo.aieng-portfolio.com/rag",
+    "githubUrl": "https://github.com/aieng/enterprise-rag",
+    "featured": true
+  },
+  {
+    "id": "object-detection",
+    "title": "Real-time Object Detection",
+    "description": "A YOLOv8-based object detection system optimized for edge devices that can identify and track objects in real-time video streams.",
+    "longDescription": "Developed a real-time object detection system using YOLOv8 architecture, optimized for edge devices. The system can process video streams at 30+ FPS on consumer hardware, detecting 80+ object classes with 94.2% mAP. Implemented TensorRT optimizations reducing inference time by 65% and ONNX runtime integration for cross-platform deployment.",
+    "image": "https://images.pexels.com/photos/5473298/pexels-photo-5473298.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "techStack": ["Python", "PyTorch", "OpenCV", "YOLOv8", "ONNX", "TensorRT", "C++"],
+    "demoUrl": "https://demo.aieng-portfolio.com/object-detection",
+    "githubUrl": "https://github.com/aieng/yolov8-realtime",
+    "featured": true
+  },
+  {
+    "id": "llm-agent",
+    "title": "Autonomous LLM Agent",
+    "description": "An autonomous agent powered by GPT-4 that can perform complex tasks by breaking them down and executing them in sequence.",
+    "longDescription": "Created an autonomous agent system powered by GPT-4 that decomposes complex tasks into manageable subtasks and executes them with appropriate tools. The agent features a planning module, execution engine with tool selection, memory system for contextual awareness, and self-correction mechanisms. Demonstrated 87% task completion rate across diverse domains including research, analysis, and creative tasks.",
+    "image": "https://images.pexels.com/photos/8386434/pexels-photo-8386434.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "techStack": ["Python", "OpenAI API", "LangChain", "React", "Next.js", "Redis", "TypeScript"],
+    "demoUrl": "https://demo.aieng-portfolio.com/llm-agent",
+    "githubUrl": "https://github.com/aieng/autonomous-agent",
+    "featured": true
+  },
+  {
+    "id": "time-series-forecasting",
+    "title": "Time-Series Forecasting Framework",
+    "description": "A framework for time-series forecasting using transformer-based models, supporting multiple datasets and prediction horizons.",
+    "longDescription": "Engineered a comprehensive time-series forecasting framework that leverages transformer architectures for accurate predictions across diverse domains. The system incorporates multiple attention mechanisms, temporal encoding strategies, and multi-horizon prediction capabilities. Outperformed SOTA models by 12-18% on standard benchmarks including M4, electricity consumption, and financial datasets.",
+    "image": "https://images.pexels.com/photos/186461/pexels-photo-186461.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "techStack": ["Python", "TensorFlow", "Time Series", "Transformers", "MLflow", "Pandas", "Darts"],
+    "demoUrl": "https://demo.aieng-portfolio.com/time-series",
+    "githubUrl": "https://github.com/aieng/transformer-forecasting",
+    "featured": false
+  },
+  {
+    "id": "cv-model-compression",
+    "title": "CV Model Compression Toolkit",
+    "description": "A toolkit for compressing large computer vision models for edge deployment while maintaining accuracy.",
+    "longDescription": "Developed a comprehensive toolkit for compressing large computer vision models to enable efficient edge deployment. Implemented techniques including quantization (INT8/INT4), knowledge distillation, pruning, and architecture optimization. Achieved up to 8x model size reduction and 5x inference speedup with <2% accuracy loss on standard vision tasks.",
+    "image": "https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "techStack": ["Python", "PyTorch", "TensorFlow Lite", "ONNX", "C++", "ARM NEON", "TensorRT"],
+    "demoUrl": "https://demo.aieng-portfolio.com/model-compression",
+    "githubUrl": "https://github.com/aieng/cv-model-compression",
+    "featured": false
+  },
+  {
+    "id": "multimodal-rag",
+    "title": "Multimodal RAG System",
+    "description": "A retrieval-augmented generation system that can process and respond to queries about text, images, and audio content.",
+    "longDescription": "Built a multimodal retrieval-augmented generation system capable of understanding and responding to queries spanning text, images, and audio content. The system uses specialized encoders for each modality, a unified vector space for cross-modal retrieval, and adapter-based fine-tuning for domain adaptation. Demonstrated superior performance on multimodal question answering tasks with 23% improvement over unimodal baselines.",
+    "image": "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "techStack": ["Python", "PyTorch", "CLIP", "Whisper", "LangChain", "FastAPI", "Redis"],
+    "demoUrl": "https://demo.aieng-portfolio.com/multimodal-rag",
+    "githubUrl": "https://github.com/aieng/multimodal-rag",
+    "featured": true
+  }
+]

@@ -1,0 +1,78 @@
+2025-06-07 17:57:17,378 - INFO - 🌟 Social Media Scraper v2.0 - Real-time Engagement Data
+2025-06-07 17:57:17,378 - INFO - ====== WebDriver manager ======
+2025-06-07 17:57:22,404 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-07 17:57:22,833 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-07 17:57:23,298 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-07 17:57:24,759 - INFO - WebDriver version 137.0.7151.68 selected
+2025-06-07 17:57:24,762 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/137.0.7151.68/mac-arm64/chromedriver-mac-arm64.zip
+2025-06-07 17:57:24,762 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/137.0.7151.68/mac-arm64/chromedriver-mac-arm64.zip
+2025-06-07 17:57:25,056 - INFO - Driver downloading response is 200
+2025-06-07 17:57:26,017 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-07 17:57:26,445 - INFO - Driver has been saved in cache [/Users/bahakizil/.wdm/drivers/chromedriver/mac64/137.0.7151.68]
+2025-06-07 17:57:27,542 - INFO - 🚀 Starting daily social media data scraping...
+2025-06-07 17:57:27,542 - INFO - 🔥 Starting Medium data scraping...
+2025-06-07 17:57:27,543 - INFO - 📱 Logging into Medium...
+2025-06-07 17:57:52,106 - WARNING - ⚠️ Google login not found, trying alternative login...
+2025-06-07 17:57:52,107 - INFO - 📊 Scraping stats for article: Smart Traffic Analysis With Yolo
+2025-06-07 17:57:56,959 - WARNING - ⚠️ Element not found for claps
+2025-06-07 17:57:56,968 - WARNING - ⚠️ Element not found for views
+2025-06-07 17:57:56,976 - WARNING - ⚠️ Element not found for reads
+2025-06-07 17:57:56,982 - WARNING - ⚠️ Element not found for views_alt
+2025-06-07 17:57:56,982 - INFO - ✅ Smart Traffic Analysis With Yolo: 0 claps, 0 views
+2025-06-07 17:57:56,983 - INFO - 📊 Scraping stats for article: Threat Detection
+2025-06-07 17:58:01,644 - WARNING - ⚠️ Element not found for claps
+2025-06-07 17:58:01,650 - WARNING - ⚠️ Element not found for views
+2025-06-07 17:58:01,655 - WARNING - ⚠️ Element not found for reads
+2025-06-07 17:58:01,659 - WARNING - ⚠️ Element not found for views_alt
+2025-06-07 17:58:01,660 - INFO - ✅ Threat Detection: 0 claps, 0 views
+2025-06-07 17:58:01,660 - INFO - 📊 Scraping stats for article: Kahve Satış Tahmininde Derin Öğrenme
+2025-06-07 17:58:06,358 - WARNING - ⚠️ Element not found for claps
+2025-06-07 17:58:06,364 - WARNING - ⚠️ Element not found for views
+2025-06-07 17:58:06,369 - WARNING - ⚠️ Element not found for reads
+2025-06-07 17:58:06,374 - WARNING - ⚠️ Element not found for views_alt
+2025-06-07 17:58:06,374 - INFO - ✅ Kahve Satış Tahmininde Derin Öğrenme: 0 claps, 0 views
+2025-06-07 17:58:06,374 - INFO - 💼 Starting LinkedIn data scraping...
+2025-06-07 17:58:06,374 - INFO - 🔐 Logging into LinkedIn...
+2025-06-07 17:58:16,506 - INFO - ✅ Successfully logged into LinkedIn
+2025-06-07 17:58:22,347 - INFO - 📱 Found 0 posts
+2025-06-07 17:58:22,348 - INFO - 💾 Saved 3 Medium articles to /Users/bahakizil/Downloads/mypage/data/medium-articles.json
+2025-06-07 17:58:22,348 - INFO - 💾 Saved 0 LinkedIn posts to /Users/bahakizil/Downloads/mypage/data/linkedin-posts.json
+2025-06-07 17:58:22,348 - INFO - ✅ Daily scraping completed successfully in 54.81 seconds
+2025-06-07 17:58:22,348 - INFO - 📊 Results: 3 Medium articles, 0 LinkedIn posts
+2025-06-07 17:58:22,451 - INFO - 🎯 Scraping session completed
+2025-06-07 18:13:32,509 - INFO - 🌟 Social Media Scraper v2.0 - Real-time Engagement Data
+2025-06-07 18:13:32,510 - INFO - ====== WebDriver manager ======
+2025-06-07 18:13:32,768 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-07 18:13:33,105 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-07 18:13:33,428 - INFO - Driver [/Users/bahakizil/.wdm/drivers/chromedriver/mac64/137.0.7151.68/chromedriver-mac-arm64/chromedriver] found in cache
+2025-06-07 18:13:34,654 - INFO - 🚀 Starting daily social media data scraping...
+2025-06-07 18:13:34,654 - INFO - 🔥 Starting Medium data scraping...
+2025-06-07 18:13:34,654 - INFO - 📱 Logging into Medium...
+2025-06-07 18:13:59,686 - WARNING - ⚠️ Google login not found, trying alternative login...
+2025-06-07 18:13:59,688 - INFO - 📊 Scraping stats for article: Smart Traffic Analysis With Yolo
+2025-06-07 18:14:04,812 - WARNING - ⚠️ Element not found for claps
+2025-06-07 18:14:04,820 - WARNING - ⚠️ Element not found for views
+2025-06-07 18:14:04,827 - WARNING - ⚠️ Element not found for reads
+2025-06-07 18:14:04,834 - WARNING - ⚠️ Element not found for views_alt
+2025-06-07 18:14:04,834 - INFO - ✅ Smart Traffic Analysis With Yolo: 0 claps, 0 views
+2025-06-07 18:14:04,834 - INFO - 📊 Scraping stats for article: Threat Detection
+2025-06-07 18:14:09,900 - WARNING - ⚠️ Element not found for claps
+2025-06-07 18:14:09,906 - WARNING - ⚠️ Element not found for views
+2025-06-07 18:14:09,911 - WARNING - ⚠️ Element not found for reads
+2025-06-07 18:14:09,915 - WARNING - ⚠️ Element not found for views_alt
+2025-06-07 18:14:09,916 - INFO - ✅ Threat Detection: 0 claps, 0 views
+2025-06-07 18:14:09,916 - INFO - 📊 Scraping stats for article: Kahve Satış Tahmininde Derin Öğrenme
+2025-06-07 18:14:14,915 - WARNING - ⚠️ Element not found for claps
+2025-06-07 18:14:14,921 - WARNING - ⚠️ Element not found for views
+2025-06-07 18:14:14,926 - WARNING - ⚠️ Element not found for reads
+2025-06-07 18:14:14,930 - WARNING - ⚠️ Element not found for views_alt
+2025-06-07 18:14:14,930 - INFO - ✅ Kahve Satış Tahmininde Derin Öğrenme: 0 claps, 0 views
+2025-06-07 18:14:14,930 - INFO - 💼 Starting LinkedIn data scraping...
+2025-06-07 18:14:14,930 - INFO - 🔐 Logging into LinkedIn...
+2025-06-07 18:14:25,381 - INFO - ✅ Successfully logged into LinkedIn
+2025-06-07 18:14:31,029 - INFO - 📱 Found 0 posts
+2025-06-07 18:14:31,032 - INFO - 💾 Saved 3 Medium articles to /Users/bahakizil/Downloads/mypage/data/medium-articles.json
+2025-06-07 18:14:31,032 - INFO - 💾 Saved 0 LinkedIn posts to /Users/bahakizil/Downloads/mypage/data/linkedin-posts.json
+2025-06-07 18:14:31,032 - INFO - ✅ Daily scraping completed successfully in 56.38 seconds
+2025-06-07 18:14:31,032 - INFO - 📊 Results: 3 Medium articles, 0 LinkedIn posts
+2025-06-07 18:14:31,143 - INFO - 🎯 Scraping session completed

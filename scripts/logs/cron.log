@@ -1,0 +1,5 @@
+2025-06-08 02:00:05,085 - INFO - 📅 Starting daily Medium API update
+2025-06-08 02:00:05,085 - INFO - 🚀 Starting Medium API data fetch...
+2025-06-08 02:00:05,814 - ERROR - API request failed for /user/id_for/bahakizil: 403 Client Error: Forbidden for url: https://medium2.p.rapidapi.com/user/id_for/bahakizil
+2025-06-08 02:00:05,815 - ERROR - ❌ Failed to fetch Medium data: 403 Client Error: Forbidden for url: https://medium2.p.rapidapi.com/user/id_for/bahakizil
+2025-06-08 02:00:05,827 - ERROR - ❌ No articles fetched, keeping existing data

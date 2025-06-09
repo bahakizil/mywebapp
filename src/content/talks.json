@@ -1,0 +1,46 @@
+[
+  {
+    "id": "rag-challenges",
+    "title": "Solving RAG's Toughest Challenges",
+    "description": "A deep dive into advanced techniques for improving retrieval-augmented generation systems, focusing on hallucination reduction and context optimization.",
+    "date": "2023-10-15",
+    "conference": "AI Engineering Summit 2023",
+    "location": "San Francisco, CA",
+    "videoUrl": "https://www.youtube.com/watch?v=example1",
+    "slidesUrl": "https://speakerdeck.com/aieng/rag-challenges",
+    "image": "https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  },
+  {
+    "id": "edge-cv",
+    "title": "Computer Vision at the Edge",
+    "description": "Strategies for deploying and optimizing computer vision models on resource-constrained edge devices.",
+    "date": "2023-07-22",
+    "conference": "Edge AI Conference 2023",
+    "location": "Berlin, Germany",
+    "videoUrl": "https://www.youtube.com/watch?v=example2",
+    "slidesUrl": "https://speakerdeck.com/aieng/edge-cv",
+    "image": "https://images.pexels.com/photos/1092671/pexels-photo-1092671.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  },
+  {
+    "id": "llm-future",
+    "title": "The Future of LLM Engineering",
+    "description": "An exploration of emerging trends and techniques in large language model development, fine-tuning, and deployment.",
+    "date": "2024-01-18",
+    "conference": "NLP Summit 2024",
+    "location": "Virtual",
+    "videoUrl": "https://www.youtube.com/watch?v=example3",
+    "slidesUrl": "https://speakerdeck.com/aieng/llm-future",
+    "image": "https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  },
+  {
+    "id": "multimodal-ai",
+    "title": "Building Multimodal AI Systems",
+    "description": "Architectural patterns and best practices for developing AI systems that can process and understand multiple modalities.",
+    "date": "2023-11-05",
+    "conference": "MultiModal AI Conference 2023",
+    "location": "London, UK",
+    "videoUrl": "https://www.youtube.com/watch?v=example4",
+    "slidesUrl": "https://speakerdeck.com/aieng/multimodal-ai",
+    "image": "https://images.pexels.com/photos/177598/pexels-photo-177598.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  }
+]

@@ -1,0 +1,689 @@
+{
+  "lastUpdated": "2025-06-07T19:10:19.715755",
+  "nextUpdate": "2025-06-13T19:10:19.715758",
+  "source": "linkedin-api-profile-comments",
+  "posts": [
+    {
+      "id": "7306290344348807169",
+      "text": "AI-Powered Security System Project\n\nI developed an AI-powered human detection system. This project analyzes footage from security cameras to detect human presence and sends instant notifications.\n\nIn this system, I used YOLOv11 which is model of Ultralytics to detect humans in video footage from security cameras. When the system detects a human, it sends an email notification to the user and saves the detected image.\n\nI trained the model with a dataset obtained from Roboflow, and also i designed a user-friendly web interface.\n\nThis system provides a cost-effective solution to enhance home and business security. Unlike traditional security systems, it only triggers alarms when human presence is detected, significantly reducing false alarms thanks to artificial intelligence.\nThe project is a great example of how AI and security technologies can be combined. Additionally, it offers a solution accessible to everyone by using open-source technologies.\nYou can access the project's source code on GitHub:\nhttps://lnkd.in/dMs5Fpve\n#AI #Security #ComputerVision #YOLO #Python #Roboflow #Ultralytics\n\nYapay Zeka Destekli Güvenlik Sistemi Projesi\n\nYapay zeka destekli bir insan tespit sistemi geliştirdim. Bu proje, güvenlik kameralarından gelen görüntüleri analiz ederek insan varlığını tespit ediyor ve anında bildirim gönderiyor.\n\nBu sistemde, Ultralytics'in YOLOv11 modelini kullanarak güvenlik kameralarından gelen video görüntülerinden insan tespiti yapılmasını sağladım. Sistem bir insan tespit ettiğinde, kullanıcıya e-posta ile bildirim gönderiyor ve tespit edilen görüntüyü kaydediyor.\n\nYOLOv11 modelini Roboflow'dan elde ettiğim veri setiyle eğittim\nKullanıcı dostu bir web arayüzü tasarladım ve bildirim sistemi entegre ettim\n\nBu sistem, ev ve iş yeri güvenliğini artırmak için uygun maliyetli bir çözüm sunuyor. Geleneksel güvenlik sistemlerinden farklı olarak, yapay zeka sayesinde sadece insan varlığında alarm veriyor, böylece yanlış alarmları önemli ölçüde azaltıyor.\n\nProje, yapay zeka ve güvenlik teknolojilerinin nasıl bir araya getirilebileceğini gösteren güzel bir örnek. Ayrıca, açık kaynak teknolojileri kullanarak herkesin erişebileceği bir çözüm sunuyor.\n\nProjenin kaynak kodlarına GitHub Repom üzerinden erişebilirsiniz:\nhttps://lnkd.in/dMs5Fpve\n#AI #Security #ComputerVision #YOLO #Python #Roboflow #Ultralytics",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7306290344348807169",
+      "publishedAt": "2025-03-14T12:29:22.000Z",
+      "author": {
+        "name": "Ünal Büyükköroğlu",
+        "headline": "AI Developer | Bahçeşehir University"
+      },
+      "engagement": {
+        "likes": 120,
+        "comments": 7,
+        "shares": 5
+      },
+      "reactions": [
+        {
+          "type": "LIKE",
+          "count": 109
+        },
+        {
+          "type": "PRAISE",
+          "count": 7
+        },
+        {
+          "type": "EMPATHY",
+          "count": 2
+        },
+        {
+          "type": "APPRECIATION",
+          "count": 1
+        },
+        {
+          "type": "INTEREST",
+          "count": 1
+        }
+      ],
+      "postedAgo": "2mo • Edited •   ",
+      "fetched_at": "2025-06-07T19:10:19.714300"
+    },
+    {
+      "id": "7304513292440395777",
+      "text": "𝗦𝗺𝗮𝗿𝘁 𝗧𝗿𝗮𝗳𝗳𝗶𝗰 𝗠𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴: 𝗥𝗲𝗮𝗹-𝗧𝗶𝗺𝗲 𝗖𝗖𝗧𝗩 𝗔𝗻𝗮𝗹𝘆𝘀𝗶𝘀 🚗📊\n\nI am excited to share my latest project, which aims to detect traffic violations and contribute to smart city solutions! 🚘📹\n\nThis project 𝗶𝗻𝘁𝗲𝗴𝗿𝗮𝘁𝗲𝘀 𝗥𝗼𝗯𝗼𝗳𝗹𝗼𝘄'𝘀 𝗣𝗼𝗹𝘆𝗴𝗼𝗻 𝗧𝗼𝗼𝗹 𝘄𝗶𝘁𝗵 𝗖𝗖𝗧𝗩 𝗳𝗼𝗼𝘁𝗮𝗴𝗲 𝘁𝗼 𝗼𝗽𝘁𝗶𝗺𝗶𝘇𝗲 𝗮𝗻𝗱 𝗮𝗻𝗮𝗹𝘆𝘇𝗲 𝗲𝗮𝗰𝗵 𝗹𝗮𝗻𝗲 𝘀𝗲𝗽𝗮𝗿𝗮𝘁𝗲𝗹𝘆. 𝗕𝘆 𝘁𝗿𝗮𝗶𝗻𝗶𝗻𝗴 Ultralytics 𝗬𝗢𝗟𝗢𝘃𝟭𝟮𝗡 𝗺𝗼𝗱𝗲𝗹 𝘄𝗶𝘁𝗵 OpenCV 𝗼𝗻 𝘁𝗵𝗲 Roboflow 𝗨𝗻𝗶𝘃𝗲𝗿𝘀𝗲 𝘃𝗲𝗵𝗶𝗰𝗹𝗲 𝗱𝗮𝘁𝗮𝘀𝗲𝘁 𝗳𝗼𝗿 𝟮𝟱𝟬 𝗲𝗽𝗼𝗰𝗵𝘀, I successfully identified the following 𝗿𝗲𝗮𝗹-𝘁𝗶𝗺𝗲 traffic data:\n\n🟠 𝗨𝗻𝗮𝘂𝘁𝗵𝗼𝗿𝗶𝘇𝗲𝗱 𝘂𝘀𝗲 𝗼𝗳 𝘁𝗵𝗲 𝗲𝗺𝗲𝗿𝗴𝗲𝗻𝗰𝘆 𝗹𝗮𝗻𝗲 🚓\n🔄 𝗟𝗮𝗻𝗲-𝗯𝗮𝘀𝗲𝗱 𝘁𝗿𝗮𝗳𝗳𝗶𝗰 𝗳𝗹𝗼𝘄 𝘀𝗽𝗲𝗲𝗱 𝗮𝗻𝗱 𝗱𝗲𝗻𝘀𝗶𝘁𝘆 𝗮𝗻𝗮𝗹𝘆𝘀𝗶𝘀\n🚕 𝗩𝗲𝗵𝗶𝗰𝗹𝗲 𝗰𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝗮𝗻𝗱 𝗰𝗹𝗮𝘀𝘀𝗶𝗳𝗶𝗰𝗮𝘁𝗶𝗼𝗻 \n\nTo 𝗱𝗲𝗺𝗼𝗻𝘀𝘁𝗿𝗮𝘁𝗲 𝗶𝘁𝘀 𝗿𝗲𝗮𝗹-𝘄𝗼𝗿𝗹𝗱 𝗮𝗽𝗽𝗹𝗶𝗰𝗮𝗯𝗶𝗹𝗶𝘁𝘆, I analyzed 𝗖𝗖𝗧𝗩 𝗳𝗼𝗼𝘁𝗮𝗴𝗲 𝗳𝗿𝗼𝗺 𝘁𝗵𝗲 𝗞𝗼𝘇𝘆𝗮𝘁𝗮𝗴𝗶 𝗮𝗿𝗲𝗮 𝘂𝘀𝗶𝗻𝗴 𝗶𝗺𝗮𝗴𝗲𝘀 𝘀𝗼𝘂𝗿𝗰𝗲𝗱 𝗳𝗿𝗼𝗺 𝘁𝗵𝗲 𝗜𝘀𝘁𝗮𝗻𝗯𝘂𝗹 𝗠𝗲𝘁𝗿𝗼𝗽𝗼𝗹𝗶𝘁𝗮𝗻 𝗠𝘂𝗻𝗶𝗰𝗶𝗽𝗮𝗹𝗶𝘁𝘆'𝘀 𝗨𝗬𝗠 𝗽𝗼𝗿𝘁𝗮𝗹. This system can transform all CCTV cameras into smart monitoring tools, enabling fairer and more efficient traffic management.\n\n𝗥𝗲𝗮𝗹-𝗪𝗼𝗿𝗹𝗱 𝗜𝗺𝗽𝗹𝗲𝗺𝗲𝗻𝘁𝗮𝘁𝗶𝗼𝗻 𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼\n\nFor real-world deployment, 𝗲𝗮𝗰𝗵 𝗖𝗖𝗧𝗩 𝗰𝗮𝗺𝗲𝗿𝗮 𝗰𝗼𝘂𝗹𝗱 𝗴𝗲𝗻𝗲𝗿𝗮𝘁𝗲 𝗶𝘁𝘀 𝗼𝘄𝗻 𝗱𝗮𝘁𝗮𝘀𝗲𝘁, allowing 𝗳𝗶𝗻𝗲-𝘁𝘂𝗻𝗶𝗻𝗴 𝗼𝗳 𝘁𝗵𝗲 𝗬𝗢𝗟𝗢𝘃𝗡 𝟭𝟮 𝗺𝗼𝗱𝗲𝗹. When optimized in .onnx or .engine format and deployed on an NVIDIA-𝗯𝗮𝘀𝗲𝗱 𝗱𝗲𝘃𝗶𝗰𝗲, this model can achieve significantly improved real-time analysis results.\n\nAdditionally, 𝗵𝗶𝗴𝗵𝗲𝗿-𝗿𝗲𝘀𝗼𝗹𝘂𝘁𝗶𝗼𝗻 𝗖𝗖𝗧𝗩 𝗰𝗮𝗺𝗲𝗿𝗮𝘀 𝗰𝗼𝘂𝗹𝗱 𝗱𝗲𝘁𝗲𝗰𝘁 𝗮 𝘄𝗶𝗱𝗲𝗿 𝗿𝗮𝗻𝗴𝗲 𝗼𝗳 𝘃𝗶𝗼𝗹𝗮𝘁𝗶𝗼𝗻𝘀. The system could be enhanced to automatically record license plates and enforce penalties for detected violations, ensuring stricter compliance with traffic regulations.\n\nThis project was trained on Google Colab 𝘂𝘀𝗶𝗻𝗴 𝗮𝗻 𝗔𝟭𝟬𝟬 𝗚𝗣𝗨 𝗳𝗼𝗿 𝟮𝟱𝟬 𝗲𝗽𝗼𝗰𝗵𝘀, optimizing training time and achieving a more efficient model.\n\n\n\n👉 𝗧𝗲𝘀𝘁 𝘁𝗵𝗲 𝗺𝗼𝗱𝗲𝗹 𝗼𝗻 𝗚𝗿𝗮𝗱𝗶𝗼:\n🔗 Hugging Face:(https://lnkd.in/dAWv9e7V)\n🔗 GitHub:(https://lnkd.in/dvDbBJ2K)\n\n🔗 𝗚𝗶𝘁𝗛𝘂𝗯 𝗣𝗿𝗼𝗷𝗲𝗰𝘁:(https://lnkd.in/d8m9i9n2)\n\n🔗 𝗗𝗮𝘁𝗮𝘀𝗲𝘁: (https://lnkd.in/dSbgcEFr)\n🔗 𝗠𝗲𝗱𝗶𝘂𝗺 𝗔𝗿𝘁𝗶𝗰𝗹𝗲:(https://lnkd.in/dMEnwZNB)\n\n\n\n\n#SmartTraffic #ArtificialIntelligence #MachineLearning #ComputerVision #IoT #SmartCities #TrafficAnalysis #DeepLearning #DataScience #UrbanMobility #YOLO #OpenCV #Roboflow #GoogleColab #GitHub #AI",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7304513292440395777",
+      "publishedAt": "2025-03-09T14:48:00.000Z",
+      "author": {
+        "name": "Baha Kızıl",
+        "headline": "AI Engineer"
+      },
+      "engagement": {
+        "likes": 751,
+        "comments": 22,
+        "shares": 49
+      },
+      "reactions": [
+        {
+          "type": "LIKE",
+          "count": 688
+        },
+        {
+          "type": "EMPATHY",
+          "count": 26
+        },
+        {
+          "type": "PRAISE",
+          "count": 22
+        },
+        {
+          "type": "INTEREST",
+          "count": 11
+        },
+        {
+          "type": "APPRECIATION",
+          "count": 3
+        },
+        {
+          "type": "ENTERTAINMENT",
+          "count": 1
+        }
+      ],
+      "postedAgo": "2mo • Edited •   ",
+      "fetched_at": "2025-06-07T19:10:19.714430"
+    },
+    {
+      "id": "7304120295865376768",
+      "text": "𝗦𝗺𝗮𝗿𝘁 𝗧𝗿𝗮𝗳𝗳𝗶𝗰 𝗠𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴: 𝗥𝗲𝗮𝗹-𝗧𝗶𝗺𝗲 𝗖𝗖𝗧𝗩 𝗔𝗻𝗮𝗹𝘆𝘀𝗶𝘀 🚗📊\n\nI am excited to share my latest project, which aims to detect traffic violations and contribute to smart city solutions! 🚘📹\n\nThis project 𝗶𝗻𝘁𝗲𝗴𝗿𝗮𝘁𝗲𝘀 𝗥𝗼𝗯𝗼𝗳𝗹𝗼𝘄'𝘀 𝗣𝗼𝗹𝘆𝗴𝗼𝗻 𝗧𝗼𝗼𝗹 𝘄𝗶𝘁𝗵 𝗖𝗖𝗧𝗩 𝗳𝗼𝗼𝘁𝗮𝗴𝗲 𝘁𝗼 𝗼𝗽𝘁𝗶𝗺𝗶𝘇𝗲 𝗮𝗻𝗱 𝗮𝗻𝗮𝗹𝘆𝘇𝗲 𝗲𝗮𝗰𝗵 𝗹𝗮𝗻𝗲 𝘀𝗲𝗽𝗮𝗿𝗮𝘁𝗲𝗹𝘆. 𝗕𝘆 𝘁𝗿𝗮𝗶𝗻𝗶𝗻𝗴 Ultralytics 𝗬𝗢𝗟𝗢𝘃𝟭𝟮𝗡 𝗺𝗼𝗱𝗲𝗹 𝘄𝗶𝘁𝗵 OpenCV 𝗼𝗻 𝘁𝗵𝗲 Roboflow 𝗨𝗻𝗶𝘃𝗲𝗿𝘀𝗲 𝘃𝗲𝗵𝗶𝗰𝗹𝗲 𝗱𝗮𝘁𝗮𝘀𝗲𝘁 𝗳𝗼𝗿 𝟮𝟱𝟬 𝗲𝗽𝗼𝗰𝗵𝘀, I successfully identified the following 𝗿𝗲𝗮𝗹-𝘁𝗶𝗺𝗲 traffic data:\n\n🟠 𝗨𝗻𝗮𝘂𝘁𝗵𝗼𝗿𝗶𝘇𝗲𝗱 𝘂𝘀𝗲 𝗼𝗳 𝘁𝗵𝗲 𝗲𝗺𝗲𝗿𝗴𝗲𝗻𝗰𝘆 𝗹𝗮𝗻𝗲 🚓\n🔄 𝗟𝗮𝗻𝗲-𝗯𝗮𝘀𝗲𝗱 𝘁𝗿𝗮𝗳𝗳𝗶𝗰 𝗳𝗹𝗼𝘄 𝘀𝗽𝗲𝗲𝗱 𝗮𝗻𝗱 𝗱𝗲𝗻𝘀𝗶𝘁𝘆 𝗮𝗻𝗮𝗹𝘆𝘀𝗶𝘀\n🚕 𝗩𝗲𝗵𝗶𝗰𝗹𝗲 𝗰𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝗮𝗻𝗱 𝗰𝗹𝗮𝘀𝘀𝗶𝗳𝗶𝗰𝗮𝘁𝗶𝗼𝗻 \n\nTo 𝗱𝗲𝗺𝗼𝗻𝘀𝘁𝗿𝗮𝘁𝗲 𝗶𝘁𝘀 𝗿𝗲𝗮𝗹-𝘄𝗼𝗿𝗹𝗱 𝗮𝗽𝗽𝗹𝗶𝗰𝗮𝗯𝗶𝗹𝗶𝘁𝘆, I analyzed 𝗖𝗖𝗧𝗩 𝗳𝗼𝗼𝘁𝗮𝗴𝗲 𝗳𝗿𝗼𝗺 𝘁𝗵𝗲 𝗞𝗼𝘇𝘆𝗮𝘁𝗮𝗴𝗶 𝗮𝗿𝗲𝗮 𝘂𝘀𝗶𝗻𝗴 𝗶𝗺𝗮𝗴𝗲𝘀 𝘀𝗼𝘂𝗿𝗰𝗲𝗱 𝗳𝗿𝗼𝗺 𝘁𝗵𝗲 𝗜𝘀𝘁𝗮𝗻𝗯𝘂𝗹 𝗠𝗲𝘁𝗿𝗼𝗽𝗼𝗹𝗶𝘁𝗮𝗻 𝗠𝘂𝗻𝗶𝗰𝗶𝗽𝗮𝗹𝗶𝘁𝘆'𝘀 𝗨𝗬𝗠 𝗽𝗼𝗿𝘁𝗮𝗹. This system can transform all CCTV cameras into smart monitoring tools, enabling fairer and more efficient traffic management.\n\n𝗥𝗲𝗮𝗹-𝗪𝗼𝗿𝗹𝗱 𝗜𝗺𝗽𝗹𝗲𝗺𝗲𝗻𝘁𝗮𝘁𝗶𝗼𝗻 𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼\n\nFor real-world deployment, 𝗲𝗮𝗰𝗵 𝗖𝗖𝗧𝗩 𝗰𝗮𝗺𝗲𝗿𝗮 𝗰𝗼𝘂𝗹𝗱 𝗴𝗲𝗻𝗲𝗿𝗮𝘁𝗲 𝗶𝘁𝘀 𝗼𝘄𝗻 𝗱𝗮𝘁𝗮𝘀𝗲𝘁, allowing 𝗳𝗶𝗻𝗲-𝘁𝘂𝗻𝗶𝗻𝗴 𝗼𝗳 𝘁𝗵𝗲 𝗬𝗢𝗟𝗢𝘃𝗡 𝟭𝟮 𝗺𝗼𝗱𝗲𝗹. When optimized in .onnx or .engine format and deployed on an NVIDIA-𝗯𝗮𝘀𝗲𝗱 𝗱𝗲𝘃𝗶𝗰𝗲, this model can achieve significantly improved real-time analysis results.\n\nAdditionally, 𝗵𝗶𝗴𝗵𝗲𝗿-𝗿𝗲𝘀𝗼𝗹𝘂𝘁𝗶𝗼𝗻 𝗖𝗖𝗧𝗩 𝗰𝗮𝗺𝗲𝗿𝗮𝘀 𝗰𝗼𝘂𝗹𝗱 𝗱𝗲𝘁𝗲𝗰𝘁 𝗮 𝘄𝗶𝗱𝗲𝗿 𝗿𝗮𝗻𝗴𝗲 𝗼𝗳 𝘃𝗶𝗼𝗹𝗮𝘁𝗶𝗼𝗻𝘀. The system could be enhanced to automatically record license plates and enforce penalties for detected violations, ensuring stricter compliance with traffic regulations.\n\nThis project was trained on Google Colab 𝘂𝘀𝗶𝗻𝗴 𝗮𝗻 𝗔𝟭𝟬𝟬 𝗚𝗣𝗨 𝗳𝗼𝗿 𝟮𝟱𝟬 𝗲𝗽𝗼𝗰𝗵𝘀, optimizing training time and achieving a more efficient model.\n\n\n\n👉 𝗧𝗲𝘀𝘁 𝘁𝗵𝗲 𝗺𝗼𝗱𝗲𝗹 𝗼𝗻 𝗚𝗿𝗮𝗱𝗶𝗼:\n🔗 Hugging Face:(https://lnkd.in/dAWv9e7V)\n🔗 GitHub:(https://lnkd.in/dvDbBJ2K)\n\n🔗 𝗚𝗶𝘁𝗛𝘂𝗯 𝗣𝗿𝗼𝗷𝗲𝗰𝘁:(https://lnkd.in/d8m9i9n2)\n\n🔗 𝗗𝗮𝘁𝗮𝘀𝗲𝘁: (https://lnkd.in/dSbgcEFr)\n🔗 𝗠𝗲𝗱𝗶𝘂𝗺 𝗔𝗿𝘁𝗶𝗰𝗹𝗲:(https://lnkd.in/dMEnwZNB)\n\n\n\n\n#SmartTraffic #ArtificialIntelligence #MachineLearning #ComputerVision #IoT #SmartCities #TrafficAnalysis #DeepLearning #DataScience #UrbanMobility #YOLO #OpenCV #Roboflow #GoogleColab #GitHub #AI",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7304120295865376768",
+      "publishedAt": "2025-03-08T12:46:22.000Z",
+      "author": {
+        "name": "Baha Kızıl",
+        "headline": "AI Engineer"
+      },
+      "engagement": {
+        "likes": 751,
+        "comments": 22,
+        "shares": 49
+      },
+      "reactions": [
+        {
+          "type": "LIKE",
+          "count": 688
+        },
+        {
+          "type": "EMPATHY",
+          "count": 26
+        },
+        {
+          "type": "PRAISE",
+          "count": 22
+        },
+        {
+          "type": "INTEREST",
+          "count": 11
+        },
+        {
+          "type": "APPRECIATION",
+          "count": 3
+        },
+        {
+          "type": "ENTERTAINMENT",
+          "count": 1
+        }
+      ],
+      "postedAgo": "2mo • Edited •   ",
+      "fetched_at": "2025-06-07T19:10:19.714514"
+    },
+    {
+      "id": "7304116521046282240",
+      "text": "🚦Real-Time Traffic Management with Computer Vision 🕶️ \n\nAn innovative project that turns ordinary CCTV cameras into powerful traffic analysis tools! 🚦🔍\n• Integrated Supervision Polygon Tool with CCTV footage\n• Used OpenCV for image processing and analysis\n• Implemented lane-by-lane traffic monitoring capabilities\n\nReal-Time Insights Delivered:\n🚓 Unauthorized emergency lane usage detection\n🔄 Lane-specific traffic flow analysis (speed and density)\n🚕 Vehicle counting with classification\n📊 Traffic pattern visualization\n\nPotential:\n✅ Higher-resolution cameras could detect more violation types\n✅ Potential for automated license plate recording and enforcement\n\nAwesome work by: Baha Kızıl\n\n🔔 Stay tuned for more exciting developments and breakthroughs on the horizon! ✨\n\nWISERLI YOLOvX OpenCV Roboflow Ultralytics\n\nDr. Chandrakant Bothe Rohan Gupta Vishnu Mate Mohit Raj Sinha Prateeksha Tripathy Sinem Çelik Sharda Jadhav Neetu Shaw Anu Bothe Saurabh Tople Glenn Jocher Muhammad Rizwan Munawar Nicolai Nielsen Harpreet Sahota 🥑 Ritesh Kanjee Piotr Skalski Dragos Stan Arnaud Bastide Timothy Goebel Bharath kumar Sean Carnahan\n\n#ComputerVision #TrafficManagement #AI #YOLOvX #Innovation #SmartCities #Roboflow #YOLO",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7304116521046282240",
+      "publishedAt": "2025-03-08T12:31:22.000Z",
+      "author": {
+        "name": "YOLOvX",
+        "headline": "55,663 followers"
+      },
+      "engagement": {
+        "likes": 537,
+        "comments": 15,
+        "shares": 47
+      },
+      "reactions": [
+        {
+          "type": "LIKE",
+          "count": 499
+        },
+        {
+          "type": "EMPATHY",
+          "count": 17
+        },
+        {
+          "type": "INTEREST",
+          "count": 14
+        },
+        {
+          "type": "PRAISE",
+          "count": 6
+        },
+        {
+          "type": "APPRECIATION",
+          "count": 1
+        }
+      ],
+      "postedAgo": "2mo •   ",
+      "fetched_at": "2025-06-07T19:10:19.714581"
+    },
+    {
+      "id": "7303833946885091328",
+      "text": "𝗦𝗺𝗮𝗿𝘁 𝗧𝗿𝗮𝗳𝗳𝗶𝗰 𝗠𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴: 𝗥𝗲𝗮𝗹-𝗧𝗶𝗺𝗲 𝗖𝗖𝗧𝗩 𝗔𝗻𝗮𝗹𝘆𝘀𝗶𝘀 🚗📊\n\nI am excited to share my latest project, which aims to detect traffic violations and contribute to smart city solutions! 🚘📹\n\nThis project 𝗶𝗻𝘁𝗲𝗴𝗿𝗮𝘁𝗲𝘀 𝗥𝗼𝗯𝗼𝗳𝗹𝗼𝘄'𝘀 𝗣𝗼𝗹𝘆𝗴𝗼𝗻 𝗧𝗼𝗼𝗹 𝘄𝗶𝘁𝗵 𝗖𝗖𝗧𝗩 𝗳𝗼𝗼𝘁𝗮𝗴𝗲 𝘁𝗼 𝗼𝗽𝘁𝗶𝗺𝗶𝘇𝗲 𝗮𝗻𝗱 𝗮𝗻𝗮𝗹𝘆𝘇𝗲 𝗲𝗮𝗰𝗵 𝗹𝗮𝗻𝗲 𝘀𝗲𝗽𝗮𝗿𝗮𝘁𝗲𝗹𝘆. 𝗕𝘆 𝘁𝗿𝗮𝗶𝗻𝗶𝗻𝗴 Ultralytics 𝗬𝗢𝗟𝗢𝘃𝟭𝟮𝗡 𝗺𝗼𝗱𝗲𝗹 𝘄𝗶𝘁𝗵 OpenCV 𝗼𝗻 𝘁𝗵𝗲 Roboflow 𝗨𝗻𝗶𝘃𝗲𝗿𝘀𝗲 𝘃𝗲𝗵𝗶𝗰𝗹𝗲 𝗱𝗮𝘁𝗮𝘀𝗲𝘁 𝗳𝗼𝗿 𝟮𝟱𝟬 𝗲𝗽𝗼𝗰𝗵𝘀, I successfully identified the following 𝗿𝗲𝗮𝗹-𝘁𝗶𝗺𝗲 traffic data:\n\n🟠 𝗨𝗻𝗮𝘂𝘁𝗵𝗼𝗿𝗶𝘇𝗲𝗱 𝘂𝘀𝗲 𝗼𝗳 𝘁𝗵𝗲 𝗲𝗺𝗲𝗿𝗴𝗲𝗻𝗰𝘆 𝗹𝗮𝗻𝗲 🚓\n🔄 𝗟𝗮𝗻𝗲-𝗯𝗮𝘀𝗲𝗱 𝘁𝗿𝗮𝗳𝗳𝗶𝗰 𝗳𝗹𝗼𝘄 𝘀𝗽𝗲𝗲𝗱 𝗮𝗻𝗱 𝗱𝗲𝗻𝘀𝗶𝘁𝘆 𝗮𝗻𝗮𝗹𝘆𝘀𝗶𝘀\n🚕 𝗩𝗲𝗵𝗶𝗰𝗹𝗲 𝗰𝗼𝘂𝗻𝘁𝗶𝗻𝗴 𝗮𝗻𝗱 𝗰𝗹𝗮𝘀𝘀𝗶𝗳𝗶𝗰𝗮𝘁𝗶𝗼𝗻 \n\nTo 𝗱𝗲𝗺𝗼𝗻𝘀𝘁𝗿𝗮𝘁𝗲 𝗶𝘁𝘀 𝗿𝗲𝗮𝗹-𝘄𝗼𝗿𝗹𝗱 𝗮𝗽𝗽𝗹𝗶𝗰𝗮𝗯𝗶𝗹𝗶𝘁𝘆, I analyzed 𝗖𝗖𝗧𝗩 𝗳𝗼𝗼𝘁𝗮𝗴𝗲 𝗳𝗿𝗼𝗺 𝘁𝗵𝗲 𝗞𝗼𝘇𝘆𝗮𝘁𝗮𝗴𝗶 𝗮𝗿𝗲𝗮 𝘂𝘀𝗶𝗻𝗴 𝗶𝗺𝗮𝗴𝗲𝘀 𝘀𝗼𝘂𝗿𝗰𝗲𝗱 𝗳𝗿𝗼𝗺 𝘁𝗵𝗲 𝗜𝘀𝘁𝗮𝗻𝗯𝘂𝗹 𝗠𝗲𝘁𝗿𝗼𝗽𝗼𝗹𝗶𝘁𝗮𝗻 𝗠𝘂𝗻𝗶𝗰𝗶𝗽𝗮𝗹𝗶𝘁𝘆'𝘀 𝗨𝗬𝗠 𝗽𝗼𝗿𝘁𝗮𝗹. This system can transform all CCTV cameras into smart monitoring tools, enabling fairer and more efficient traffic management.\n\n𝗥𝗲𝗮𝗹-𝗪𝗼𝗿𝗹𝗱 𝗜𝗺𝗽𝗹𝗲𝗺𝗲𝗻𝘁𝗮𝘁𝗶𝗼𝗻 𝗦𝗰𝗲𝗻𝗮𝗿𝗶𝗼\n\nFor real-world deployment, 𝗲𝗮𝗰𝗵 𝗖𝗖𝗧𝗩 𝗰𝗮𝗺𝗲𝗿𝗮 𝗰𝗼𝘂𝗹𝗱 𝗴𝗲𝗻𝗲𝗿𝗮𝘁𝗲 𝗶𝘁𝘀 𝗼𝘄𝗻 𝗱𝗮𝘁𝗮𝘀𝗲𝘁, allowing 𝗳𝗶𝗻𝗲-𝘁𝘂𝗻𝗶𝗻𝗴 𝗼𝗳 𝘁𝗵𝗲 𝗬𝗢𝗟𝗢𝘃𝗡 𝟭𝟮 𝗺𝗼𝗱𝗲𝗹. When optimized in .onnx or .engine format and deployed on an NVIDIA-𝗯𝗮𝘀𝗲𝗱 𝗱𝗲𝘃𝗶𝗰𝗲, this model can achieve significantly improved real-time analysis results.\n\nAdditionally, 𝗵𝗶𝗴𝗵𝗲𝗿-𝗿𝗲𝘀𝗼𝗹𝘂𝘁𝗶𝗼𝗻 𝗖𝗖𝗧𝗩 𝗰𝗮𝗺𝗲𝗿𝗮𝘀 𝗰𝗼𝘂𝗹𝗱 𝗱𝗲𝘁𝗲𝗰𝘁 𝗮 𝘄𝗶𝗱𝗲𝗿 𝗿𝗮𝗻𝗴𝗲 𝗼𝗳 𝘃𝗶𝗼𝗹𝗮𝘁𝗶𝗼𝗻𝘀. The system could be enhanced to automatically record license plates and enforce penalties for detected violations, ensuring stricter compliance with traffic regulations.\n\nThis project was trained on Google Colab 𝘂𝘀𝗶𝗻𝗴 𝗮𝗻 𝗔𝟭𝟬𝟬 𝗚𝗣𝗨 𝗳𝗼𝗿 𝟮𝟱𝟬 𝗲𝗽𝗼𝗰𝗵𝘀, optimizing training time and achieving a more efficient model.\n\n\n\n👉 𝗧𝗲𝘀𝘁 𝘁𝗵𝗲 𝗺𝗼𝗱𝗲𝗹 𝗼𝗻 𝗚𝗿𝗮𝗱𝗶𝗼:\n🔗 Hugging Face:(https://lnkd.in/dAWv9e7V)\n🔗 GitHub:(https://lnkd.in/dvDbBJ2K)\n\n🔗 𝗚𝗶𝘁𝗛𝘂𝗯 𝗣𝗿𝗼𝗷𝗲𝗰𝘁:(https://lnkd.in/d8m9i9n2)\n\n🔗 𝗗𝗮𝘁𝗮𝘀𝗲𝘁: (https://lnkd.in/dSbgcEFr)\n🔗 𝗠𝗲𝗱𝗶𝘂𝗺 𝗔𝗿𝘁𝗶𝗰𝗹𝗲:(https://lnkd.in/dMEnwZNB)\n\n\n\n\n#SmartTraffic #ArtificialIntelligence #MachineLearning #ComputerVision #IoT #SmartCities #TrafficAnalysis #DeepLearning #DataScience #UrbanMobility #YOLO #OpenCV #Roboflow #GoogleColab #GitHub #AI",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7303833946885091328",
+      "publishedAt": "2025-03-07T17:48:31.000Z",
+      "author": {
+        "name": "Baha Kızıl",
+        "headline": "AI Engineer"
+      },
+      "engagement": {
+        "likes": 751,
+        "comments": 22,
+        "shares": 49
+      },
+      "reactions": [
+        {
+          "type": "LIKE",
+          "count": 688
+        },
+        {
+          "type": "EMPATHY",
+          "count": 26
+        },
+        {
+          "type": "PRAISE",
+          "count": 22
+        },
+        {
+          "type": "INTEREST",
+          "count": 11
+        },
+        {
+          "type": "APPRECIATION",
+          "count": 3
+        },
+        {
+          "type": "ENTERTAINMENT",
+          "count": 1
+        }
+      ],
+      "postedAgo": "2mo • Edited •   ",
+      "fetched_at": "2025-06-07T19:10:19.714641"
+    },
+    {
+      "id": "7303106594370719744",
+      "text": "🚀 𝗙𝗶𝗻𝗲-𝗧𝘂𝗻𝗶𝗻𝗴 𝗬𝗢𝗟𝗢𝘃𝟭𝟮𝗻 𝗳𝗼𝗿 𝗙𝗶𝗿𝗲 & 𝗦𝗺𝗼𝗸𝗲 𝗗𝗲𝘁𝗲𝗰𝘁𝗶𝗼𝗻! \n\nFire and smoke detection is a critical application of computer vision. To enhance accuracy and real-time detection capabilities, I fine-tuned the Ultralytics YOLOv12n model using the Fire & Smoke Detection dataset from Roboflow on Google Colab with an A100 GPU for 250 epochs.\n\n\n📌Model: 𝗬𝗢𝗟𝗢𝘃𝟭𝟮𝗻 – One of the latest object detection architectures  \n \n\n𝗢𝗯𝗷𝗲𝗰𝘁𝗶𝘃𝗲:\nTo develop an optimized model for highly accurate fire and smoke detection, which can be integrated into security and early warning systems.  \n\n📈 Results: \n🚀 Enhanced detection accuracy  \n⚡ High-performance real-time analysis  \n🎯 Reliable AI-powered emergency detection  \n\nIn the next phase, I plan to explore 𝗮𝗱𝘃𝗮𝗻𝗰𝗲𝗱 𝗲𝗮𝗿𝗹𝘆 𝘄𝗮𝗿𝗻𝗶𝗻𝗴 𝗮𝗻𝗱 𝗮𝘂𝘁𝗼𝗺𝗮𝘁𝗲𝗱 𝗮𝗹𝗲𝗿𝘁 𝘀𝘆𝘀𝘁𝗲𝗺𝘀 using this model.  \n\n🔗 𝗣𝗿𝗼𝗷𝗲𝗰𝘁 𝗟𝗶𝗻𝗸𝘀:\n📂 GitHub: https://lnkd.in/dtD6ReBC \n🤖 Hugging Face: https://lnkd.in/duGTiEwX  \n🌐 Dataset: 𝗥𝗼𝗯𝗼𝗳𝗹𝗼𝘄 𝗙𝗶𝗿𝗲 & 𝗦𝗺𝗼𝗸𝗲 𝗗𝗲𝘁𝗲𝗰𝘁𝗶𝗼𝗻 𝗗𝗮𝘁𝗮𝘀𝗲𝘁: https://lnkd.in/dusupHPr\n\n#AI #DeepLearning #YOLO #FireDetection #SmokeDetection #MachineLearning #ComputerVision #Colab #Roboflow #SecurityTech",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7303106594370719744",
+      "image_url": "/images/fire-detection.png",
+      "publishedAt": "2025-03-05T17:38:17.000Z",
+      "author": {
+        "name": "Baha Kızıl",
+        "headline": "AI Engineer"
+      },
+      "engagement": {
+        "likes": 812,
+        "comments": 22,
+        "shares": 40
+      },
+      "reactions": [
+        {
+          "type": "LIKE",
+          "count": 730
+        },
+        {
+          "type": "EMPATHY",
+          "count": 41
+        },
+        {
+          "type": "INTEREST",
+          "count": 25
+        },
+        {
+          "type": "PRAISE",
+          "count": 11
+        },
+        {
+          "type": "APPRECIATION",
+          "count": 5
+        }
+      ],
+      "postedAgo": "3mo •   ",
+      "fetched_at": "2025-06-07T19:10:19.714698"
+    },
+    {
+      "id": "7302775779719811072",
+      "text": "🚀 𝗙𝗶𝗻𝗲-𝗧𝘂𝗻𝗶𝗻𝗴 𝗬𝗢𝗟𝗢𝘃𝟭𝟮𝗻 𝗳𝗼𝗿 𝗙𝗶𝗿𝗲 & 𝗦𝗺𝗼𝗸𝗲 𝗗𝗲𝘁𝗲𝗰𝘁𝗶𝗼𝗻! \n\nFire and smoke detection is a critical application of computer vision. To enhance accuracy and real-time detection capabilities, I fine-tuned the Ultralytics YOLOv12n model using the Fire & Smoke Detection dataset from Roboflow on Google Colab with an A100 GPU for 250 epochs.\n\n\n📌Model: 𝗬𝗢𝗟𝗢𝘃𝟭𝟮𝗻 – One of the latest object detection architectures  \n \n\n𝗢𝗯𝗷𝗲𝗰𝘁𝗶𝘃𝗲:\nTo develop an optimized model for highly accurate fire and smoke detection, which can be integrated into security and early warning systems.  \n\n📈 Results: \n🚀 Enhanced detection accuracy  \n⚡ High-performance real-time analysis  \n🎯 Reliable AI-powered emergency detection  \n\nIn the next phase, I plan to explore 𝗮𝗱𝘃𝗮𝗻𝗰𝗲𝗱 𝗲𝗮𝗿𝗹𝘆 𝘄𝗮𝗿𝗻𝗶𝗻𝗴 𝗮𝗻𝗱 𝗮𝘂𝘁𝗼𝗺𝗮𝘁𝗲𝗱 𝗮𝗹𝗲𝗿𝘁 𝘀𝘆𝘀𝘁𝗲𝗺𝘀 using this model.  \n\n🔗 𝗣𝗿𝗼𝗷𝗲𝗰𝘁 𝗟𝗶𝗻𝗸𝘀:\n📂 GitHub: https://lnkd.in/dtD6ReBC \n🤖 Hugging Face: https://lnkd.in/duGTiEwX  \n🌐 Dataset: 𝗥𝗼𝗯𝗼𝗳𝗹𝗼𝘄 𝗙𝗶𝗿𝗲 & 𝗦𝗺𝗼𝗸𝗲 𝗗𝗲𝘁𝗲𝗰𝘁𝗶𝗼𝗻 𝗗𝗮𝘁𝗮𝘀𝗲𝘁: https://lnkd.in/dusupHPr\n\n#AI #DeepLearning #YOLO #FireDetection #SmokeDetection #MachineLearning #ComputerVision #Colab #Roboflow #SecurityTech",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7302775779719811072",
+      "publishedAt": "2025-03-04T19:43:44.000Z",
+      "author": {
+        "name": "Baha Kızıl",
+        "headline": "AI Engineer"
+      },
+      "engagement": {
+        "likes": 812,
+        "comments": 22,
+        "shares": 40
+      },
+      "reactions": [
+        {
+          "type": "LIKE",
+          "count": 730
+        },
+        {
+          "type": "EMPATHY",
+          "count": 41
+        },
+        {
+          "type": "INTEREST",
+          "count": 25
+        },
+        {
+          "type": "PRAISE",
+          "count": 11
+        },
+        {
+          "type": "APPRECIATION",
+          "count": 5
+        }
+      ],
+      "postedAgo": "3mo •   ",
+      "fetched_at": "2025-06-07T19:10:19.714759"
+    },
+    {
+      "id": "7302774842905260032",
+      "text": "🚀 𝗙𝗶𝗻𝗲-𝗧𝘂𝗻𝗶𝗻𝗴 𝗬𝗢𝗟𝗢𝘃𝟭𝟮𝗻 𝗳𝗼𝗿 𝗙𝗶𝗿𝗲 & 𝗦𝗺𝗼𝗸𝗲 𝗗𝗲𝘁𝗲𝗰𝘁𝗶𝗼𝗻! \n\nFire and smoke detection is a critical application of computer vision. To enhance accuracy and real-time detection capabilities, I fine-tuned the Ultralytics YOLOv12n model using the Fire & Smoke Detection dataset from Roboflow on Google Colab with an A100 GPU for 250 epochs.\n\n\n📌Model: 𝗬𝗢𝗟𝗢𝘃𝟭𝟮𝗻 – One of the latest object detection architectures  \n \n\n𝗢𝗯𝗷𝗲𝗰𝘁𝗶𝘃𝗲:\nTo develop an optimized model for highly accurate fire and smoke detection, which can be integrated into security and early warning systems.  \n\n📈 Results: \n🚀 Enhanced detection accuracy  \n⚡ High-performance real-time analysis  \n🎯 Reliable AI-powered emergency detection  \n\nIn the next phase, I plan to explore 𝗮𝗱𝘃𝗮𝗻𝗰𝗲𝗱 𝗲𝗮𝗿𝗹𝘆 𝘄𝗮𝗿𝗻𝗶𝗻𝗴 𝗮𝗻𝗱 𝗮𝘂𝘁𝗼𝗺𝗮𝘁𝗲𝗱 𝗮𝗹𝗲𝗿𝘁 𝘀𝘆𝘀𝘁𝗲𝗺𝘀 using this model.  \n\n🔗 𝗣𝗿𝗼𝗷𝗲𝗰𝘁 𝗟𝗶𝗻𝗸𝘀:\n📂 GitHub: https://lnkd.in/dtD6ReBC \n🤖 Hugging Face: https://lnkd.in/duGTiEwX  \n🌐 Dataset: 𝗥𝗼𝗯𝗼𝗳𝗹𝗼𝘄 𝗙𝗶𝗿𝗲 & 𝗦𝗺𝗼𝗸𝗲 𝗗𝗲𝘁𝗲𝗰𝘁𝗶𝗼𝗻 𝗗𝗮𝘁𝗮𝘀𝗲𝘁: https://lnkd.in/dusupHPr\n\n#AI #DeepLearning #YOLO #FireDetection #SmokeDetection #MachineLearning #ComputerVision #Colab #Roboflow #SecurityTech",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7302774842905260032",
+      "publishedAt": "2025-03-04T19:40:01.000Z",
+      "author": {
+        "name": "Baha Kızıl",
+        "headline": "AI Engineer"
+      },
+      "engagement": {
+        "likes": 812,
+        "comments": 22,
+        "shares": 40
+      },
+      "reactions": [
+        {
+          "type": "LIKE",
+          "count": 730
+        },
+        {
+          "type": "EMPATHY",
+          "count": 41
+        },
+        {
+          "type": "INTEREST",
+          "count": 25
+        },
+        {
+          "type": "PRAISE",
+          "count": 11
+        },
+        {
+          "type": "APPRECIATION",
+          "count": 5
+        }
+      ],
+      "postedAgo": "3mo •   ",
+      "fetched_at": "2025-06-07T19:10:19.714814"
+    },
+    {
+      "id": "7300112151774429186",
+      "text": "Sizin gibi öğrencilerim olduğu için çok şanslıyım Ünal Büyükköroğlu  açık olsun⭐️\n\nAI in Edu dersini geçen dönem alan Baha Kızıl’ a da selamlar😊",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7300112151774429186",
+      "publishedAt": "2025-02-25T11:19:26.000Z",
+      "author": {
+        "name": "Sezin Esfer Ondunc",
+        "headline": "METU"
+      },
+      "engagement": {
+        "likes": 21,
+        "comments": 2,
+        "shares": 0
+      },
+      "reactions": [
+        {
+          "type": "LIKE",
+          "count": 21
+        }
+      ],
+      "postedAgo": "3mo •   ",
+      "fetched_at": "2025-06-07T19:10:19.714871"
+    },
+    {
+      "id": "7300095202910756865",
+      "text": "Dün, üniversitemde aldığım AI in Education dersinde Sezin Eşfer Öndünç hocamızın izniyle dersin bir bölümünü ben anlattım. Eğitimde yapay zekânın kullanım alanlarını tartıştığımız bu derste, kendi bilgi ve deneyimlerimi paylaşma fırsatı buldum.\nYapay zekâ, eğitim dünyasında kişiselleştirilmiş öğrenme deneyimlerinden öğretmen asistanlarına kadar birçok yeniliği beraberinde getiriyor. Bu alandaki gelişmeleri keşfetmek ve paylaşmak gerçekten heyecan verici!\n\nYesterday, in the AI in Education course at my university, I had the opportunity to present a part of the lecture with the permission of our professor, Sezin Eşfer Öndünç. In this class, we discussed the applications of AI in education, and I had the chance to share my knowledge and experiences.\nArtificial intelligence brings numerous innovations to the education world, from personalized learning experiences to AI-powered teaching assistants. Exploring and sharing developments in this field is truly exciting!\n\n#ArtificialIntelligence #AI #Education #AIinEducation #MachineLearning #Technology #FutureOfEducation #PersonalizedLearning  #TeachingWithAI",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7300095202910756865",
+      "publishedAt": "2025-02-25T10:12:05.000Z",
+      "author": {
+        "name": "Ünal Büyükköroğlu",
+        "headline": "AI Developer | Bahçeşehir University"
+      },
+      "engagement": {
+        "likes": 36,
+        "comments": 1,
+        "shares": 1
+      },
+      "reactions": [
+        {
+          "type": "LIKE",
+          "count": 36
+        }
+      ],
+      "postedAgo": "3mo •   ",
+      "fetched_at": "2025-06-07T19:10:19.714926"
+    },
+    {
+      "id": "7298356524857352192",
+      "text": "Baykar Technologies'de Simulation Systems Intern olarak çalışmaya başladığımı paylaşmaktan mutluluk duyuyorum!",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7298356524857352192",
+      "publishedAt": "2025-02-20T15:03:12.000Z",
+      "author": {
+        "name": "Mustafa Sepen",
+        "headline": "Computer Engineer"
+      },
+      "engagement": {
+        "likes": 50,
+        "comments": 16,
+        "shares": 0
+      },
+      "reactions": [
+        {
+          "type": "LIKE",
+          "count": 45
+        },
+        {
+          "type": "PRAISE",
+          "count": 3
+        },
+        {
+          "type": "EMPATHY",
+          "count": 2
+        }
+      ],
+      "postedAgo": "3mo • Edited •   ",
+      "fetched_at": "2025-06-07T19:10:19.714982"
+    },
+    {
+      "id": "7290309345664245760",
+      "text": "Merhaba LinkedIn! ⚽🏟️\nYeni geliştirdiğim Futbol Maçı Analiz Projemi paylaşmaktan büyük mutluluk duyuyorum. Bu proje:\n• Takımların forma renklerini tespit edebiliyor,\n• Maç framelerini haritalandırabiliyor,\n• Takımların topla oynama oranlarını hesaplayabiliyor,\n• Topun hangi sahada daha fazla bulunduğunu yüzdelik olarak belirleyebiliyor,\n• Hangi kaleyi hangi takımın savunduğunu otomatik olarak tespit edebiliyor,\n• Takımların hücumlarını hangi kanatlardan gerçekleştirdiğini analiz ediyor,\n• Rakip ceza sahasında kaç kez topla buluşulduğunu ölçebiliyor.\n\nBu hedeflere ulaşmak için RoboFlow’un önceden eğitilmiş YOLO modelini kullandım. Teknik detaylar ve koda göz atmak için GitHub repomu inceleyebilirsiniz:\nhttps://lnkd.in/dhBxhdqk\n\nFutbol verilerini derinlemesine analiz ederek maç performanslarını iyileştirme konusunda büyük bir potansiyele sahip olduğuna inanıyorum. Desteklerinizi ve geri bildirimlerinizi sabırsızlıkla bekliyorum!\n\n#FutbolAnalizi #VeriBilimi #MakineÖğrenmesi #YapayZeka #Python #VeriAnalizi #Teknoloji #Futbol #RoboFlow #YOLO\n\n-------------------------------------------------------------------------------\n\nHello LinkedIn! ⚽🏟️\nI’m excited to share my Football Match Analysis Project, which can:\n• Detect the teams’ jersey colors,\n• Map match frames in detail,\n• Calculate ball possession percentages,\n• Determine which areas of the pitch the ball spends most of the time,\n• Identify which goal belongs to which team,\n• Analyze each team’s attacking directions,\n• Measure how many times the ball is received in the opponent’s penalty area.\n\nTo achieve these capabilities, I utilized RoboFlow’s pre-trained YOLO model. Feel free to check out the technical details and source code on my GitHub:\nhttps://lnkd.in/dhBxhdqk\n\nI believe this project has great potential to enhance match performance through in-depth football data analysis. I look forward to your support and feedback!\n\n#FootballAnalytics #DataScience #MachineLearning #AI #Python #SportsAnalysis #Technology #Soccer #RoboFlow #YOLO",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7290309345664245760",
+      "publishedAt": "2025-01-29T10:06:35.000Z",
+      "author": {
+        "name": "Ünal Büyükköroğlu",
+        "headline": "AI Developer | Bahçeşehir University"
+      },
+      "engagement": {
+        "likes": 57,
+        "comments": 5,
+        "shares": 2
+      },
+      "reactions": [
+        {
+          "type": "LIKE",
+          "count": 53
+        },
+        {
+          "type": "PRAISE",
+          "count": 3
+        },
+        {
+          "type": "EMPATHY",
+          "count": 1
+        }
+      ],
+      "postedAgo": "4mo •   ",
+      "fetched_at": "2025-06-07T19:10:19.715061"
+    },
+    {
+      "id": "7289368493798387714",
+      "text": "Güncel yapay zeka araçlarını kullanarak, kod geliştirme sürecimizi hızlandıracağını düşündüğümüz aşağıdaki eğitimi, 4 öğrenci arkadaşımıza hediye etmek istiyoruz. Yoruma \"Katılmak istiyorum\" yazmanız yeterli. \n\n\nhttps://lnkd.in/djC7PFWR",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7289368493798387714",
+      "publishedAt": "2025-01-26T19:47:58.000Z",
+      "author": {
+        "name": "Miltera Electronics and Software Technologies",
+        "headline": "8,477 followers"
+      },
+      "engagement": {
+        "likes": 61,
+        "comments": 59,
+        "shares": 12
+      },
+      "reactions": [
+        {
+          "type": "LIKE",
+          "count": 49
+        },
+        {
+          "type": "EMPATHY",
+          "count": 6
+        },
+        {
+          "type": "APPRECIATION",
+          "count": 3
+        },
+        {
+          "type": "PRAISE",
+          "count": 2
+        },
+        {
+          "type": "INTEREST",
+          "count": 1
+        }
+      ],
+      "postedAgo": "4mo •   ",
+      "fetched_at": "2025-06-07T19:10:19.715116"
+    },
+    {
+      "id": "7280514549399629824",
+      "text": "I'm happy to share that I'm starting a new position as Marketing Assistant Speacialist at Guess Europe Sagl ❤️",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7280514549399629824",
+      "publishedAt": "2025-01-02T09:25:33.000Z",
+      "author": {
+        "name": "Büşra Behrem",
+        "headline": "Marketing Assistant Specialist at Guess"
+      },
+      "engagement": {
+        "likes": 86,
+        "comments": 15,
+        "shares": 0
+      },
+      "reactions": [
+        {
+          "type": "LIKE",
+          "count": 76
+        },
+        {
+          "type": "PRAISE",
+          "count": 7
+        },
+        {
+          "type": "EMPATHY",
+          "count": 3
+        }
+      ],
+      "postedAgo": "5mo •   ",
+      "fetched_at": "2025-06-07T19:10:19.715176"
+    },
+    {
+      "id": "7257385818883833856",
+      "text": "Thrilled to complete the UiPath Academy Test Automation Engineer Training! This course provided essential skills to enhance my test automation expertise.",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7257385818883833856",
+      "publishedAt": "2024-10-30T13:40:14.000Z",
+      "author": {
+        "name": "Yusuf Korkmaz",
+        "headline": "Fourth-Year Software Engineering Student"
+      },
+      "engagement": {
+        "likes": 17,
+        "comments": 3,
+        "shares": 0
+      },
+      "reactions": [
+        {
+          "type": "LIKE",
+          "count": 15
+        },
+        {
+          "type": "PRAISE",
+          "count": 1
+        },
+        {
+          "type": "APPRECIATION",
+          "count": 1
+        }
+      ],
+      "postedAgo": "7mo •   ",
+      "fetched_at": "2025-06-07T19:10:19.715229"
+    },
+    {
+      "id": "7257375430112919552",
+      "text": "I’m proud to have completed the UiPath Academy Automation Developer Specialized AI Professional Training! This program has strengthened my AI-driven automation skills.",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7257375430112919552",
+      "publishedAt": "2024-10-30T12:58:58.000Z",
+      "author": {
+        "name": "Yusuf Korkmaz",
+        "headline": "Fourth-Year Software Engineering Student"
+      },
+      "engagement": {
+        "likes": 12,
+        "comments": 2,
+        "shares": 0
+      },
+      "reactions": [
+        {
+          "type": "LIKE",
+          "count": 11
+        },
+        {
+          "type": "PRAISE",
+          "count": 1
+        }
+      ],
+      "postedAgo": "7mo •   ",
+      "fetched_at": "2025-06-07T19:10:19.715286"
+    },
+    {
+      "id": "7251913685370105856",
+      "text": "Daisy projemizin uluslararası workshop'unu Philips'in Arge Merkezinin olduğu \"Eindhoven High Tech Campus\"'te yaptık. Özellikle sağlık alanındaki projelerimizi ve çalışmalarımızı buralarda paylaşmaktan onur duyuyorum.",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7251913685370105856",
+      "publishedAt": "2024-10-15T11:15:56.000Z",
+      "author": {
+        "name": "Taskin KIZIL",
+        "headline": "Bewell Teknoloji at General Manager"
+      },
+      "engagement": {
+        "likes": 67,
+        "comments": 1,
+        "shares": 0
+      },
+      "reactions": [
+        {
+          "type": "LIKE",
+          "count": 64
+        },
+        {
+          "type": "PRAISE",
+          "count": 3
+        }
+      ],
+      "postedAgo": "7mo • Edited •   ",
+      "fetched_at": "2025-06-07T19:10:19.715346"
+    },
+    {
+      "id": "7249394042101264386",
+      "text": "I’m happy to share that I’ve started my Master of Business Administration - MBA at Berlin School of Business & Innovation (BSBI)!",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7249394042101264386",
+      "publishedAt": "2024-10-08T12:23:46.000Z",
+      "author": {
+        "name": "Duygu Akın",
+        "headline": "Bachelor's in English Language Teaching (BAU) / Master's in Global MBA (BSBI)"
+      },
+      "engagement": {
+        "likes": 68,
+        "comments": 23,
+        "shares": 0
+      },
+      "reactions": [
+        {
+          "type": "LIKE",
+          "count": 62
+        },
+        {
+          "type": "PRAISE",
+          "count": 3
+        },
+        {
+          "type": "EMPATHY",
+          "count": 3
+        }
+      ],
+      "postedAgo": "8mo •   ",
+      "fetched_at": "2025-06-07T19:10:19.715403"
+    },
+    {
+      "id": "7244714978333609984",
+      "text": "I’m happy to share that I’ve started my Master of Business Administration - MBA at Bahcesehir University!",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7244714978333609984",
+      "publishedAt": "2024-09-25T14:30:51.000Z",
+      "author": {
+        "name": "Ebrar Işık",
+        "headline": "International Marketing Assistant Specialist at Bahçeşehir University"
+      },
+      "engagement": {
+        "likes": 56,
+        "comments": 10,
+        "shares": 0
+      },
+      "reactions": [
+        {
+          "type": "LIKE",
+          "count": 51
+        },
+        {
+          "type": "PRAISE",
+          "count": 4
+        },
+        {
+          "type": "APPRECIATION",
+          "count": 1
+        }
+      ],
+      "postedAgo": "8mo •   ",
+      "fetched_at": "2025-06-07T19:10:19.715454"
+    },
+    {
+      "id": "7242412846339309568",
+      "text": "I would like to share with you that I have been accepted into the Operations Management minor program of the Faculty of Engineering and Natural Sciences at Bahcesehir University!",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7242412846339309568",
+      "publishedAt": "2024-09-19T06:03:00.000Z",
+      "author": {
+        "name": "Bora KAPLAN",
+        "headline": "Marketing Intern at Microsoft"
+      },
+      "engagement": {
+        "likes": 103,
+        "comments": 24,
+        "shares": 0
+      },
+      "reactions": [
+        {
+          "type": "LIKE",
+          "count": 92
+        },
+        {
+          "type": "PRAISE",
+          "count": 8
+        },
+        {
+          "type": "EMPATHY",
+          "count": 3
+        }
+      ],
+      "postedAgo": "8mo •   ",
+      "fetched_at": "2025-06-07T19:10:19.715504"
+    }
+  ],
+  "total_posts": 20
+}
