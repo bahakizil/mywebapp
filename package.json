@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "vitest",
-    "sync-data": "node scripts/sync-data.js",
-    "prebuild": "npm run sync-data"
+    "sync-data": "node scripts/sync-data.js"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.2.1",
