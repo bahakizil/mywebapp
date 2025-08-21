@@ -6,7 +6,7 @@ export const siteConfig = {
   ogImage: "https://aieng-portfolio.com/og.png",
   email: "kizilbaha26@gmail.com",
   author: "Baha Kizil",
-  cvPath: "/Users/bahakizil/Desktop/BAHA_KIZIL_CV.pdf",
+  cvPath: "/BAHA_KIZIL_CV.pdf",
   links: {
     github: "https://github.com/bahakizil",
     linkedin: "https://linkedin.com/in/bahakizil",

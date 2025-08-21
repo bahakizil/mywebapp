@@ -144,40 +144,33 @@ export default function Home() {
   // const bgParallax = useParallax(100); // Replaced with scroll-based parallax
   const contentParallax = useParallax(-50);
   
-  // Load data from APIs
+  // Load static/cached data instead of making API calls
   useEffect(() => {
-    async function fetchData() {
+    async function loadStaticData() {
       try {
-        const [reposRes, articlesRes, linkedinRes] = await Promise.all([
-          fetch('/api/repos'),
-          fetch('/api/medium'),
-          fetch('/api/linkedin')
-        ]);
+        // Use the static data endpoint which loads from cached JSON
+        const response = await fetch('/api/static-data');
+        const data = await response.json();
 
-        const [reposData, articlesData, linkedinData] = await Promise.all([
-          reposRes.json(),
-          articlesRes.json(),
-          linkedinRes.json()
-        ]);
-
-        const processedRepos = Array.isArray(reposData) ? reposData : [];
-        const processedArticles = Array.isArray(articlesData) ? articlesData : [];
-        const processedLinkedin = Array.isArray(linkedinData) ? linkedinData : [];
-
-        setRepos(processedRepos);
-        setMediumArticles(processedArticles);
-        setLinkedInPosts(processedLinkedin);
+        if (data && typeof data === 'object') {
+          setRepos(data.repos || []);
+          setMediumArticles(data.articles || []);
+          setLinkedInPosts(data.linkedinPosts || []);
+          console.log('📊 Loaded static data from cache');
+        } else {
+          throw new Error('Invalid data format');
+        }
         
-              } catch (err) {
-        console.error('Error fetching data:', err);
-        // Fallback to empty arrays
+      } catch (err) {
+        console.error('⚠️ Error loading static data:', err);
+        // Set empty arrays as fallback
         setRepos([]);
         setMediumArticles([]);
         setLinkedInPosts([]);
       }
     }
 
-    fetchData();
+    loadStaticData();
     
     const timer = setTimeout(() => {
       setIsVisible(true);
@@ -203,8 +196,8 @@ export default function Home() {
             style={{ y: bgParallax }}
           />
           
-          <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-            <div className="flex flex-col lg:flex-row items-center justify-center gap-12 max-w-6xl mx-auto">
+          <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-7xl">
+            <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12 max-w-6xl mx-auto">
               
               {/* Profile Image */}
               <motion.div
@@ -213,7 +206,7 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="flex-shrink-0 order-2 lg:order-1"
               >
-                <div className="w-72 h-80 lg:w-80 lg:h-96 mx-auto rounded-3xl overflow-hidden border-4 border-primary/30 shadow-2xl">
+                <div className="w-64 h-72 sm:w-72 sm:h-80 lg:w-80 lg:h-96 mx-auto rounded-3xl overflow-hidden border-4 border-primary/30 shadow-2xl">
                   <Image
                     src="/profile.jpg"
                     alt="Baha Kizil"
@@ -225,15 +218,27 @@ export default function Home() {
                 
                 {/* Location Badge & Social Icons */}
                 <div className="flex flex-col items-center gap-3 mt-4">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-                    transition={{ duration: 0.5, delay: 1.2 }}
-                    className="flex items-center justify-center gap-2 bg-card/80 backdrop-blur-sm border rounded-full px-4 py-2 w-fit"
-                  >
-                    <MapPin className="w-4 h-4 text-primary" />
-                    <span className="text-sm font-medium">Istanbul, Turkey</span>
-                  </motion.div>
+                  <div className="flex flex-col items-center gap-3">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+                      transition={{ duration: 0.5, delay: 1.2 }}
+                      className="flex items-center justify-center gap-2 bg-card/80 backdrop-blur-sm border rounded-full px-4 py-2 w-fit"
+                    >
+                      <MapPin className="w-4 h-4 text-primary" />
+                      <span className="text-sm font-medium">Istanbul, Turkey</span>
+                    </motion.div>
+                    
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+                      transition={{ duration: 0.5, delay: 1.3 }}
+                      className="flex items-center justify-center gap-2 bg-primary/10 backdrop-blur-sm border border-primary/30 rounded-full px-4 py-2 w-fit"
+                    >
+                      <Book className="w-4 h-4 text-primary" />
+                      <span className="text-sm font-medium text-primary">Bahçeşehir University • Mechatronics Eng.</span>
+                    </motion.div>
+                  </div>
                   
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -266,7 +271,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
                   transition={{ duration: 0.5 }}
-                  className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-5xl text-foreground mb-4"
+                  className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl lg:text-5xl text-foreground mb-4"
                 >
                   Hi, I'm{" "}
                   <span className="text-gradient bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
@@ -278,9 +283,9 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
-                  className="text-xl md:text-2xl lg:text-3xl font-semibold text-primary mb-6"
+                  className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-primary mb-6"
                 >
-                  AI Engineer
+                  AI Engineer & Mechatronics Student
                 </motion.h2>
                 
                 <motion.div
@@ -290,7 +295,7 @@ export default function Home() {
                   className="mb-6"
                 >
                   <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-                    Model Training • Computer Vision • Prompt Engineering • AI Workflow Automation
+                    AI Workflow Automation • RAG Systems • Computer Vision • Multi-Agent Systems • FastAPI Development
                   </p>
                 </motion.div>
 
@@ -303,64 +308,68 @@ export default function Home() {
                   <p>
                     <Typewriter
                       texts={[
-                        "I build intelligent systems that connect perception, language, and logic — from real-time object detection to autonomous agent orchestration.",
-                        "I create AI systems that see, understand, and act — bridging computer vision with intelligent automation.",
-                        "I develop end-to-end AI solutions that transform data into decisions through advanced machine learning.",
-                        "I design modular AI architectures that seamlessly integrate vision, language, and autonomous workflows."
+                        "Ambitious AI engineer transforming advanced technologies into practical solutions — from enterprise workflow automation to real-time computer vision systems.",
+                        "I develop modular MCP servers, FastAPI backends, and intelligent RAG architectures that power next-generation AI applications.",
+                        "Specializing in multi-agent systems, semantic search pipelines, and end-to-end AI solutions that create measurable business impact.",
+                        "From fine-tuning YOLO models for smart traffic monitoring to building voice-enabled chatbots — I turn AI research into production-ready systems."
                       ]}
                       speed={80}
                       deleteSpeed={40}
-                      pauseTime={3000}
+                      pauseTime={3500}
                       className="text-base md:text-base leading-relaxed"
                     />
                   </p>
                   
                   <div className="space-y-3">
-                    <p className="font-medium text-foreground">My core focus areas include:</p>
+                    <p className="font-medium text-foreground">Currently pursuing Mechatronics Engineering at Bahçeşehir University (2020-2025), with hands-on experience in:</p>
                     <ul className="space-y-2 text-sm">
-                      <li>• <strong>Model training and fine-tuning</strong>, especially in vision and time-based domains</li>
-                      <li>• <strong>Computer vision pipelines</strong> using YOLO for real-time detection and visual reasoning</li>
-                      <li>• <strong>Prompt engineering and LLM integration</strong> for adaptive, context-aware systems</li>
-                      <li>• <strong>AI automation workflows with n8n</strong>, combining APIs, triggers, and dynamic agents</li>
-                      <li>• <strong>MCP server infrastructure</strong> for secure, multi-agent orchestration and tunneling</li>
-                      <li>• <strong>Supabase-based backend systems</strong> for data persistence and authentication in AI apps</li>
+                      <li>• <strong>Enterprise AI Workflow Automation</strong> - MCP servers, FastAPI backends, LangChain orchestration</li>
+                      <li>• <strong>Advanced RAG Systems</strong> - PostgreSQL + PGVector, dynamic embeddings, semantic search</li>
+                      <li>• <strong>Computer Vision & Real-time Detection</strong> - YOLO fine-tuning, OpenCV pipelines, smart monitoring</li>
+                      <li>• <strong>Multi-Agent AI Systems</strong> - Voice chatbots, STT/TTS integration, conversational AI</li>
+                      <li>• <strong>Full-Stack AI Development</strong> - FastAPI, Supabase, React, Docker deployment</li>
+                      <li>• <strong>Cloud & Infrastructure</strong> - AWS, Google Cloud, CI/CD, production monitoring</li>
                     </ul>
                   </div>
 
-                  <p className="text-primary font-medium">
-                    I design modular, API-driven, scalable AI pipelines — hands-on from data and training to orchestration and deployment.
-                  </p>
+                  <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mt-4">
+                    <p className="text-primary font-medium mb-2">🎯 Current Focus</p>
+                    <p className="text-sm text-muted-foreground">
+                      Building enterprise AI solutions at <strong>Kafein Technology</strong> • Developing semantic CV management systems • 
+                      Creating smart agriculture automation with Raspberry Pi 5 • Committed to continuous learning and innovation in AI
+                    </p>
+                  </div>
                 </motion.div>
 
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
                   transition={{ duration: 0.5, delay: 1 }}
-                  className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8"
+                  className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-8 flex-wrap"
                 >
-                  <Button asChild size="lg" className="btn-primary group">
-                    <Link href="#ai-demos">
-                      AI Demos
-                      <AnimatedArrow className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Link>
-                  </Button>
-                  <Button asChild variant="outline" size="lg" className="group">
+                  <Button asChild size="lg" className="btn-primary group min-w-[140px]">
                     <Link href="#projects">
                       View Projects
                       <AnimatedArrow className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
-                  <Button asChild variant="outline" size="lg" className="group">
+                  <Button asChild variant="outline" size="lg" className="group min-w-[140px]">
+                    <a href="/api/download-cv" download="Baha_Kizil_CV.pdf">
+                      Download CV
+                      <Download className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-[-2px]" />
+                    </a>
+                  </Button>
+                  <Button asChild variant="outline" size="lg" className="group min-w-[140px]">
                     <Link href="#huggingface">
                       🤗 HF Spaces
                       <AnimatedArrow className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
-                  <Button asChild variant="outline" size="lg" className="group">
-                    <a href="/api/download-cv" download="Baha_Kizil_CV.pdf">
-                      Download CV
-                      <Download className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-[-2px]" />
-                    </a>
+                  <Button asChild variant="secondary" size="lg" className="group min-w-[140px]">
+                    <Link href="#ai-demos">
+                      🎮 Try AI Demos
+                      <AnimatedArrow className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </Link>
                   </Button>
                 </motion.div>
 
@@ -375,56 +384,6 @@ export default function Home() {
         <SectionDivider />
       </ParallaxScroll>
 
-      {/* AI Demos Section */}
-      <Section id="ai-demos" className="relative z-10">
-        <div className="py-20 bg-background/50">
-          <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-            
-            {/* AI Demos Showcase */}
-            <ScrollReveal direction="up" delay={0.1}>
-              <div className="text-center mb-16">
-                <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl mb-4">
-                  AI Engineering in Action
-                </h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto mb-12">
-                  Live demonstrations of neural networks, computer vision, and machine learning systems
-                </p>
-              </div>
-            </ScrollReveal>
-
-            {/* AI Visualization Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              {/* Top row */}
-              <div className="h-[450px]">
-                <AITrainingVisualization />
-              </div>
-              <div className="h-[450px]">
-                <ObjectDetectionDemo autoDetect={false} />
-              </div>
-              <div className="h-[450px]">
-                <JetsonEdgeDemo />
-              </div>
-            </div>
-
-            {/* Bottom row with extra spacing */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-              <div className="h-[450px]">
-                <PromptEngineeringDemo />
-              </div>
-              <div className="h-[450px]">
-                <N8NWorkflowDemo />
-              </div>
-              <div className="h-[450px]">
-                <InteractiveNeuralNetwork />
-              </div>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      <ParallaxScroll speed={15} direction="down">
-        <SectionDivider />
-      </ParallaxScroll>
 
       {/* Projects Section */}
       <Section id="projects">
@@ -442,7 +401,7 @@ export default function Home() {
             </ScrollReveal>
 
             <StaggeredReveal staggerDelay={0.1} direction="up">
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto justify-items-center">
+              <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto justify-items-center">
                 {repos.slice(0, 6).map((repo, index) => (
                 <a 
                   key={repo.id}
@@ -514,7 +473,7 @@ export default function Home() {
             </ScrollReveal>
 
             <StaggeredReveal staggerDelay={0.15} direction="left">
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto justify-items-center">
+              <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto justify-items-center">
                 {mediumArticles.slice(0, 6).map((article, index) => (
                 <a 
                   key={article.link}
@@ -616,7 +575,7 @@ export default function Home() {
             </ScrollReveal>
 
             <StaggeredReveal staggerDelay={0.12} direction="right">
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto justify-items-center">
+              <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto justify-items-center">
                 {linkedInPosts.slice(0, 6).map((post, index) => (
                 <a 
                   key={post.id || index}
@@ -707,6 +666,57 @@ export default function Home() {
       {/* Contact Section */}
       <Section id="contact">
         <ContactFormSection />
+      </Section>
+
+      <ParallaxScroll speed={20} direction="up">
+        <SectionDivider />
+      </ParallaxScroll>
+
+      {/* AI Interactive Demos Section - Moved to bottom as games/minigames */}
+      <Section id="ai-demos" className="relative z-10">
+        <div className="py-20 bg-background/50">
+          <div className="container mx-auto px-4 md:px-6 max-w-7xl">
+            
+            {/* AI Demos Showcase */}
+            <ScrollReveal direction="up" delay={0.1}>
+              <div className="text-center mb-16">
+                <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl mb-4">
+                  Interactive AI Playground
+                </h2>
+                <p className="text-muted-foreground max-w-2xl mx-auto mb-12">
+                  Explore and interact with neural networks, computer vision, and machine learning systems
+                </p>
+              </div>
+            </ScrollReveal>
+
+            {/* Mobile Optimized AI Visualization Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+              {/* Row 1 */}
+              <div className="h-[400px] sm:h-[450px]">
+                <AITrainingVisualization />
+              </div>
+              <div className="h-[400px] sm:h-[450px]">
+                <ObjectDetectionDemo autoDetect={false} />
+              </div>
+              <div className="h-[400px] sm:h-[450px] lg:col-span-2 xl:col-span-1">
+                <JetsonEdgeDemo />
+              </div>
+            </div>
+
+            {/* Row 2 */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+              <div className="h-[400px] sm:h-[450px]">
+                <PromptEngineeringDemo />
+              </div>
+              <div className="h-[400px] sm:h-[450px]">
+                <N8NWorkflowDemo />
+              </div>
+              <div className="h-[400px] sm:h-[450px] lg:col-span-2 xl:col-span-1">
+                <InteractiveNeuralNetwork />
+              </div>
+            </div>
+          </div>
+        </div>
       </Section>
     </ScrollProvider>
   );

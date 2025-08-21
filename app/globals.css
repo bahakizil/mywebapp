@@ -98,8 +98,33 @@
   /* Card visibility fix */
   .card-container {
     opacity: 1 !important;
-    visibility: visible !important;
-    display: block !important;
+    will-change: transform;
+  }
+  
+  /* Mobile Performance Optimizations */
+  @media (max-width: 768px) {
+    .animate-card:hover {
+      @apply transform scale-[1.02] shadow-md;
+    }
+    
+    /* Reduce motion for better mobile performance */
+    .motion-safe\:animate-float {
+      animation-duration: 4s;
+    }
+  }
+  
+  /* Optimize text rendering on mobile */
+  @media (max-width: 640px) {
+    body {
+      -webkit-text-size-adjust: 100%;
+      text-rendering: optimizeSpeed;
+    }
+    
+    /* Smoother scrolling on mobile */
+    html {
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+    }
   }
 
   /* Smooth navbar transitions */

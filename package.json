@@ -9,7 +9,7 @@
     "lint": "next lint",
     "test": "vitest",
     "sync-data": "node scripts/sync-data.js",
-    "prebuild": "npm run sync-data"
+    "refresh-data": "node scripts/refresh-data.js"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "^1.2.1",
@@ -47,7 +47,9 @@
     "@studio-freight/lenis": "^1.0.42",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@types/react-dom": "18.2.7",
+    "@vercel/analytics": "^1.5.0",
     "@vercel/kv": "^1.0.1",
+    "@vercel/speed-insights": "^1.2.0",
     "autoprefixer": "10.4.15",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

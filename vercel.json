@@ -1,0 +1,31 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "functions": {
+    "app/api/refresh-data/route.ts": {
+      "maxDuration": 60
+    },
+    "app/api/static-data/route.ts": {
+      "maxDuration": 10
+    }
+  },
+  "headers": [
+    {
+      "source": "/api/static-data",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, stale-while-revalidate=60"
+        }
+      ]
+    }
+  ],
+  "env": {
+    "VERCEL_ANALYTICS_ID": "@vercel-analytics-id",
+    "DATA_REFRESH_TOKEN": "@data-refresh-token"
+  }
+}

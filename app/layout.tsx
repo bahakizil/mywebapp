@@ -7,6 +7,8 @@ import { Footer } from '@/components/footer';
 import { Toaster } from '@/components/ui/toaster';
 import { GlobalScrollProvider } from '@/components/ui/global-scroll-provider';
 import { siteConfig } from '@/src/config/siteConfig';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -85,6 +87,8 @@ export default function RootLayout({
             </div>
           </GlobalScrollProvider>
           <Toaster />
+          <Analytics />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>

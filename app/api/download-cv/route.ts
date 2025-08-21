@@ -4,8 +4,8 @@ import { join } from 'path';
 
 export async function GET(request: NextRequest) {
   try {
-    // CV dosyasının path'i - production'da bu farklı olabilir
-    const cvPath = '/Users/bahakizil/Desktop/BAHA_KIZIL_CV.pdf';
+    // CV dosyasının path'i - public klasöründen al
+    const cvPath = join(process.cwd(), 'public', 'BAHA_KIZIL_CV.pdf');
     
     // Dosya var mı kontrol et
     try {
