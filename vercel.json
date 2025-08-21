@@ -11,6 +11,9 @@
     },
     "app/api/static-data/route.ts": {
       "maxDuration": 10
+    },
+    "app/api/github-activity/route.ts": {
+      "maxDuration": 30
     }
   },
   "headers": [

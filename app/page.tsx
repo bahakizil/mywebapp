@@ -74,6 +74,7 @@ import { Typewriter } from "@/components/ui/typewriter";
 import { ContactFormSection } from "@/components/contact-form-section";
 import { AITrainingVisualization } from "@/components/ui/ai-training-visualization";
 import { ObjectDetectionDemo } from "@/components/ui/object-detection-demo";
+import { GitHubActivityBoard } from "@/components/ui/github-activity-board";
 
 // Removed TypewriterComponent due to type issues
 
@@ -248,10 +249,10 @@ export default function Home() {
           />
           
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-            <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 items-center justify-center gap-8 lg:gap-12 max-w-7xl mx-auto">
               
               {/* Hero Content - Mobile First */}
-              <div className="flex-1 text-center lg:text-left order-1 lg:order-2">
+              <div className="lg:col-span-2 xl:col-span-2 text-center lg:text-left order-1 lg:order-2">
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
@@ -364,7 +365,7 @@ export default function Home() {
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -50 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="flex-shrink-0 order-2 lg:order-1"
+                className="order-2 lg:order-1"
               >
                 <div className="w-64 h-72 sm:w-72 sm:h-80 lg:w-80 lg:h-96 mx-auto rounded-3xl overflow-hidden border-4 border-primary/30 shadow-2xl">
                   <Image
@@ -423,6 +424,16 @@ export default function Home() {
                     </Button>
                   </motion.div>
                 </div>
+              </motion.div>
+
+              {/* GitHub Activity Board - Desktop Only */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 50 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="hidden xl:block order-3"
+              >
+                <GitHubActivityBoard />
               </motion.div>
 
             </div>

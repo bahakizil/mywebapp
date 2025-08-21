@@ -6,10 +6,10 @@ const http = require('http');
 // Configuration
 const CONFIG = {
   // Change this to your production URL after deployment
-  PRODUCTION_URL: 'https://your-vercel-app.vercel.app',
+  PRODUCTION_URL: 'https://bahakizil.vercel.app',
   LOCAL_URL: 'http://localhost:3000',
   // This token should match the one in your environment variables
-  TOKEN: process.env.DATA_REFRESH_TOKEN || 'your-secret-token-here'
+  TOKEN: process.env.DATA_REFRESH_TOKEN || 'baha-portfolio-2024'
 };
 
 function makeRequest(url, token) {

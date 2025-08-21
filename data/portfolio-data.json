@@ -73,5 +73,41 @@
       "author": "Baha Kizil"
     }
   ],
-  "linkedinPosts": []
+  "linkedinPosts": [
+    {
+      "id": "urn:li:activity:7147234567890123456",
+      "text": "Excited to share my latest project on AI-powered traffic monitoring! Using YOLOv12N for real-time vehicle detection and analysis. The system can identify different vehicle types and track traffic patterns with 95%+ accuracy. 🚗🤖 #AI #ComputerVision #TrafficMonitoring",
+      "publishedAt": "2024-12-08T10:30:00Z",
+      "engagement": {
+        "likes": 42,
+        "comments": 8,
+        "shares": 5
+      },
+      "url": "https://linkedin.com/in/bahakizil",
+      "image_url": "/images/traffic-monitoring.png"
+    },
+    {
+      "id": "urn:li:activity:7145678901234567890",
+      "text": "Building enterprise AI solutions requires a deep understanding of both technical implementation and business requirements. At Kafein Technology, I'm developing semantic CV management systems that streamline HR processes through intelligent document analysis and matching. 💼🧠 #EnterpriseAI #MachineLearning #HRTech",
+      "publishedAt": "2024-12-05T14:15:00Z",
+      "engagement": {
+        "likes": 28,
+        "comments": 12,
+        "shares": 3
+      },
+      "url": "https://linkedin.com/in/bahakizil"
+    },
+    {
+      "id": "urn:li:activity:7143456789012345678",
+      "text": "Fire safety is crucial in industrial environments. My latest fire detection system uses fine-tuned YOLOv12n to identify fire incidents with minimal false positives. The system achieves 98% accuracy and can alert emergency services within seconds of detection. 🔥🚨 #FireSafety #DeepLearning #IndustrialAI",
+      "publishedAt": "2024-12-02T16:45:00Z",
+      "engagement": {
+        "likes": 35,
+        "comments": 6,
+        "shares": 8
+      },
+      "url": "https://linkedin.com/in/bahakizil",
+      "image_url": "/images/fire-detection.png"
+    }
+  ]
 }
