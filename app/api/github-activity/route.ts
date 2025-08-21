@@ -1,4 +1,6 @@
 import { NextResponse } from 'next/server';
+import { readFileSync, existsSync } from 'fs';
+import { join } from 'path';
 
 export const runtime = 'nodejs';
 export const revalidate = 3600; // 1 hour cache
@@ -113,6 +115,44 @@ function processActivityData(events: GitHubEvent[]): ActivityData {
 }
 
 function getMockActivityData(): ActivityData {
+  try {
+    // Try to read GitHub stats from portfolio data
+    const dataFile = join(process.cwd(), 'data', 'portfolio-data.json');
+    
+    if (existsSync(dataFile)) {
+      const portfolioData = JSON.parse(readFileSync(dataFile, 'utf8'));
+      const githubStats = portfolioData.githubStats;
+      
+      if (githubStats) {
+        // Use real contribution data
+        const activityCalendar = generateActivityCalendar(githubStats.contributionChart.weeklyData);
+        
+        // Create repository activity from pinned repos
+        const repositories: Record<string, number> = {};
+        githubStats.pinnedRepos.forEach((repo: any, index: number) => {
+          repositories[`bahakizil/${repo.name}`] = Math.max(1, 15 - index * 2);
+        });
+        
+        return {
+          totalEvents: githubStats.contributionChart.totalContributions || 142,
+          recentEvents: [],
+          eventsByType: {
+            'PushEvent': 52,
+            'CreateEvent': 18,
+            'WatchEvent': 12,
+            'IssuesEvent': 8,
+            'PullRequestEvent': 6
+          },
+          activityCalendar,
+          repositories
+        };
+      }
+    }
+  } catch (error) {
+    console.error('Error reading GitHub stats from portfolio data:', error);
+  }
+  
+  // Fallback to original mock data
   const now = new Date();
   const mockCalendar: Record<string, number> = {};
   
@@ -143,4 +183,24 @@ function getMockActivityData(): ActivityData {
       'bahakizil/Gun_Detection_Agent': 4
     }
   };
+}
+
+function generateActivityCalendar(weeklyData: number[]): Record<string, number> {
+  const calendar: Record<string, number> = {};
+  const today = new Date();
+  
+  // Generate last 21 days (3 weeks) of activity data
+  for (let i = 20; i >= 0; i--) {
+    const date = new Date(today);
+    date.setDate(date.getDate() - i);
+    const dateStr = date.toISOString().split('T')[0];
+    
+    // Use weekly data with some variation
+    const weekIndex = Math.floor(i / 7);
+    const baseValue = weeklyData[weekIndex] || 0;
+    const variation = Math.floor(Math.random() * 3) - 1; // Add some daily variation (-1 to +1)
+    calendar[dateStr] = Math.max(0, Math.min(4, Math.floor(baseValue / 5) + variation)); // Scale to 0-4 range
+  }
+  
+  return calendar;
 }

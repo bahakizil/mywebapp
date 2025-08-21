@@ -131,6 +131,21 @@ interface LinkedInPost {
   image_url?: string;
 }
 
+interface GitHubStats {
+  pinnedRepos: Array<{
+    name: string;
+    description: string;
+    stars: number;
+    language: string;
+  }>;
+  contributionChart: {
+    totalContributions: number;
+    currentStreak: number;
+    weeklyData: number[];
+    lastYearContributions: number;
+  };
+}
+
 // Loading skeleton component
 const ProjectSkeleton = () => (
   <div className="w-full max-w-md">
@@ -184,6 +199,7 @@ export default function Home() {
   const [repos, setRepos] = useState<Repository[]>([]);
   const [mediumArticles, setMediumArticles] = useState<MediumArticle[]>([]);
   const [linkedInPosts, setLinkedInPosts] = useState<LinkedInPost[]>([]);
+  const [githubStats, setGithubStats] = useState<GitHubStats | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   
   // Initialize GSAP animations
@@ -203,10 +219,16 @@ export default function Home() {
         const data = await response.json();
 
         if (data && typeof data === 'object') {
+          console.log('📊 Raw API Data:', data);
+          console.log('📊 Repos count:', data.repos?.length || 0);
+          console.log('📊 Articles count:', data.articles?.length || 0);
+          console.log('📊 LinkedIn posts count:', data.linkedinPosts?.length || 0);
+          
           setRepos(data.repos || []);
           setMediumArticles(data.articles || []);
           setLinkedInPosts(data.linkedinPosts || []);
-          console.log('📊 Loaded static data from cache');
+          setGithubStats(data.githubStats || null);
+          console.log('📊 State updated - Loading completed');
         } else {
           throw new Error('Invalid data format');
         }
@@ -217,6 +239,7 @@ export default function Home() {
         setRepos([]);
         setMediumArticles([]);
         setLinkedInPosts([]);
+        setGithubStats(null);
       } finally {
         setIsLoading(false);
       }
@@ -230,7 +253,26 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
-
+  // Prioritize pinned repositories
+  const getPrioritizedRepos = () => {
+    if (!githubStats?.pinnedRepos) return repos.slice(0, 6);
+    
+    const pinnedNames = githubStats.pinnedRepos.map(p => p.name);
+    
+    // First, get pinned repos from the repos list
+    const pinnedRepos = repos.filter(repo => pinnedNames.includes(repo.name));
+    
+    // Then get non-pinned repos
+    const nonPinnedRepos = repos.filter(repo => !pinnedNames.includes(repo.name));
+    
+    // Combine: pinned first, then highest starred non-pinned repos
+    const prioritizedRepos = [
+      ...pinnedRepos,
+      ...nonPinnedRepos.sort((a, b) => b.stargazers_count - a.stargazers_count)
+    ];
+    
+    return prioritizedRepos.slice(0, 6);
+  };
 
   return (
     <ScrollProvider>
@@ -251,8 +293,8 @@ export default function Home() {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 items-center justify-center gap-8 lg:gap-12 max-w-7xl mx-auto">
               
-              {/* Hero Content - Mobile First */}
-              <div className="lg:col-span-2 xl:col-span-2 text-center lg:text-left order-1 lg:order-2">
+              {/* Hero Content - Mobile Second */}
+              <div className="lg:col-span-2 xl:col-span-2 text-center lg:text-left order-2 lg:order-2">
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
@@ -340,7 +382,7 @@ export default function Home() {
                     </Link>
                   </Button>
                   <Button asChild variant="outline" className="group min-w-[160px] min-h-[48px] px-6 py-3 text-base font-medium focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
-                    <a href="https://drive.google.com/uc?export=download&id=1GMAQtFtaexvEwoz8SopgW9xGPuIaWGZf" target="_blank" rel="noopener noreferrer">
+                    <a href="https://drive.usercontent.google.com/download?id=1GMAQtFtaexvEwoz8SopgW9xGPuIaWGZf&export=download" target="_blank" rel="noopener noreferrer">
                       Download CV
                       <Download className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-[-2px]" />
                     </a>
@@ -360,12 +402,12 @@ export default function Home() {
                 </motion.div>
               </div>
 
-              {/* Profile Image - Mobile Last */}
+              {/* Profile Image - Mobile First */}
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -50 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="order-2 lg:order-1"
+                className="order-1 lg:order-1"
               >
                 <div className="w-64 h-72 sm:w-72 sm:h-80 lg:w-80 lg:h-96 mx-auto rounded-3xl overflow-hidden border-4 border-primary/30 shadow-2xl">
                   <Image
@@ -431,7 +473,7 @@ export default function Home() {
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 50 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
-                className="hidden xl:block order-3"
+                className="order-3 col-span-full xl:col-span-1 xl:order-3"
               >
                 <GitHubActivityBoard />
               </motion.div>
@@ -470,7 +512,7 @@ export default function Home() {
             ) : (
               <StaggeredReveal staggerDelay={0.1} direction="up">
                 <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto justify-items-center">
-                  {repos.slice(0, 6).map((repo, index) => (
+                  {getPrioritizedRepos().map((repo, index) => (
                 <a 
                   key={repo.id}
                   href={repo.html_url}
@@ -496,6 +538,11 @@ export default function Home() {
                       {repo.description || "No description available"}
                     </p>
                     <div className="flex flex-wrap gap-1 mb-4">
+                      {githubStats?.pinnedRepos.some(p => p.name === repo.name) && (
+                        <Badge variant="default" className="text-xs bg-primary/20 text-primary border-primary/30">
+                          📌 Pinned
+                        </Badge>
+                      )}
                       {repo.language && (
                         <Badge variant="secondary" className="text-xs">
                           {repo.language}
@@ -699,10 +746,10 @@ export default function Home() {
                           <MessagesSquare className="h-4 w-4" />
                           <span>{post.engagement?.comments || post.comments || 0}</span>
                         </div>
-                        {post.engagement?.shares && (
+                        {(post.engagement?.shares || post.shares) && (
                           <div className="flex items-center gap-1">
                             <Share2 className="h-4 w-4" />
-                            <span>{post.engagement.shares}</span>
+                            <span>{post.engagement?.shares || post.shares || 0}</span>
                           </div>
                         )}
                       </div>
