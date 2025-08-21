@@ -58,6 +58,7 @@ import {
 } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import HuggingFaceSpacesSection from "@/components/HuggingFaceSpacesSection";
 import { AnimatedGradient } from "@/components/ui/animated-gradient";
 import { FloatingCards } from "@/components/ui/floating-cards";
@@ -129,6 +130,52 @@ interface LinkedInPost {
   image_url?: string;
 }
 
+// Loading skeleton component
+const ProjectSkeleton = () => (
+  <div className="w-full max-w-md">
+    <div className="border rounded-lg p-6 space-y-4">
+      <div className="flex items-center gap-2 mb-3">
+        <Skeleton className="h-8 w-8 rounded-full" />
+        <div className="flex gap-2">
+          <Skeleton className="h-4 w-4" />
+          <Skeleton className="h-4 w-8" />
+          <Skeleton className="h-4 w-4" />
+          <Skeleton className="h-4 w-8" />
+        </div>
+      </div>
+      <Skeleton className="h-6 w-3/4" />
+      <Skeleton className="h-16 w-full" />
+      <div className="flex gap-2">
+        <Skeleton className="h-6 w-16" />
+        <Skeleton className="h-6 w-20" />
+      </div>
+      <Skeleton className="h-4 w-1/2" />
+    </div>
+  </div>
+);
+
+const ArticleSkeleton = () => (
+  <div className="w-full max-w-md">
+    <div className="border rounded-lg overflow-hidden">
+      <Skeleton className="h-48 w-full" />
+      <div className="p-6 space-y-4">
+        <div className="flex items-center gap-2">
+          <Skeleton className="h-5 w-5" />
+          <Skeleton className="h-4 w-24" />
+        </div>
+        <Skeleton className="h-6 w-5/6" />
+        <Skeleton className="h-16 w-full" />
+        <div className="flex gap-4">
+          <Skeleton className="h-4 w-8" />
+          <Skeleton className="h-4 w-8" />
+          <Skeleton className="h-4 w-8" />
+        </div>
+        <Skeleton className="h-4 w-1/3" />
+      </div>
+    </div>
+  </div>
+);
+
 export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
   const { scrollY } = useScroll();
@@ -136,6 +183,7 @@ export default function Home() {
   const [repos, setRepos] = useState<Repository[]>([]);
   const [mediumArticles, setMediumArticles] = useState<MediumArticle[]>([]);
   const [linkedInPosts, setLinkedInPosts] = useState<LinkedInPost[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   
   // Initialize GSAP animations
   const { refreshScrollTrigger } = useGSAPAnimations();
@@ -148,6 +196,7 @@ export default function Home() {
   useEffect(() => {
     async function loadStaticData() {
       try {
+        setIsLoading(true);
         // Use the static data endpoint which loads from cached JSON
         const response = await fetch('/api/static-data');
         const data = await response.json();
@@ -167,6 +216,8 @@ export default function Home() {
         setRepos([]);
         setMediumArticles([]);
         setLinkedInPosts([]);
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -196,82 +247,16 @@ export default function Home() {
             style={{ y: bgParallax }}
           />
           
-          <div className="container mx-auto px-4 sm:px-6 md:px-8 max-w-7xl">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12 max-w-6xl mx-auto">
               
-              {/* Profile Image */}
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -50 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="flex-shrink-0 order-2 lg:order-1"
-              >
-                <div className="w-64 h-72 sm:w-72 sm:h-80 lg:w-80 lg:h-96 mx-auto rounded-3xl overflow-hidden border-4 border-primary/30 shadow-2xl">
-                  <Image
-                    src="/profile.jpg"
-                    alt="Baha Kizil"
-                    width={320}
-                    height={320}
-                    className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                
-                {/* Location Badge & Social Icons */}
-                <div className="flex flex-col items-center gap-3 mt-4">
-                  <div className="flex flex-col items-center gap-3">
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-                      transition={{ duration: 0.5, delay: 1.2 }}
-                      className="flex items-center justify-center gap-2 bg-card/80 backdrop-blur-sm border rounded-full px-4 py-2 w-fit"
-                    >
-                      <MapPin className="w-4 h-4 text-primary" />
-                      <span className="text-sm font-medium">Istanbul, Turkey</span>
-                    </motion.div>
-                    
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-                      transition={{ duration: 0.5, delay: 1.3 }}
-                      className="flex items-center justify-center gap-2 bg-primary/10 backdrop-blur-sm border border-primary/30 rounded-full px-4 py-2 w-fit"
-                    >
-                      <Book className="w-4 h-4 text-primary" />
-                      <span className="text-sm font-medium text-primary">Bahçeşehir University • Mechatronics Eng.</span>
-                    </motion.div>
-                  </div>
-                  
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-                    transition={{ duration: 0.5, delay: 1.4 }}
-                    className="flex items-center gap-2"
-                  >
-                    <Button variant="ghost" size="sm" asChild>
-                      <a href="https://github.com/bahakizil" target="_blank" rel="noopener noreferrer" className="hover:text-primary">
-                        <Github className="h-4 w-4" />
-                      </a>
-                    </Button>
-                    <Button variant="ghost" size="sm" asChild>
-                      <a href="https://linkedin.com/in/bahakizil" target="_blank" rel="noopener noreferrer" className="hover:text-primary">
-                        <Linkedin className="h-4 w-4" />
-                      </a>
-                    </Button>
-                    <Button variant="ghost" size="sm" asChild>
-                      <a href="mailto:kizilbaha26@gmail.com" className="hover:text-primary">
-                        <Mail className="h-4 w-4" />
-                      </a>
-                    </Button>
-                  </motion.div>
-                </div>
-              </motion.div>
-
-              {/* Hero Content */}
+              {/* Hero Content - Mobile First */}
               <div className="flex-1 text-center lg:text-left order-1 lg:order-2">
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
                   transition={{ duration: 0.5 }}
-                  className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl lg:text-5xl text-foreground mb-4"
+                  className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl text-foreground mb-6 leading-tight"
                 >
                   Hi, I'm{" "}
                   <span className="text-gradient bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
@@ -283,7 +268,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
-                  className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-primary mb-6"
+                  className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-primary mb-8 leading-normal"
                 >
                   AI Engineer & Mechatronics Student
                 </motion.h2>
@@ -294,7 +279,7 @@ export default function Home() {
                   transition={{ duration: 0.5, delay: 0.5 }}
                   className="mb-6"
                 >
-                  <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                  <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-medium">
                     AI Workflow Automation • RAG Systems • Computer Vision • Multi-Agent Systems • FastAPI Development
                   </p>
                 </motion.div>
@@ -345,36 +330,101 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
                   transition={{ duration: 0.5, delay: 1 }}
-                  className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start mb-8 flex-wrap"
+                  className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8 flex-wrap"
                 >
-                  <Button asChild size="lg" className="btn-primary group min-w-[140px]">
+                  <Button asChild className="btn-primary group min-w-[160px] min-h-[48px] px-6 py-3 text-base font-medium focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
                     <Link href="#projects">
                       View Projects
                       <AnimatedArrow className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
-                  <Button asChild variant="outline" size="lg" className="group min-w-[140px]">
-                    <a href="/api/download-cv" download="Baha_Kizil_CV.pdf">
+                  <Button asChild variant="outline" className="group min-w-[160px] min-h-[48px] px-6 py-3 text-base font-medium focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+                    <a href="https://drive.google.com/uc?export=download&id=1GMAQtFtaexvEwoz8SopgW9xGPuIaWGZf" target="_blank" rel="noopener noreferrer">
                       Download CV
                       <Download className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-[-2px]" />
                     </a>
                   </Button>
-                  <Button asChild variant="outline" size="lg" className="group min-w-[140px]">
+                  <Button asChild variant="outline" className="group min-w-[160px] min-h-[48px] px-6 py-3 text-base font-medium focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
                     <Link href="#huggingface">
                       🤗 HF Spaces
                       <AnimatedArrow className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
-                  <Button asChild variant="secondary" size="lg" className="group min-w-[140px]">
+                  <Button asChild variant="secondary" className="group min-w-[160px] min-h-[48px] px-6 py-3 text-base font-medium focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
                     <Link href="#ai-demos">
                       🎮 Try AI Demos
                       <AnimatedArrow className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
                 </motion.div>
-
-
               </div>
+
+              {/* Profile Image - Mobile Last */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -50 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="flex-shrink-0 order-2 lg:order-1"
+              >
+                <div className="w-64 h-72 sm:w-72 sm:h-80 lg:w-80 lg:h-96 mx-auto rounded-3xl overflow-hidden border-4 border-primary/30 shadow-2xl">
+                  <Image
+                    src="/profile.jpg"
+                    alt="Baha Kizil"
+                    width={320}
+                    height={320}
+                    className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                
+                {/* Location Badge & Social Icons */}
+                <div className="flex flex-col items-center gap-3 mt-4">
+                  <div className="flex flex-col items-center gap-3">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+                      transition={{ duration: 0.5, delay: 1.2 }}
+                      className="flex items-center justify-center gap-2 bg-card/80 backdrop-blur-sm border rounded-full px-4 py-2 w-fit"
+                    >
+                      <MapPin className="w-4 h-4 text-primary" />
+                      <span className="text-sm font-medium">Istanbul, Turkey</span>
+                    </motion.div>
+                    
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+                      transition={{ duration: 0.5, delay: 1.3 }}
+                      className="flex items-center justify-center gap-2 bg-primary/10 backdrop-blur-sm border border-primary/30 rounded-full px-4 py-2 w-fit"
+                    >
+                      <Book className="w-4 h-4 text-primary" />
+                      <span className="text-sm font-medium text-primary">Bahçeşehir University • Mechatronics Eng.</span>
+                    </motion.div>
+                  </div>
+                  
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+                    transition={{ duration: 0.5, delay: 1.4 }}
+                    className="flex items-center gap-2"
+                  >
+                    <Button variant="ghost" asChild className="min-h-[44px] min-w-[44px] p-3 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+                      <a href="https://github.com/bahakizil" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="GitHub Profile">
+                        <Github className="h-5 w-5" />
+                      </a>
+                    </Button>
+                    <Button variant="ghost" asChild className="min-h-[44px] min-w-[44px] p-3 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+                      <a href="https://linkedin.com/in/bahakizil" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="LinkedIn Profile">
+                        <Linkedin className="h-5 w-5" />
+                      </a>
+                    </Button>
+                    <Button variant="ghost" asChild className="min-h-[44px] min-w-[44px] p-3 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+                      <a href="mailto:kizilbaha26@gmail.com" className="hover:text-primary transition-colors" aria-label="Email Contact">
+                        <Mail className="h-5 w-5" />
+                      </a>
+                    </Button>
+                  </motion.div>
+                </div>
+              </motion.div>
+
             </div>
           </div>
         </div>
@@ -387,11 +437,11 @@ export default function Home() {
 
       {/* Projects Section */}
       <Section id="projects">
-        <div className="py-20">
-          <div className="container mx-auto px-4 md:px-6 max-w-7xl">
+        <div className="py-16 md:py-20 lg:py-24">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <ScrollReveal direction="up" delay={0.2}>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              <div className="text-center mb-12 md:mb-16">
+                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl leading-tight">
                   Featured Projects {repos.length > 0 && `(${repos.length})`}
                 </h2>
                 <p className="mt-4 text-muted-foreground max-w-3xl mx-auto">
@@ -400,9 +450,16 @@ export default function Home() {
               </div>
             </ScrollReveal>
 
-            <StaggeredReveal staggerDelay={0.1} direction="up">
+            {isLoading ? (
               <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto justify-items-center">
-                {repos.slice(0, 6).map((repo, index) => (
+                {[...Array(6)].map((_, index) => (
+                  <ProjectSkeleton key={index} />
+                ))}
+              </div>
+            ) : (
+              <StaggeredReveal staggerDelay={0.1} direction="up">
+                <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto justify-items-center">
+                  {repos.slice(0, 6).map((repo, index) => (
                 <a 
                   key={repo.id}
                   href={repo.html_url}
@@ -444,13 +501,14 @@ export default function Home() {
                     </span>
                   </div>
                 </a>
-              ))}
-              </div>
-            </StaggeredReveal>
+                  ))}
+                </div>
+              </StaggeredReveal>
+            )}
             
-            {repos.length === 0 && (
+            {!isLoading && repos.length === 0 && (
               <div className="text-center py-12">
-                <p className="text-muted-foreground">Loading projects...</p>
+                <p className="text-muted-foreground">No projects found.</p>
               </div>
             )}
           </div>
@@ -459,11 +517,11 @@ export default function Home() {
 
       {/* Blog Section */}
       <Section id="blog">
-        <div className="py-20">
-          <div className="container mx-auto px-4 md:px-6 max-w-7xl">
+        <div className="py-16 md:py-20 lg:py-24">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <ScrollReveal direction="down" delay={0.3}>
-              <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              <div className="text-center mb-12 md:mb-16">
+                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl leading-tight">
                   Latest Articles {mediumArticles.length > 0 && `(${mediumArticles.length})`}
                 </h2>
                 <p className="mt-4 text-muted-foreground max-w-3xl mx-auto">
@@ -472,9 +530,16 @@ export default function Home() {
               </div>
             </ScrollReveal>
 
-            <StaggeredReveal staggerDelay={0.15} direction="left">
+            {isLoading ? (
               <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto justify-items-center">
-                {mediumArticles.slice(0, 6).map((article, index) => (
+                {[...Array(6)].map((_, index) => (
+                  <ArticleSkeleton key={index} />
+                ))}
+              </div>
+            ) : (
+              <StaggeredReveal staggerDelay={0.15} direction="left">
+                <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto justify-items-center">
+                  {mediumArticles.slice(0, 6).map((article, index) => (
                 <a 
                   key={article.link}
                   href={article.link}
@@ -542,13 +607,14 @@ export default function Home() {
                     </span>
                   </div>
                 </a>
-              ))}
-              </div>
-            </StaggeredReveal>
+                  ))}
+                </div>
+              </StaggeredReveal>
+            )}
             
-            {mediumArticles.length === 0 && (
+            {!isLoading && mediumArticles.length === 0 && (
               <div className="text-center py-12">
-                <p className="text-muted-foreground">Loading articles...</p>
+                <p className="text-muted-foreground">No articles found.</p>
               </div>
             )}
           </div>
@@ -561,10 +627,10 @@ export default function Home() {
 
       {/* LinkedIn Insights Section */}
       <Section id="insights">
-        <div className="py-20">
-          <div className="container mx-auto px-4 md:px-6 max-w-7xl">
+        <div className="py-16 md:py-20 lg:py-24">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <ScrollReveal direction="right" delay={0.4}>
-              <div className="text-center mb-12">
+              <div className="text-center mb-12 md:mb-16">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                   Latest Insights
                 </h2>
@@ -675,7 +741,7 @@ export default function Home() {
       {/* AI Interactive Demos Section - Moved to bottom as games/minigames */}
       <Section id="ai-demos" className="relative z-10">
         <div className="py-20 bg-background/50">
-          <div className="container mx-auto px-4 md:px-6 max-w-7xl">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             
             {/* AI Demos Showcase */}
             <ScrollReveal direction="up" delay={0.1}>
