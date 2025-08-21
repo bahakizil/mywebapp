@@ -117,10 +117,10 @@ export function GitHubActivityBoard() {
         <CardContent className="space-y-4">
           {/* Activity Calendar */}
           <div>
-            <h4 className="text-xs font-medium mb-2 text-muted-foreground">Contribution Activity</h4>
-            <div className="grid grid-cols-7 gap-1">
+            <h4 className="text-xs font-medium mb-2 text-muted-foreground">GitHub Contributions</h4>
+            <div className="grid grid-cols-7 gap-1 mb-2">
               {Object.entries(activityData.activityCalendar)
-                .slice(0, 21)
+                .slice(0, 35) // Show 5 weeks of data
                 .map(([date, count]) => {
                   const intensity = Math.min(count, 4); // Cap at 4 for visual consistency
                   return (
@@ -130,12 +130,12 @@ export function GitHubActivityBoard() {
                       animate={{ scale: 1 }}
                       transition={{ delay: Math.random() * 0.5 }}
                       className={cn(
-                        "w-3 h-3 rounded-sm transition-colors",
-                        intensity === 0 && "bg-muted",
-                        intensity === 1 && "bg-primary/30",
-                        intensity === 2 && "bg-primary/50",
-                        intensity === 3 && "bg-primary/70",
-                        intensity >= 4 && "bg-primary"
+                        "w-3 h-3 rounded-sm transition-colors border border-border/20",
+                        intensity === 0 && "bg-gray-100 dark:bg-gray-800",
+                        intensity === 1 && "bg-green-200 dark:bg-green-900",
+                        intensity === 2 && "bg-green-400 dark:bg-green-700",
+                        intensity === 3 && "bg-green-600 dark:bg-green-500",
+                        intensity >= 4 && "bg-green-700 dark:bg-green-400"
                       )}
                       title={`${date}: ${count} contributions`}
                     />

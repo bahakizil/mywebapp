@@ -323,7 +323,7 @@ export default function Home() {
                   className="mb-6"
                 >
                   <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-medium">
-                    AI Workflow Automation • RAG Systems • Computer Vision • Multi-Agent Systems • FastAPI Development
+                    Building intelligent systems that transform complex problems into scalable AI solutions
                   </p>
                 </motion.div>
 
@@ -336,36 +336,36 @@ export default function Home() {
                   <p>
                     <Typewriter
                       texts={[
-                        "Ambitious AI engineer transforming advanced technologies into practical solutions — from enterprise workflow automation to real-time computer vision systems.",
-                        "I develop modular MCP servers, FastAPI backends, and intelligent RAG architectures that power next-generation AI applications.",
-                        "Specializing in multi-agent systems, semantic search pipelines, and end-to-end AI solutions that create measurable business impact.",
-                        "From fine-tuning YOLO models for smart traffic monitoring to building voice-enabled chatbots — I turn AI research into production-ready systems."
+                        "AI Engineer developing enterprise workflow automation platforms with modular MCP servers, FastAPI backends, and LangChain orchestration.",
+                        "Expert in computer vision, semantic search, and RAG architectures — building production-ready AI solutions that solve complex challenges.",
+                        "Specializing in advanced RAG systems with PostgreSQL + PGVector, dynamic embeddings, and real-time conversation flows for enterprise applications."
                       ]}
                       speed={80}
                       deleteSpeed={40}
-                      pauseTime={3500}
+                      pauseTime={4000}
                       className="text-base md:text-base leading-relaxed"
                     />
                   </p>
                   
                   <div className="space-y-3">
-                    <p className="font-medium text-foreground">Currently pursuing Mechatronics Engineering at Bahçeşehir University (2020-2025), with hands-on experience in:</p>
+                    <p className="font-medium text-foreground">Core Expertise & Technologies:</p>
                     <ul className="space-y-2 text-sm">
-                      <li>• <strong>Enterprise AI Workflow Automation</strong> - MCP servers, FastAPI backends, LangChain orchestration</li>
-                      <li>• <strong>Advanced RAG Systems</strong> - PostgreSQL + PGVector, dynamic embeddings, semantic search</li>
-                      <li>• <strong>Computer Vision & Real-time Detection</strong> - YOLO fine-tuning, OpenCV pipelines, smart monitoring</li>
-                      <li>• <strong>Multi-Agent AI Systems</strong> - Voice chatbots, STT/TTS integration, conversational AI</li>
-                      <li>• <strong>Full-Stack AI Development</strong> - FastAPI, Supabase, React, Docker deployment</li>
-                      <li>• <strong>Cloud & Infrastructure</strong> - AWS, Google Cloud, CI/CD, production monitoring</li>
+                      <li>• <strong>Enterprise AI Workflows</strong> - MCP server development with FastMCP, LangChain/LangGraph orchestration, multi-agent systems</li>
+                      <li>• <strong>Advanced RAG Systems</strong> - PostgreSQL + PGVector integration, dynamic embeddings, chunking strategies, reranker optimization</li>
+                      <li>• <strong>Computer Vision & Detection</strong> - YOLO fine-tuning, real-time object detection, smart surveillance, time series analysis</li>
+                      <li>• <strong>Full-Stack AI Development</strong> - FastAPI backends, voice-enabled chatbots with GPT-4o + Whisper + ElevenLabs</li>
+                      <li>• <strong>Production Infrastructure</strong> - Docker containerization, AWS deployment, CI/CD pipelines, workflow observability with LangSmith</li>
                     </ul>
                   </div>
 
                   <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mt-4">
-                    <p className="text-primary font-medium mb-2">🎯 Current Focus</p>
-                    <p className="text-sm text-muted-foreground">
-                      Building enterprise AI solutions at <strong>Kafein Technology</strong> • Developing semantic CV management systems • 
-                      Creating smart agriculture automation with Raspberry Pi 5 • Committed to continuous learning and innovation in AI
-                    </p>
+                    <p className="text-primary font-medium mb-2">🎯 Professional Experience & Projects</p>
+                    <div className="text-sm text-muted-foreground space-y-2">
+                      <p><strong>Kafein Technology (AI Engineer Intern)</strong> - Enterprise AI workflow automation, MCP servers, RAG systems with PostgreSQL + PGVector</p>
+                      <p><strong>Freelance MVP Development</strong> - Voice-enabled AI web app with GPT-4o mini, Whisper, ElevenLabs, FastAPI backend</p>
+                      <p><strong>GUESS Turkey (IT Intern)</strong> - Power Automate solutions, ERP automation, regional tech support collaboration</p>
+                      <p><strong>TAV Technologies (R&D Intern)</strong> - Time series analysis, human action recognition, PyTorch CNN/RNN optimization</p>
+                    </div>
                   </div>
                 </motion.div>
 

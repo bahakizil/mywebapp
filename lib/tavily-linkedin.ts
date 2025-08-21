@@ -84,6 +84,7 @@ function getRealLinkedInPosts(): LinkedInPost[] {
         comments: 2,
         shares: 0,
         url: 'https://www.linkedin.com/in/bahakizil',
+        image_url: '/images/kafein-internship.jpg',
         author: 'Baha Kizil'
       },
       {
@@ -164,6 +165,7 @@ function getRealLinkedInPosts(): LinkedInPost[] {
         comments: 22,
         shares: 49,
         url: 'https://www.linkedin.com/in/bahakizil',
+        image_url: '/images/traffic-monitoring.png',
         author: 'Baha Kizil'
       },
       {
@@ -174,6 +176,7 @@ function getRealLinkedInPosts(): LinkedInPost[] {
         comments: 23,
         shares: 39,
         url: 'https://www.linkedin.com/in/bahakizil',
+        image_url: '/images/fire-detection.png',
         author: 'Baha Kizil'
       },
       {
