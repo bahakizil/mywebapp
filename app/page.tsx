@@ -292,8 +292,65 @@ export default function Home() {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 items-center justify-center gap-8 lg:gap-16 max-w-6xl mx-auto">
               
-              {/* Hero Content - Mobile Second */}
-              <div className="lg:col-span-1 text-center lg:text-left order-2 lg:order-1">
+              {/* Profile Image - Desktop Left */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -50 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="order-1 lg:order-1"
+              >
+                <div className="w-48 h-56 sm:w-56 sm:h-64 lg:w-64 lg:h-72 mx-auto rounded-2xl overflow-hidden border-2 border-primary/20 shadow-lg">
+                  <Image
+                    src="/profile.jpg"
+                    alt="Baha Kizil"
+                    width={256}
+                    height={288}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+                
+                {/* Location Badge & Social Icons */}
+                <div className="flex flex-col items-center gap-3 mt-4">
+                  <div className="flex flex-col items-center gap-3">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+                      transition={{ duration: 0.5, delay: 1.2 }}
+                      className="flex items-center justify-center gap-2 bg-card/80 backdrop-blur-sm border rounded-full px-4 py-2 w-fit"
+                    >
+                      <MapPin className="w-4 h-4 text-primary" />
+                      <span className="text-sm font-medium">Istanbul, Turkey</span>
+                    </motion.div>
+                    
+                  </div>
+                  
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+                    transition={{ duration: 0.5, delay: 1.4 }}
+                    className="flex items-center gap-2"
+                  >
+                    <Button variant="ghost" asChild className="min-h-[44px] min-w-[44px] p-3 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+                      <a href="https://github.com/bahakizil" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="GitHub Profile">
+                        <Github className="h-5 w-5" />
+                      </a>
+                    </Button>
+                    <Button variant="ghost" asChild className="min-h-[44px] min-w-[44px] p-3 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+                      <a href="https://linkedin.com/in/bahakizil" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="LinkedIn Profile">
+                        <Linkedin className="h-5 w-5" />
+                      </a>
+                    </Button>
+                    <Button variant="ghost" asChild className="min-h-[44px] min-w-[44px] p-3 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+                      <a href="mailto:kizilbaha26@gmail.com" className="hover:text-primary transition-colors" aria-label="Email Contact">
+                        <Mail className="h-5 w-5" />
+                      </a>
+                    </Button>
+                  </motion.div>
+                </div>
+              </motion.div>
+
+              {/* Hero Content - Desktop Right */}
+              <div className="lg:col-span-1 text-center lg:text-left order-2 lg:order-2">
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
@@ -366,63 +423,6 @@ export default function Home() {
                 </motion.div>
               </div>
 
-              {/* Profile Image - Mobile First */}
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -50 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="order-1 lg:order-2"
-              >
-                <div className="w-48 h-56 sm:w-56 sm:h-64 lg:w-64 lg:h-72 mx-auto rounded-2xl overflow-hidden border-2 border-primary/20 shadow-lg">
-                  <Image
-                    src="/profile.jpg"
-                    alt="Baha Kizil"
-                    width={256}
-                    height={288}
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-                
-                {/* Location Badge & Social Icons */}
-                <div className="flex flex-col items-center gap-3 mt-4">
-                  <div className="flex flex-col items-center gap-3">
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-                      transition={{ duration: 0.5, delay: 1.2 }}
-                      className="flex items-center justify-center gap-2 bg-card/80 backdrop-blur-sm border rounded-full px-4 py-2 w-fit"
-                    >
-                      <MapPin className="w-4 h-4 text-primary" />
-                      <span className="text-sm font-medium">Istanbul, Turkey</span>
-                    </motion.div>
-                    
-                  </div>
-                  
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-                    transition={{ duration: 0.5, delay: 1.4 }}
-                    className="flex items-center gap-2"
-                  >
-                    <Button variant="ghost" asChild className="min-h-[44px] min-w-[44px] p-3 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
-                      <a href="https://github.com/bahakizil" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="GitHub Profile">
-                        <Github className="h-5 w-5" />
-                      </a>
-                    </Button>
-                    <Button variant="ghost" asChild className="min-h-[44px] min-w-[44px] p-3 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
-                      <a href="https://linkedin.com/in/bahakizil" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors" aria-label="LinkedIn Profile">
-                        <Linkedin className="h-5 w-5" />
-                      </a>
-                    </Button>
-                    <Button variant="ghost" asChild className="min-h-[44px] min-w-[44px] p-3 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
-                      <a href="mailto:kizilbaha26@gmail.com" className="hover:text-primary transition-colors" aria-label="Email Contact">
-                        <Mail className="h-5 w-5" />
-                      </a>
-                    </Button>
-                  </motion.div>
-                </div>
-              </motion.div>
-
 
             </div>
           </div>
@@ -461,35 +461,28 @@ export default function Home() {
                 ))}
               </div>
             ) : (
-              <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+              <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto justify-items-center">
                 {getPrioritizedRepos().map((repo, index) => (
                 <a 
                   key={repo.id}
                   href={repo.html_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="card-container animate-card group relative overflow-hidden rounded-xl border bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm text-card-foreground shadow-lg transition-all hover:shadow-2xl hover:shadow-primary/20 hover:border-primary/60 hover:scale-[1.02] duration-500 w-full cursor-pointer block hover:bg-gradient-to-br hover:from-card hover:to-card/90"
+                  className="card-container animate-card group relative overflow-hidden rounded-xl border bg-gradient-to-br from-card/90 to-card/70 backdrop-blur-sm text-card-foreground shadow-lg transition-all hover:shadow-2xl hover:shadow-primary/20 hover:border-primary/50 hover:scale-[1.05] duration-500 w-full max-w-md cursor-pointer block"
                   style={{ opacity: 1, visibility: 'visible' }}
                 >
-                  <div className="p-4 space-y-3">
+                  <div className="p-6 space-y-4">
                     <div className="flex items-center justify-between">
-                      <div className="bg-gradient-to-br from-primary/20 to-primary/10 p-2 rounded-lg text-primary shadow-lg">
-                        <Github className="h-4 w-4" />
+                      <div className="bg-gradient-to-br from-primary/20 to-primary/10 p-3 rounded-xl text-primary shadow-lg">
+                        <Github className="h-5 w-5" />
                       </div>
-                      <div className="flex items-center gap-3 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-1 bg-yellow-500/10 px-2 py-1 rounded-full">
-                          <Star className="h-3 w-3 text-yellow-500" />
-                          <span className="font-medium">{repo.stargazers_count}</span>
-                        </div>
-                        <div className="flex items-center gap-1 bg-blue-500/10 px-2 py-1 rounded-full">
-                          <GitFork className="h-3 w-3 text-blue-500" />
-                          <span className="font-medium">{repo.forks_count}</span>
-                        </div>
-                      </div>
+                      <span className="text-sm text-muted-foreground bg-muted/30 px-3 py-1 rounded-full">
+                        {repo.language || 'Code'}
+                      </span>
                     </div>
                     
                     <div>
-                      <h3 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors">
+                      <h3 className="font-bold text-lg mb-2 line-clamp-2 group-hover:text-primary transition-colors">
                         {repo.name.replace(/-/g, ' ')}
                       </h3>
                       <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
@@ -497,25 +490,24 @@ export default function Home() {
                       </p>
                     </div>
                     
-                    <div className="flex flex-wrap gap-2">
-                      {githubStats?.pinnedRepos.some(p => p.name === repo.name) && (
-                        <Badge variant="default" className="text-xs bg-gradient-to-r from-primary/30 to-primary/20 text-primary border-primary/30 shadow-sm">
-                          📌 Pinned
-                        </Badge>
+                    <div className="flex items-center justify-center gap-6 text-sm">
+                      <div className="flex items-center gap-1 bg-yellow-500/10 px-3 py-1 rounded-full">
+                        <Star className="h-4 w-4 text-yellow-500" />
+                        <span className="font-medium">{repo.stargazers_count}</span>
+                      </div>
+                      <div className="flex items-center gap-1 bg-blue-500/10 px-3 py-1 rounded-full">
+                        <GitFork className="h-4 w-4 text-blue-500" />
+                        <span className="font-medium">{repo.forks_count}</span>
+                      </div>
+                      {repo.watchers_count > 0 && (
+                        <div className="flex items-center gap-1 bg-green-500/10 px-3 py-1 rounded-full">
+                          <Eye className="h-4 w-4 text-green-500" />
+                          <span className="font-medium">{repo.watchers_count}</span>
+                        </div>
                       )}
-                      {repo.language && (
-                        <Badge variant="secondary" className="text-xs bg-gradient-to-r from-secondary to-secondary/80 shadow-sm">
-                          {repo.language}
-                        </Badge>
-                      )}
-                      {repo.topics?.slice(0, 2).map((topic, index) => (
-                        <Badge key={`${repo.id}-topic-${index}-${topic}`} variant="outline" className="text-xs hover:bg-accent/50 transition-colors">
-                          {topic}
-                        </Badge>
-                      ))}
                     </div>
                     
-                    <div className="flex items-center text-primary font-medium group-hover:text-primary/80 transition-colors pt-2">
+                    <div className="flex items-center justify-center text-primary font-medium group-hover:text-primary/80 transition-colors pt-2">
                       <span>View on GitHub</span>
                       <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </div>
