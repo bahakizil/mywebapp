@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from 'react';
+import { ReactNode, useState, useEffect } from 'react';
 import { ScrollProgress } from './scroll-progress';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
@@ -15,17 +15,22 @@ export function GlobalScrollProvider({
   showProgress = true,
   enableParallax = true 
 }: GlobalScrollProviderProps) {
+  const [isClient, setIsClient] = useState(false);
   const { scrollY } = useScroll();
   
   // Simplified parallax effects
   const backgroundParallax = useTransform(scrollY, [0, 1000], [0, -50]);
   const contentParallax = useTransform(scrollY, [0, 1000], [0, 25]);
 
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <div className="relative">
-      {showProgress && <ScrollProgress />}
+      {showProgress && isClient && <ScrollProgress />}
       
-      {enableParallax && (
+      {enableParallax && isClient && (
         <>
           {/* Background parallax layer */}
           <motion.div

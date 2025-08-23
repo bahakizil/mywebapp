@@ -1,7 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
 
 interface TypewriterProps {
   texts: string[];
@@ -21,46 +20,76 @@ export function Typewriter({
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-  const [isTyping, setIsTyping] = useState(true);
+  const [isClient, setIsClient] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const mountedRef = useRef(true);
 
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (texts.length === 0 || !mountedRef.current || !isClient) return;
+    
     const targetText = texts[currentTextIndex];
     
-    const timeout = setTimeout(() => {
-      if (isDeleting) {
-        // Deleting characters
-        setCurrentText(targetText.substring(0, currentText.length - 1));
-        
-        if (currentText.length === 0) {
-          setIsDeleting(false);
-          setCurrentTextIndex((prev) => (prev + 1) % texts.length);
-        }
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    
+    if (isDeleting) {
+      if (currentText.length > 0) {
+        timeoutRef.current = setTimeout(() => {
+          if (mountedRef.current) {
+            setCurrentText(prev => prev.slice(0, -1));
+          }
+        }, deleteSpeed);
       } else {
-        // Typing characters
-        if (currentText.length < targetText.length) {
-          setCurrentText(targetText.substring(0, currentText.length + 1));
-        } else {
-          // Finished typing, wait then start deleting
-          setTimeout(() => {
-            setIsDeleting(true);
-          }, pauseTime);
-        }
+        setIsDeleting(false);
+        setCurrentTextIndex((prev) => (prev + 1) % texts.length);
       }
-    }, isDeleting ? deleteSpeed : speed);
+    } else {
+      if (currentText.length < targetText.length) {
+        timeoutRef.current = setTimeout(() => {
+          if (mountedRef.current) {
+            setCurrentText(targetText.substring(0, currentText.length + 1));
+          }
+        }, speed);
+      } else if (currentText.length === targetText.length) {
+        timeoutRef.current = setTimeout(() => {
+          if (mountedRef.current) {
+            setIsDeleting(true);
+          }
+        }, pauseTime);
+      }
+    }
 
-    return () => clearTimeout(timeout);
-  }, [currentText, currentTextIndex, isDeleting, texts, speed, deleteSpeed, pauseTime]);
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, [currentText, currentTextIndex, isDeleting, texts, speed, deleteSpeed, pauseTime, isClient]);
+
+  if (!isClient) {
+    return (
+      <span className={className}>
+        {texts[0] || ''}
+        <span className="text-primary animate-pulse">|</span>
+      </span>
+    );
+  }
 
   return (
     <span className={className}>
       {currentText}
-      <motion.span
-        animate={{ opacity: [1, 0] }}
-        transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
-        className="text-primary"
-      >
-        |
-      </motion.span>
+      <span className="text-primary animate-pulse">|</span>
     </span>
   );
 } 

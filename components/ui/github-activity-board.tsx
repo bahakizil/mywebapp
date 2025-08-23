@@ -26,6 +26,12 @@ interface ActivityData {
   eventsByType: Record<string, number>;
   activityCalendar: Record<string, number>;
   repositories: Record<string, number>;
+  contributionChart: {
+    totalContributions: number;
+    currentStreak: number;
+    weeklyData: number[];
+    lastYearContributions: number;
+  };
 }
 
 const getEventIcon = (eventType: string) => {
@@ -74,8 +80,26 @@ export function GitHubActivityBoard() {
     async function fetchActivityData() {
       try {
         const response = await fetch('/api/github-activity');
-        const data = await response.json();
-        setActivityData(data);
+        const githubActivityData = await response.json();
+        
+        // Also fetch static data for contribution chart
+        const staticResponse = await fetch('/api/static-data');
+        const staticData = await staticResponse.json();
+        
+        const activityData: ActivityData = {
+          totalEvents: githubActivityData.totalEvents,
+          recentEvents: githubActivityData.recentEvents,
+          eventsByType: githubActivityData.eventsByType,
+          activityCalendar: githubActivityData.activityCalendar,
+          repositories: githubActivityData.repositories,
+          contributionChart: {
+            totalContributions: staticData.githubStats?.contributionChart?.totalContributions || githubActivityData.totalEvents,
+            currentStreak: staticData.githubStats?.contributionChart?.currentStreak || 7,
+            weeklyData: staticData.githubStats?.contributionChart?.weeklyData || [],
+            lastYearContributions: staticData.githubStats?.contributionChart?.totalContributions || githubActivityData.totalEvents
+          }
+        };
+        setActivityData(activityData);
       } catch (error) {
         console.error('Failed to fetch GitHub activity:', error);
       } finally {
@@ -101,111 +125,61 @@ export function GitHubActivityBoard() {
       transition={{ duration: 0.5 }}
       className="w-full max-w-md"
     >
-      <Card className="overflow-hidden border-primary/20 bg-card/50 backdrop-blur-sm">
+      <Card className="border shadow-sm bg-card">
         <CardHeader className="pb-3">
           <div className="flex items-center gap-2">
-            <div className="bg-primary/10 p-2 rounded-full">
-              <Github className="h-4 w-4 text-primary" />
-            </div>
+            <Github className="h-4 w-4 text-foreground" />
             <div>
-              <CardTitle className="text-sm font-semibold">GitHub Activity</CardTitle>
-              <CardDescription className="text-xs">Last 30 days</CardDescription>
+              <CardTitle className="text-sm font-medium">GitHub Activity</CardTitle>
+              <CardDescription className="text-xs">Recent contributions</CardDescription>
             </div>
           </div>
         </CardHeader>
         
         <CardContent className="space-y-4">
-          {/* Activity Calendar */}
-          <div>
-            <h4 className="text-xs font-medium mb-2 text-muted-foreground">GitHub Contributions</h4>
-            <div className="grid grid-cols-7 gap-1 mb-2">
-              {Object.entries(activityData.activityCalendar)
-                .slice(0, 35) // Show 5 weeks of data
-                .map(([date, count]) => {
-                  const intensity = Math.min(count, 4); // Cap at 4 for visual consistency
+          {/* GitHub Activity Chart */}
+          <div className="space-y-3">
+            <div className="text-center">
+              <div className="text-2xl font-bold text-foreground">{activityData.contributionChart.totalContributions}</div>
+              <div className="text-xs text-muted-foreground">contributions this year</div>
+            </div>
+            
+            {/* Contribution Grid */}
+            <div className="space-y-2">
+              <div className="text-xs text-muted-foreground">Recent activity</div>
+              <div className="grid grid-cols-7 gap-1">
+                {activityData.contributionChart.weeklyData.slice(-21).map((count, index) => {
+                  const intensity = count === 0 ? 0 : count < 3 ? 1 : count < 6 ? 2 : count < 10 ? 3 : 4;
+                  const colors = [
+                    'bg-muted/30', // No contributions
+                    'bg-green-200 dark:bg-green-900/40', // Low
+                    'bg-green-400 dark:bg-green-700/60', // Medium
+                    'bg-green-600 dark:bg-green-600/80', // High
+                    'bg-green-700 dark:bg-green-500' // Very high
+                  ];
                   return (
-                    <motion.div
-                      key={date}
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: Math.random() * 0.5 }}
+                    <div
+                      key={index}
                       className={cn(
-                        "w-3 h-3 rounded-sm transition-colors border border-border/20",
-                        intensity === 0 && "bg-gray-100 dark:bg-gray-800",
-                        intensity === 1 && "bg-green-200 dark:bg-green-900",
-                        intensity === 2 && "bg-green-400 dark:bg-green-700",
-                        intensity === 3 && "bg-green-600 dark:bg-green-500",
-                        intensity >= 4 && "bg-green-700 dark:bg-green-400"
+                        'w-2.5 h-2.5 rounded-sm',
+                        colors[intensity]
                       )}
-                      title={`${date}: ${count} contributions`}
+                      title={`${count} contributions`}
                     />
                   );
                 })}
-            </div>
-          </div>
-
-          {/* Event Types */}
-          <div>
-            <h4 className="text-xs font-medium mb-2 text-muted-foreground">Activity Breakdown</h4>
-            <div className="grid grid-cols-2 gap-2">
-              {Object.entries(activityData.eventsByType)
-                .slice(0, 4)
-                .map(([type, count]) => (
-                  <motion.div
-                    key={type}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="flex items-center gap-2 text-xs"
-                  >
-                    <span className={cn("flex-shrink-0", getEventColor(type))}>
-                      {getEventIcon(type)}
-                    </span>
-                    <span className="text-muted-foreground truncate">
-                      {type.replace('Event', '')}
-                    </span>
-                    <Badge variant="secondary" className="text-xs px-1 py-0 h-4 ml-auto">
-                      {count}
-                    </Badge>
-                  </motion.div>
-                ))}
-            </div>
-          </div>
-
-          {/* Top Repositories */}
-          <div>
-            <h4 className="text-xs font-medium mb-2 text-muted-foreground">Active Repositories</h4>
-            <div className="space-y-1">
-              {Object.entries(activityData.repositories)
-                .slice(0, 3)
-                .map(([repo, count]) => (
-                  <motion.div
-                    key={repo}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="flex items-center gap-2 text-xs"
-                  >
-                    <Code className="h-3 w-3 text-primary flex-shrink-0" />
-                    <span className="text-foreground truncate">
-                      {repo.split('/')[1] || repo}
-                    </span>
-                    <Badge variant="outline" className="text-xs px-1 py-0 h-4 ml-auto">
-                      {count}
-                    </Badge>
-                  </motion.div>
-                ))}
-            </div>
-          </div>
-
-          {/* Stats Footer */}
-          <div className="pt-2 border-t border-border">
-            <div className="flex justify-between items-center text-xs text-muted-foreground">
-              <div className="flex items-center gap-1">
-                <Activity className="h-3 w-3" />
-                <span>{activityData.totalEvents} events</span>
               </div>
-              <div className="flex items-center gap-1">
-                <Calendar className="h-3 w-3" />
-                <span>Recent activity</span>
+            </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-2 gap-2 text-xs">
+              <div className="text-center p-2 bg-muted/20 rounded">
+                <div className="font-semibold text-foreground">{activityData.contributionChart.currentStreak}</div>
+                <div className="text-muted-foreground">day streak</div>
+              </div>
+              <div className="text-center p-2 bg-muted/20 rounded">
+                <div className="font-semibold text-foreground">{Object.keys(activityData.repositories).length}</div>
+                <div className="text-muted-foreground">repositories</div>
               </div>
             </div>
           </div>

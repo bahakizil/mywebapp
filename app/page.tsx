@@ -78,9 +78,7 @@ import { GitHubActivityBoard } from "@/components/ui/github-activity-board";
 
 // Removed TypewriterComponent due to type issues
 
-const LottiePlayer = dynamic(() => import("react-lottie-player").then(mod => mod.default), {
-  ssr: false
-});
+// Removed LottiePlayer to prevent hydration issues
 
 // Types
 interface Repository {
@@ -121,6 +119,7 @@ interface LinkedInPost {
   publishedAt?: string;
   likes?: number;
   comments?: number;
+  shares?: number;
   engagement?: {
     likes: number;
     comments: number;
@@ -279,7 +278,7 @@ export default function Home() {
       <AnimatedGradient />
       <FloatingCards />
       <NavigationDots />
-      <KonamiCode />
+      {/* <KonamiCode /> Temporarily disabled to isolate DOM error */}
 
       {/* Hero Section */}
       <Section id="hero">
@@ -291,18 +290,18 @@ export default function Home() {
           />
           
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-            <div className="grid grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 items-center justify-center gap-8 lg:gap-12 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 items-center justify-center gap-8 lg:gap-16 max-w-6xl mx-auto">
               
               {/* Hero Content - Mobile Second */}
-              <div className="lg:col-span-2 xl:col-span-2 text-center lg:text-left order-2 lg:order-2">
+              <div className="lg:col-span-1 text-center lg:text-left order-2 lg:order-1">
                 <motion.h1
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-                  transition={{ duration: 0.5 }}
-                  className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl text-foreground mb-6 leading-tight"
+                  transition={{ duration: 0.6 }}
+                  className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl lg:text-5xl text-foreground mb-6 leading-[1.1]"
                 >
-                  Hi, I'm{" "}
-                  <span className="text-gradient bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+                  <span className="block text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium text-muted-foreground mb-2">Hi, I'm</span>
+                  <span className="text-foreground font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text">
                     Baha KIZIL
                   </span>
                 </motion.h1>
@@ -310,19 +309,19 @@ export default function Home() {
                 <motion.h2
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-primary mb-8 leading-normal"
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary mb-8 leading-tight tracking-tight"
                 >
-                  AI Engineer & Mechatronics Student
+                  AI Engineer
                 </motion.h2>
                 
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: isVisible ? 1 : 0 }}
-                  transition={{ duration: 0.5, delay: 0.5 }}
-                  className="mb-6"
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  className="mb-8"
                 >
-                  <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-medium">
+                  <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed font-light max-w-2xl">
                     Building intelligent systems that transform complex problems into scalable AI solutions
                   </p>
                 </motion.div>
@@ -330,74 +329,39 @@ export default function Home() {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-                  transition={{ duration: 0.5, delay: 0.8 }}
-                  className="text-muted-foreground text-base md:text-base leading-relaxed mb-8 max-w-2xl lg:max-w-none space-y-4"
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                  className="text-muted-foreground text-sm md:text-base leading-relaxed mb-8 max-w-2xl"
                 >
-                  <p>
-                    <Typewriter
-                      texts={[
-                        "AI Engineer developing enterprise workflow automation platforms with modular MCP servers, FastAPI backends, and LangChain orchestration.",
-                        "Expert in computer vision, semantic search, and RAG architectures — building production-ready AI solutions that solve complex challenges.",
-                        "Specializing in advanced RAG systems with PostgreSQL + PGVector, dynamic embeddings, and real-time conversation flows for enterprise applications."
-                      ]}
-                      speed={80}
-                      deleteSpeed={40}
-                      pauseTime={4000}
-                      className="text-base md:text-base leading-relaxed"
-                    />
-                  </p>
-                  
-                  <div className="space-y-3">
-                    <p className="font-medium text-foreground">Core Expertise & Technologies:</p>
-                    <ul className="space-y-2 text-sm">
-                      <li>• <strong>Enterprise AI Workflows</strong> - MCP server development with FastMCP, LangChain/LangGraph orchestration, multi-agent systems</li>
-                      <li>• <strong>Advanced RAG Systems</strong> - PostgreSQL + PGVector integration, dynamic embeddings, chunking strategies, reranker optimization</li>
-                      <li>• <strong>Computer Vision & Detection</strong> - YOLO fine-tuning, real-time object detection, smart surveillance, time series analysis</li>
-                      <li>• <strong>Full-Stack AI Development</strong> - FastAPI backends, voice-enabled chatbots with GPT-4o + Whisper + ElevenLabs</li>
-                      <li>• <strong>Production Infrastructure</strong> - Docker containerization, AWS deployment, CI/CD pipelines, workflow observability with LangSmith</li>
-                    </ul>
-                  </div>
-
-                  <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mt-4">
-                    <p className="text-primary font-medium mb-2">🎯 Professional Experience & Projects</p>
-                    <div className="text-sm text-muted-foreground space-y-2">
-                      <p><strong>Kafein Technology (AI Engineer Intern)</strong> - Enterprise AI workflow automation, MCP servers, RAG systems with PostgreSQL + PGVector</p>
-                      <p><strong>Freelance MVP Development</strong> - Voice-enabled AI web app with GPT-4o mini, Whisper, ElevenLabs, FastAPI backend</p>
-                      <p><strong>GUESS Turkey (IT Intern)</strong> - Power Automate solutions, ERP automation, regional tech support collaboration</p>
-                      <p><strong>TAV Technologies (R&D Intern)</strong> - Time series analysis, human action recognition, PyTorch CNN/RNN optimization</p>
-                    </div>
-                  </div>
+                  <Typewriter
+                    texts={[
+                      "Developing enterprise AI workflows with MCP servers, FastAPI backends, and LangChain orchestration.",
+                      "Expert in computer vision, semantic search, and RAG architectures for production-ready solutions.",
+                      "Specializing in advanced RAG systems with PostgreSQL + PGVector and real-time conversation flows."
+                    ]}
+                    speed={60}
+                    deleteSpeed={30}
+                    pauseTime={3500}
+                    className="text-sm md:text-base leading-relaxed font-light"
+                  />
                 </motion.div>
 
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-                  transition={{ duration: 0.5, delay: 1 }}
-                  className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8 flex-wrap"
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                  className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start mb-8 flex-wrap"
                 >
-                  <Button asChild className="btn-primary group min-w-[160px] min-h-[48px] px-6 py-3 text-base font-medium focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+                  <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 group min-w-[180px] min-h-[56px] px-8 py-4 text-lg font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 shadow-lg hover:shadow-xl transition-all duration-300">
                     <Link href="#projects">
                       View Projects
-                      <AnimatedArrow className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      <AnimatedArrow className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
-                  <Button asChild variant="outline" className="group min-w-[160px] min-h-[48px] px-6 py-3 text-base font-medium focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
+                  <Button asChild variant="outline" size="lg" className="group min-w-[180px] min-h-[56px] px-8 py-4 text-lg font-semibold focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 border-2 hover:bg-accent transition-all duration-300">
                     <a href="https://drive.usercontent.google.com/download?id=1GMAQtFtaexvEwoz8SopgW9xGPuIaWGZf&export=download" target="_blank" rel="noopener noreferrer">
                       Download CV
-                      <Download className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-[-2px]" />
+                      <Download className="ml-2 h-5 w-5 transition-transform group-hover:translate-y-[-2px]" />
                     </a>
-                  </Button>
-                  <Button asChild variant="outline" className="group min-w-[160px] min-h-[48px] px-6 py-3 text-base font-medium focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
-                    <Link href="#huggingface">
-                      🤗 HF Spaces
-                      <AnimatedArrow className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Link>
-                  </Button>
-                  <Button asChild variant="secondary" className="group min-w-[160px] min-h-[48px] px-6 py-3 text-base font-medium focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2">
-                    <Link href="#ai-demos">
-                      🎮 Try AI Demos
-                      <AnimatedArrow className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Link>
                   </Button>
                 </motion.div>
               </div>
@@ -407,15 +371,15 @@ export default function Home() {
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -50 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="order-1 lg:order-1"
+                className="order-1 lg:order-2"
               >
-                <div className="w-64 h-72 sm:w-72 sm:h-80 lg:w-80 lg:h-96 mx-auto rounded-3xl overflow-hidden border-4 border-primary/30 shadow-2xl">
+                <div className="w-48 h-56 sm:w-56 sm:h-64 lg:w-64 lg:h-72 mx-auto rounded-2xl overflow-hidden border-2 border-primary/20 shadow-lg">
                   <Image
                     src="/profile.jpg"
                     alt="Baha Kizil"
-                    width={320}
-                    height={320}
-                    className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
+                    width={256}
+                    height={288}
+                    className="object-cover w-full h-full"
                   />
                 </div>
                 
@@ -432,15 +396,6 @@ export default function Home() {
                       <span className="text-sm font-medium">Istanbul, Turkey</span>
                     </motion.div>
                     
-                    <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-                      transition={{ duration: 0.5, delay: 1.3 }}
-                      className="flex items-center justify-center gap-2 bg-primary/10 backdrop-blur-sm border border-primary/30 rounded-full px-4 py-2 w-fit"
-                    >
-                      <Book className="w-4 h-4 text-primary" />
-                      <span className="text-sm font-medium text-primary">Bahçeşehir University • Mechatronics Eng.</span>
-                    </motion.div>
                   </div>
                   
                   <motion.div
@@ -468,15 +423,6 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              {/* GitHub Activity Board - Desktop Only */}
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 50 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                className="order-3 col-span-full xl:col-span-1 xl:order-3"
-              >
-                <GitHubActivityBoard />
-              </motion.div>
 
             </div>
           </div>
@@ -501,6 +447,11 @@ export default function Home() {
                   A showcase of my latest work in AI engineering, computer vision, and machine learning.
                 </p>
               </div>
+              
+              {/* GitHub Activity Board */}
+              <div className="flex justify-center mb-12">
+                <GitHubActivityBoard />
+              </div>
             </ScrollReveal>
 
             {isLoading ? (
@@ -510,58 +461,71 @@ export default function Home() {
                 ))}
               </div>
             ) : (
-              <StaggeredReveal staggerDelay={0.1} direction="up">
-                <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto justify-items-center">
-                  {getPrioritizedRepos().map((repo, index) => (
+              <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+                {getPrioritizedRepos().map((repo, index) => (
                 <a 
                   key={repo.id}
                   href={repo.html_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="card-container animate-card group relative overflow-hidden rounded-lg border bg-card text-card-foreground shadow-md transition-all hover:shadow-xl hover:shadow-primary/10 hover:border-primary/50 hover:scale-[1.03] duration-300 w-full max-w-md cursor-pointer block"
+                  className="card-container animate-card group relative overflow-hidden rounded-xl border bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm text-card-foreground shadow-lg transition-all hover:shadow-2xl hover:shadow-primary/20 hover:border-primary/60 hover:scale-[1.02] duration-500 w-full cursor-pointer block hover:bg-gradient-to-br hover:from-card hover:to-card/90"
                   style={{ opacity: 1, visibility: 'visible' }}
                 >
-                  <div className="p-6">
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="bg-primary/10 p-2 rounded-full text-primary">
+                  <div className="p-4 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div className="bg-gradient-to-br from-primary/20 to-primary/10 p-2 rounded-lg text-primary shadow-lg">
                         <Github className="h-4 w-4" />
                       </div>
-                      <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                        <Star className="h-3 w-3" />
-                        <span>{repo.stargazers_count}</span>
-                        <GitFork className="h-3 w-3 ml-2" />
-                        <span>{repo.forks_count}</span>
+                      <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-1 bg-yellow-500/10 px-2 py-1 rounded-full">
+                          <Star className="h-3 w-3 text-yellow-500" />
+                          <span className="font-medium">{repo.stargazers_count}</span>
+                        </div>
+                        <div className="flex items-center gap-1 bg-blue-500/10 px-2 py-1 rounded-full">
+                          <GitFork className="h-3 w-3 text-blue-500" />
+                          <span className="font-medium">{repo.forks_count}</span>
+                        </div>
                       </div>
                     </div>
-                    <h3 className="font-bold mb-2">{repo.name}</h3>
-                    <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-                      {repo.description || "No description available"}
-                    </p>
-                    <div className="flex flex-wrap gap-1 mb-4">
+                    
+                    <div>
+                      <h3 className="font-bold text-lg mb-2 group-hover:text-primary transition-colors">
+                        {repo.name.replace(/-/g, ' ')}
+                      </h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
+                        {repo.description || "No description available"}
+                      </p>
+                    </div>
+                    
+                    <div className="flex flex-wrap gap-2">
                       {githubStats?.pinnedRepos.some(p => p.name === repo.name) && (
-                        <Badge variant="default" className="text-xs bg-primary/20 text-primary border-primary/30">
+                        <Badge variant="default" className="text-xs bg-gradient-to-r from-primary/30 to-primary/20 text-primary border-primary/30 shadow-sm">
                           📌 Pinned
                         </Badge>
                       )}
                       {repo.language && (
-                        <Badge variant="secondary" className="text-xs">
+                        <Badge variant="secondary" className="text-xs bg-gradient-to-r from-secondary to-secondary/80 shadow-sm">
                           {repo.language}
                         </Badge>
                       )}
-                      {repo.topics?.slice(0, 2).map((topic) => (
-                        <Badge key={topic} variant="outline" className="text-xs">
+                      {repo.topics?.slice(0, 2).map((topic, index) => (
+                        <Badge key={`${repo.id}-topic-${index}-${topic}`} variant="outline" className="text-xs hover:bg-accent/50 transition-colors">
                           {topic}
                         </Badge>
                       ))}
                     </div>
-                    <span className="text-primary font-medium flex items-center hover:underline">
-                      View on GitHub <ExternalLink className="ml-1 h-4 w-4" />
-                    </span>
+                    
+                    <div className="flex items-center text-primary font-medium group-hover:text-primary/80 transition-colors pt-2">
+                      <span>View on GitHub</span>
+                      <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </div>
+                  
+                  {/* Hover gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl" />
                 </a>
-                  ))}
-                </div>
-              </StaggeredReveal>
+                ))}
+              </div>
             )}
             
             {!isLoading && repos.length === 0 && (
@@ -595,15 +559,14 @@ export default function Home() {
                 ))}
               </div>
             ) : (
-              <StaggeredReveal staggerDelay={0.15} direction="left">
-                <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto justify-items-center">
+              <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto justify-items-center">
                   {mediumArticles.slice(0, 6).map((article, index) => (
                 <a 
                   key={article.link}
                   href={article.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="card-container animate-card group relative overflow-hidden rounded-lg border bg-card text-card-foreground shadow-md transition-all hover:shadow-xl hover:shadow-primary/10 hover:border-primary/50 hover:scale-[1.03] duration-300 w-full max-w-md cursor-pointer block"
+                  className="card-container animate-card group relative overflow-hidden rounded-xl border bg-gradient-to-br from-card/90 to-card/70 backdrop-blur-sm text-card-foreground shadow-lg transition-all hover:shadow-2xl hover:shadow-green-500/20 hover:border-green-500/50 hover:scale-[1.05] duration-500 w-full max-w-md cursor-pointer block"
                   style={{ opacity: 1, visibility: 'visible' }}
                 >
                   {(article.thumbnail || article.image_url) && (
@@ -616,58 +579,62 @@ export default function Home() {
                       />
                     </div>
                   )}
-                  <div className="p-6">
-                    <div className="flex items-center gap-2 mb-3">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-primary">
-                        <path d="M2.846 6.887c.03-.295-.083-.586-.303-.784l-2.24-2.7v-.403h6.958l5.378 11.795 4.728-11.795h6.633v.403l-1.916 1.837c-.165.126-.247.333-.213.538v13.498c-.034.204.048.411.213.537l1.871 1.837v.403h-9.412v-.403l1.939-1.882c.19-.19.19-.246.19-.537v-10.91l-5.389 13.688h-.728l-6.275-13.688v9.174c-.052.385.076.774.347 1.052l2.521 3.058v.404h-7.148v-.404l2.521-3.058c.27-.279.39-.67.325-1.052v-10.608z"/>
-                      </svg>
-                      <span className="text-sm text-muted-foreground">
+                  <div className="p-6 space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className="bg-gradient-to-br from-green-600/20 to-green-600/10 p-3 rounded-xl text-green-600 shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+                          <path d="M2.846 6.887c.03-.295-.083-.586-.303-.784l-2.24-2.7v-.403h6.958l5.378 11.795 4.728-11.795h6.633v.403l-1.916 1.837c-.165.126-.247.333-.213.538v13.498c-.034.204.048.411.213.537l1.871 1.837v.403h-9.412v-.403l1.939-1.882c.19-.19.19-.246.19-.537v-10.91l-5.389 13.688h-.728l-6.275-13.688v9.174c-.052.385.076.774.347 1.052l2.521 3.058v.404h-7.148v-.404l2.521-3.058c.27-.279.39-.67.325-1.052v-10.608z"/>
+                        </svg>
+                      </div>
+                      <span className="text-sm text-muted-foreground bg-muted/30 px-3 py-1 rounded-full">
                         {new Date(article.publishedDate || article.pubDate || '').toLocaleDateString()}
                       </span>
                     </div>
-                    <h3 className="font-bold mb-2 line-clamp-2">{article.title}</h3>
-                    <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-                      {article.description || "Read more about this article..."}
-                    </p>
+                    
+                    <div>
+                      <h3 className="font-bold text-lg mb-2 line-clamp-2 group-hover:text-green-600 transition-colors">
+                        {article.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
+                        {article.description || "Read more about this article..."}
+                      </p>
+                    </div>
                     
                     {/* Medium Engagement Stats */}
                     {(article.claps > 0 || article.views || article.reads) && (
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
-                        <div className="flex items-center gap-1">
-                          <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                      <div className="flex items-center justify-center gap-4 text-sm">
+                        <div className="flex items-center gap-1 bg-amber-500/10 px-3 py-1 rounded-full">
+                          <svg className="h-4 w-4 text-amber-500" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M11.37 12.91c-.4 0-.7-.3-.7-.7s.3-.7.7-.7.7.3.7.7-.3.7-.7.7zm3.74-3.19c-.9-.9-2.35-.9-3.25 0-.9.9-.9 2.35 0 3.25.9.9 2.35.9 3.25 0 .9-.9.9-2.35 0-3.25z"/>
                           </svg>
-                          <span>{article.claps.toLocaleString()}</span>
+                          <span className="font-medium">{article.claps.toLocaleString()}</span>
                         </div>
                         {article.views && (
-                          <div className="flex items-center gap-1">
-                            <Eye className="h-4 w-4" />
-                            <span>{article.views.toLocaleString()}</span>
+                          <div className="flex items-center gap-1 bg-purple-500/10 px-3 py-1 rounded-full">
+                            <Eye className="h-4 w-4 text-purple-500" />
+                            <span className="font-medium">{article.views.toLocaleString()}</span>
                           </div>
                         )}
                         {article.reads && (
-                          <div className="flex items-center gap-1">
-                            <BookOpen className="h-4 w-4" />
-                            <span>{article.reads.toLocaleString()}</span>
-                          </div>
-                        )}
-                        {article.responses && article.responses > 0 && (
-                          <div className="flex items-center gap-1">
-                            <MessagesSquare className="h-4 w-4" />
-                            <span>{article.responses}</span>
+                          <div className="flex items-center gap-1 bg-blue-500/10 px-3 py-1 rounded-full">
+                            <BookOpen className="h-4 w-4 text-blue-500" />
+                            <span className="font-medium">{article.reads.toLocaleString()}</span>
                           </div>
                         )}
                       </div>
                     )}
                     
-                    <span className="text-primary font-medium flex items-center hover:underline">
-                      Read on Medium <ExternalLink className="ml-1 h-4 w-4" />
-                    </span>
+                    <div className="flex items-center justify-center text-green-600 font-medium group-hover:text-green-500 transition-colors pt-2">
+                      <span>Read on Medium</span>
+                      <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </div>
+                  
+                  {/* Hover gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-transparent to-green-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl" />
                 </a>
-                  ))}
-                </div>
-              </StaggeredReveal>
+                ))}
+              </div>
             )}
             
             {!isLoading && mediumArticles.length === 0 && (
@@ -690,7 +657,7 @@ export default function Home() {
             <ScrollReveal direction="right" delay={0.4}>
               <div className="text-center mb-12 md:mb-16">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  Latest Insights
+                  Latest Insights {linkedInPosts.length > 0 && `(${linkedInPosts.length})`}
                 </h2>
                 <p className="mt-4 text-muted-foreground max-w-3xl mx-auto">
                   Professional insights and thoughts from my LinkedIn posts.
@@ -698,15 +665,14 @@ export default function Home() {
               </div>
             </ScrollReveal>
 
-            <StaggeredReveal staggerDelay={0.12} direction="right">
-              <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto justify-items-center">
-                {linkedInPosts.slice(0, 6).map((post, index) => (
+            <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto justify-items-center">
+                {linkedInPosts.slice(0, 12).map((post, index) => (
                 <a 
                   key={post.id || index}
                   href={post.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="card-container animate-card group relative overflow-hidden rounded-lg border bg-card text-card-foreground shadow-md transition-all hover:shadow-xl hover:shadow-primary/10 hover:border-primary/50 hover:scale-[1.03] duration-300 w-full max-w-md cursor-pointer block"
+                  className="card-container animate-card group relative overflow-hidden rounded-xl border bg-gradient-to-br from-card/90 to-card/70 backdrop-blur-sm text-card-foreground shadow-lg transition-all hover:shadow-2xl hover:shadow-blue-500/20 hover:border-blue-500/50 hover:scale-[1.05] duration-500 w-full max-w-md cursor-pointer block"
                   style={{ opacity: 1, visibility: 'visible' }}
                 >
                   {post.image_url && (
@@ -724,44 +690,52 @@ export default function Home() {
                       />
                     </div>
                   )}
-                  <div className="p-6">
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="bg-blue-600/10 p-2 rounded-full text-blue-600">
-                        <Linkedin className="h-4 w-4" />
+                  <div className="p-6 space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className="bg-gradient-to-br from-blue-600/20 to-blue-600/10 p-3 rounded-xl text-blue-600 shadow-lg">
+                        <Linkedin className="h-5 w-5" />
                       </div>
-                      <span className="text-sm text-muted-foreground">
+                      <span className="text-sm text-muted-foreground bg-muted/30 px-3 py-1 rounded-full">
                         {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString() : 'Recently'}
                       </span>
                     </div>
-                    <div className="mb-4">
-                      <p className="line-clamp-4 text-sm leading-relaxed">{post.text || post.content || "Professional insight shared on LinkedIn..."}</p>
+                    
+                    <div>
+                      <p className="line-clamp-4 text-sm leading-relaxed text-foreground">
+                        {post.text || post.content || "Professional insight shared on LinkedIn..."}
+                      </p>
                     </div>
+                    
                     {(post.engagement || post.likes !== undefined) && (
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
-                        <div className="flex items-center gap-1">
-                          <Heart className="h-4 w-4 fill-red-500 text-red-500" />
-                          <span>{post.engagement?.likes || post.likes || 0}</span>
+                      <div className="flex items-center justify-center gap-6 text-sm">
+                        <div className="flex items-center gap-1 bg-red-500/10 px-3 py-1 rounded-full">
+                          <Heart className="h-4 w-4 text-red-500" />
+                          <span className="font-medium">{post.engagement?.likes || post.likes || 0}</span>
                         </div>
-                        <div className="flex items-center gap-1">
-                          <MessagesSquare className="h-4 w-4" />
-                          <span>{post.engagement?.comments || post.comments || 0}</span>
+                        <div className="flex items-center gap-1 bg-blue-500/10 px-3 py-1 rounded-full">
+                          <MessagesSquare className="h-4 w-4 text-blue-500" />
+                          <span className="font-medium">{post.engagement?.comments || post.comments || 0}</span>
                         </div>
-                        {(post.engagement?.shares || post.shares) && (
-                          <div className="flex items-center gap-1">
-                            <Share2 className="h-4 w-4" />
-                            <span>{post.engagement?.shares || post.shares || 0}</span>
+                        {(post.engagement?.shares || post.shares) ? (
+                          <div className="flex items-center gap-1 bg-green-500/10 px-3 py-1 rounded-full">
+                            <Share2 className="h-4 w-4 text-green-500" />
+                            <span className="font-medium">{post.engagement?.shares || post.shares || 0}</span>
                           </div>
-                        )}
+                        ) : null}
                       </div>
                     )}
-                    <span className="text-blue-600 font-medium flex items-center hover:underline">
-                      View on LinkedIn <ExternalLink className="ml-1 h-4 w-4" />
-                    </span>
+                    
+                    <div className="flex items-center justify-center text-blue-600 font-medium group-hover:text-blue-500 transition-colors pt-2">
+                      <span>View on LinkedIn</span>
+                      <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </div>
+                  
+                  {/* Hover gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl" />
                 </a>
-              ))}
-              </div>
-            </StaggeredReveal>
+            ))}
+            </div>
             
             {linkedInPosts.length === 0 && (
               <div className="text-center py-12">

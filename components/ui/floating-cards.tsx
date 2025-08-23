@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Brain, Code, Zap, Database, Eye, Cpu } from 'lucide-react';
 
@@ -13,6 +14,16 @@ const skillCards = [
 ];
 
 export function FloatingCards() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
+
   return (
     <div className="fixed inset-0 -z-10 pointer-events-none overflow-hidden">
       {skillCards.map((card, index) => (

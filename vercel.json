@@ -26,9 +26,5 @@
         }
       ]
     }
-  ],
-  "env": {
-    "VERCEL_ANALYTICS_ID": "@vercel-analytics-id",
-    "DATA_REFRESH_TOKEN": "@data-refresh-token"
-  }
+  ]
 }

@@ -17,6 +17,7 @@ interface LinkedInPost {
   comments: number;
   shares: number;
   url: string;
+  image_url?: string;
   author: string;
 }
 
@@ -95,6 +96,7 @@ function getRealLinkedInPosts(): LinkedInPost[] {
         comments: 0,
         shares: 0,
         url: 'https://www.linkedin.com/in/bahakizil',
+        image_url: '/images/slack-mcp-server.jpg',
         author: 'Baha Kizil'
       },
       {
@@ -105,6 +107,7 @@ function getRealLinkedInPosts(): LinkedInPost[] {
         comments: 12,
         shares: 0,
         url: 'https://www.linkedin.com/in/bahakizil',
+        image_url: '/images/graduation.jpg',
         author: 'Baha Kizil'
       },
       {
@@ -115,6 +118,7 @@ function getRealLinkedInPosts(): LinkedInPost[] {
         comments: 1,
         shares: 0,
         url: 'https://www.linkedin.com/in/bahakizil',
+        image_url: '/images/mcp-certification.jpg',
         author: 'Baha Kizil'
       },
       {
@@ -125,6 +129,7 @@ function getRealLinkedInPosts(): LinkedInPost[] {
         comments: 14,
         shares: 0,
         url: 'https://www.linkedin.com/in/bahakizil',
+        image_url: '/images/kafein-tech.jpg',
         author: 'Baha Kizil'
       },
       {
@@ -135,6 +140,7 @@ function getRealLinkedInPosts(): LinkedInPost[] {
         comments: 5,
         shares: 3,
         url: 'https://www.linkedin.com/in/bahakizil',
+        image_url: '/images/smart-growbox.jpg',
         author: 'Baha Kizil'
       },
       {
@@ -145,6 +151,7 @@ function getRealLinkedInPosts(): LinkedInPost[] {
         comments: 5,
         shares: 0,
         url: 'https://www.linkedin.com/in/bahakizil',
+        image_url: '/images/kairu-bootcamp.jpg',
         author: 'Baha Kizil'
       },
       {
@@ -155,6 +162,7 @@ function getRealLinkedInPosts(): LinkedInPost[] {
         comments: 17,
         shares: 47,
         url: 'https://www.linkedin.com/in/bahakizil',
+        image_url: '/images/traffic-yolo.jpg',
         author: 'Baha Kizil'
       },
       {
@@ -187,6 +195,7 @@ function getRealLinkedInPosts(): LinkedInPost[] {
         comments: 5,
         shares: 0,
         url: 'https://www.linkedin.com/in/bahakizil',
+        image_url: '/images/ai-agents-cert.jpg',
         author: 'Baha Kizil'
       },
       {
@@ -197,6 +206,7 @@ function getRealLinkedInPosts(): LinkedInPost[] {
         comments: 4,
         shares: 8,
         url: 'https://www.linkedin.com/in/bahakizil',
+        image_url: '/images/threat-detection.jpg',
         author: 'Baha Kizil'
       }
     ];

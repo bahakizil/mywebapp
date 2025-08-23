@@ -8,35 +8,61 @@ export const NavigationDots = () => {
   const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    
     const handleScroll = () => {
-      const sections = document.querySelectorAll("section[id]");
+      if (typeof window === 'undefined') return;
       
-      sections.forEach((section) => {
-        const sectionTop = section.getBoundingClientRect().top;
-        const sectionId = section.getAttribute("id");
-        
-        if (sectionTop < window.innerHeight / 2 && sectionTop > -window.innerHeight / 2) {
-          if (sectionId) setActiveSection(sectionId);
+      // Debounce section detection
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        try {
+          const sections = document.querySelectorAll("section[id]");
+          if (sections.length === 0) return;
+          
+          sections.forEach((section) => {
+            if (!section || !section.getBoundingClientRect) return;
+            
+            const sectionTop = section.getBoundingClientRect().top;
+            const sectionId = section.getAttribute("id");
+            
+            if (sectionTop < window.innerHeight / 2 && sectionTop > -window.innerHeight / 2) {
+              if (sectionId) setActiveSection(sectionId);
+            }
+          });
+        } catch (error) {
+          console.debug('Navigation dots section detection error (safe to ignore):', error);
         }
-      });
+      }, 100);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    if (typeof window !== 'undefined') {
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+        if (timeoutId) clearTimeout(timeoutId);
+      };
+    }
   }, []);
 
   const scrollToSection = (href: string) => {
-    if (href === "/") {
-      const section = document.getElementById("hero");
-      if (section && typeof window !== "undefined") {
-        section.scrollIntoView({ behavior: "smooth" });
+    if (typeof window === 'undefined') return;
+    
+    try {
+      if (href === "/") {
+        const section = document.getElementById("hero");
+        if (section && section.scrollIntoView) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      } else {
+        const id = href.replace("#", "");
+        const section = document.getElementById(id);
+        if (section && section.scrollIntoView) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
       }
-    } else {
-      const id = href.replace("#", "");
-      const section = document.getElementById(id);
-      if (section && typeof window !== "undefined") {
-        section.scrollIntoView({ behavior: "smooth" });
-      }
+    } catch (error) {
+      console.debug('Navigation dots scroll error (safe to ignore):', error);
     }
   };
 

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getLinkedInPosts } from '@/lib/linkedin';
+import { getLinkedInPosts, LinkedInPost as LibLinkedInPost } from '@/lib/linkedin';
 import { extractLinkedInPosts } from '@/lib/tavily-linkedin';
 
 export const runtime = 'nodejs';
@@ -150,7 +150,7 @@ export async function GET() {
         comments: post.engagement?.comments || 0,
         shares: post.engagement?.shares || 0,
         url: post.url,
-        image_url: post.image_url,
+        image_url: post.image_url || undefined,
         author: post.author?.name || 'Baha Kizil'
       }));
     }
@@ -171,7 +171,7 @@ export async function GET() {
       comments: post.comments, // Direct access for compatibility
       shares: post.shares, // Direct access for compatibility
       url: post.url,
-      image_url: post.image_url,
+      ...((post as any).image_url && { image_url: (post as any).image_url }),
       author: post.author
     }));
 

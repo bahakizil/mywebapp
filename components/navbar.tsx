@@ -24,27 +24,49 @@ export function Navbar() {
 
   // Handle scroll effect
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    
     const handleScroll = () => {
+      if (typeof window === 'undefined') return;
+      
       if (window.scrollY > 10) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
       
-      // Update active section based on scroll position
-      const sections = document.querySelectorAll("section[id]");
-      sections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top;
-        const sectionId = section.getAttribute("id");
-        
-        if (sectionTop < window.innerHeight / 2 && sectionTop > -window.innerHeight / 2) {
-          if (sectionId) setActiveSection(sectionId);
+      // Debounce section detection to prevent excessive DOM queries
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        try {
+          // Update active section based on scroll position
+          const sections = document.querySelectorAll("section[id]");
+          if (sections.length === 0) return;
+          
+          sections.forEach(section => {
+            if (!section || !section.getBoundingClientRect) return;
+            
+            const sectionTop = section.getBoundingClientRect().top;
+            const sectionId = section.getAttribute("id");
+            
+            if (sectionTop < window.innerHeight / 2 && sectionTop > -window.innerHeight / 2) {
+              if (sectionId) setActiveSection(sectionId);
+            }
+          });
+        } catch (error) {
+          // Silently handle DOM query errors during hot reload
+          console.debug('Section detection error (safe to ignore):', error);
         }
-      });
+      }, 50);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    if (typeof window !== 'undefined') {
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+        if (timeoutId) clearTimeout(timeoutId);
+      };
+    }
   }, []);
 
   // Handle mobile menu
@@ -53,17 +75,25 @@ export function Navbar() {
   // Scroll to section
   const scrollToSection = (href: string) => {
     closeMobileMenu();
-    if (href === "/") {
-      const section = document.getElementById("hero");
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
+    
+    if (typeof window === 'undefined') return;
+    
+    try {
+      if (href === "/") {
+        const section = document.getElementById("hero");
+        if (section && section.scrollIntoView) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      } else {
+        const id = href.replace("#", "");
+        const section = document.getElementById(id);
+        if (section && section.scrollIntoView) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
       }
-    } else {
-      const id = href.replace("#", "");
-      const section = document.getElementById(id);
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
-      }
+    } catch (error) {
+      // Silently handle scrolling errors
+      console.debug('Scroll error (safe to ignore):', error);
     }
   };
 
