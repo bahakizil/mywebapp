@@ -10,8 +10,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 // import { ScrollReveal } from "@/components/scroll-reveal"; // Replaced with new scroll-reveal
-import { KonamiCode } from "@/components/konami-code";
-import { NavigationDots } from "@/src/components/NavigationDots";
+const NavigationDots = dynamic(() => import("@/src/components/NavigationDots").then(mod => ({ default: mod.NavigationDots })), { ssr: false });
 import { Section } from "@/src/components/Section";
 import { ScrollProvider } from "@/src/providers/ScrollProvider";
 import { useParallax } from "@/src/hooks/useParallax";
@@ -60,21 +59,21 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import HuggingFaceSpacesSection from "@/components/HuggingFaceSpacesSection";
-import { AnimatedGradient } from "@/components/ui/animated-gradient";
-import { FloatingCards } from "@/components/ui/floating-cards";
-import { PromptEngineeringDemo } from "@/components/ui/prompt-engineering-demo";
-import { JetsonEdgeDemo } from "@/components/ui/jetson-edge-demo";
-import { N8NWorkflowDemo } from "@/components/ui/n8n-workflow-demo";
-import { InteractiveNeuralNetwork } from "@/components/ui/interactive-neural-network";
+const AnimatedGradient = dynamic(() => import("@/components/ui/animated-gradient").then(mod => ({ default: mod.AnimatedGradient })), { ssr: false });
+// Dynamic imports for components that use Math.random to prevent hydration issues
+const FloatingCards = dynamic(() => import("@/components/ui/floating-cards").then(mod => ({ default: mod.FloatingCards })), { ssr: false });
+const PromptEngineeringDemo = dynamic(() => import("@/components/ui/prompt-engineering-demo").then(mod => ({ default: mod.PromptEngineeringDemo })), { ssr: false });
+const JetsonEdgeDemo = dynamic(() => import("@/components/ui/jetson-edge-demo").then(mod => ({ default: mod.JetsonEdgeDemo })), { ssr: false });
+const N8NWorkflowDemo = dynamic(() => import("@/components/ui/n8n-workflow-demo").then(mod => ({ default: mod.N8NWorkflowDemo })), { ssr: false });
+const InteractiveNeuralNetwork = dynamic(() => import("@/components/ui/interactive-neural-network").then(mod => ({ default: mod.InteractiveNeuralNetwork })), { ssr: false });
 import { SectionDivider } from "@/components/ui/section-divider";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { StaggeredReveal } from "@/components/ui/staggered-reveal";
 import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import { Typewriter } from "@/components/ui/typewriter";
 import { ContactFormSection } from "@/components/contact-form-section";
-import { AITrainingVisualization } from "@/components/ui/ai-training-visualization";
-import { ObjectDetectionDemo } from "@/components/ui/object-detection-demo";
-import { GitHubActivityBoard } from "@/components/ui/github-activity-board";
+const AITrainingVisualization = dynamic(() => import("@/components/ui/ai-training-visualization").then(mod => ({ default: mod.AITrainingVisualization })), { ssr: false });
+const ObjectDetectionDemo = dynamic(() => import("@/components/ui/object-detection-demo").then(mod => ({ default: mod.ObjectDetectionDemo })), { ssr: false });
 
 // Removed TypewriterComponent due to type issues
 
@@ -448,10 +447,6 @@ export default function Home() {
                 </p>
               </div>
               
-              {/* GitHub Activity Board */}
-              <div className="flex justify-center mb-12">
-                <GitHubActivityBoard />
-              </div>
             </ScrollReveal>
 
             {isLoading ? (
@@ -462,7 +457,7 @@ export default function Home() {
               </div>
             ) : (
               <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto justify-items-center">
-                {getPrioritizedRepos().map((repo, index) => (
+                  {getPrioritizedRepos().slice(0, 6).map((repo, index) => (
                 <a 
                   key={repo.id}
                   href={repo.html_url}
@@ -471,13 +466,24 @@ export default function Home() {
                   className="card-container animate-card group relative overflow-hidden rounded-xl border bg-gradient-to-br from-card/90 to-card/70 backdrop-blur-sm text-card-foreground shadow-lg transition-all hover:shadow-2xl hover:shadow-primary/20 hover:border-primary/50 hover:scale-[1.05] duration-500 w-full max-w-md cursor-pointer block"
                   style={{ opacity: 1, visibility: 'visible' }}
                 >
+                  <div className="aspect-video relative">
+                    <div 
+                      className="bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center object-cover transition-transform duration-500 group-hover:scale-105"
+                      style={{ position: 'absolute', height: '100%', width: '100%', inset: '0px', color: 'transparent' }}
+                    >
+                      <div className="text-center">
+                        <Github className="h-12 w-12 text-primary/60 mx-auto mb-2" />
+                        <p className="text-xs text-muted-foreground font-medium">{repo.language || 'Repository'}</p>
+                      </div>
+                    </div>
+                  </div>
                   <div className="p-6 space-y-4">
                     <div className="flex items-center justify-between">
                       <div className="bg-gradient-to-br from-primary/20 to-primary/10 p-3 rounded-xl text-primary shadow-lg">
                         <Github className="h-5 w-5" />
                       </div>
                       <span className="text-sm text-muted-foreground bg-muted/30 px-3 py-1 rounded-full">
-                        {repo.language || 'Code'}
+                        {new Date(repo.updated_at).toLocaleDateString()}
                       </span>
                     </div>
                     
@@ -486,11 +492,11 @@ export default function Home() {
                         {repo.name.replace(/-/g, ' ')}
                       </h3>
                       <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
-                        {repo.description || "No description available"}
+                        {repo.description || "Read more about this project..."}
                       </p>
                     </div>
                     
-                    <div className="flex items-center justify-center gap-6 text-sm">
+                    <div className="flex items-center justify-center gap-4 text-sm">
                       <div className="flex items-center gap-1 bg-yellow-500/10 px-3 py-1 rounded-full">
                         <Star className="h-4 w-4 text-yellow-500" />
                         <span className="font-medium">{repo.stargazers_count}</span>
@@ -499,12 +505,10 @@ export default function Home() {
                         <GitFork className="h-4 w-4 text-blue-500" />
                         <span className="font-medium">{repo.forks_count}</span>
                       </div>
-                      {repo.watchers_count > 0 && (
-                        <div className="flex items-center gap-1 bg-green-500/10 px-3 py-1 rounded-full">
-                          <Eye className="h-4 w-4 text-green-500" />
-                          <span className="font-medium">{repo.watchers_count}</span>
-                        </div>
-                      )}
+                      <div className="flex items-center gap-1 bg-green-500/10 px-3 py-1 rounded-full">
+                        <Eye className="h-4 w-4 text-green-500" />
+                        <span className="font-medium">{repo.watchers_count}</span>
+                      </div>
                     </div>
                     
                     <div className="flex items-center justify-center text-primary font-medium group-hover:text-primary/80 transition-colors pt-2">

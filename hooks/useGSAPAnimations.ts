@@ -23,7 +23,7 @@ export const useGSAPAnimations = () => {
         
         if (allAnimatedElements.length > 0) {
           allAnimatedElements.forEach((element) => {
-            if (element && typeof element.style !== 'undefined') {
+            if (element && element instanceof HTMLElement) {
               gsap.set(element, {
                 opacity: 1,
                 visibility: 'visible',
