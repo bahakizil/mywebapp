@@ -446,7 +446,6 @@ export default function Home() {
                   A showcase of my latest work in AI engineering, computer vision, and machine learning.
                 </p>
               </div>
-              
             </ScrollReveal>
 
             {isLoading ? (
@@ -457,69 +456,68 @@ export default function Home() {
               </div>
             ) : (
               <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto justify-items-center">
-                  {getPrioritizedRepos().slice(0, 6).map((repo, index) => (
-                <a 
-                  key={repo.id}
-                  href={repo.html_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="card-container animate-card group relative overflow-hidden rounded-xl border bg-gradient-to-br from-card/90 to-card/70 backdrop-blur-sm text-card-foreground shadow-lg transition-all hover:shadow-2xl hover:shadow-primary/20 hover:border-primary/50 hover:scale-[1.05] duration-500 w-full max-w-md cursor-pointer block"
-                  style={{ opacity: 1, visibility: 'visible' }}
-                >
-                  <div className="aspect-video relative">
-                    <div 
-                      className="bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center object-cover transition-transform duration-500 group-hover:scale-105"
-                      style={{ position: 'absolute', height: '100%', width: '100%', inset: '0px', color: 'transparent' }}
-                    >
-                      <div className="text-center">
-                        <Github className="h-12 w-12 text-primary/60 mx-auto mb-2" />
-                        <p className="text-xs text-muted-foreground font-medium">{repo.language || 'Repository'}</p>
+                {getPrioritizedRepos().slice(0, 6).map((repo, index) => (
+                  <a 
+                    key={repo.id}
+                    href={repo.html_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="card-container animate-card group relative overflow-hidden rounded-xl border bg-gradient-to-br from-card/90 to-card/70 backdrop-blur-sm text-card-foreground shadow-lg transition-all hover:shadow-2xl hover:shadow-primary/20 hover:border-primary/50 hover:scale-[1.05] duration-500 w-full max-w-md cursor-pointer block"
+                    style={{ opacity: 1, visibility: 'visible' }}
+                  >
+                    <div className="aspect-video relative">
+                      <div 
+                        className="bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center w-full h-full transition-transform duration-500 group-hover:scale-105"
+                        style={{ position: 'absolute', height: '100%', width: '100%', inset: '0px', color: 'transparent' }}
+                      >
+                        <div className="text-center">
+                          <Github className="h-12 w-12 text-primary/60 mx-auto mb-2" />
+                          <p className="text-xs text-muted-foreground font-medium">{repo.language || 'Repository'}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="p-6 space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div className="bg-gradient-to-br from-primary/20 to-primary/10 p-3 rounded-xl text-primary shadow-lg">
-                        <Github className="h-5 w-5" />
+                    <div className="p-6 space-y-4">
+                      <div className="flex items-center justify-between">
+                        <div className="bg-gradient-to-br from-primary/20 to-primary/10 p-3 rounded-xl text-primary shadow-lg">
+                          <Github className="h-5 w-5" />
+                        </div>
+                        <span className="text-sm text-muted-foreground bg-muted/30 px-3 py-1 rounded-full">
+                          {new Date(repo.updated_at).toLocaleDateString()}
+                        </span>
                       </div>
-                      <span className="text-sm text-muted-foreground bg-muted/30 px-3 py-1 rounded-full">
-                        {new Date(repo.updated_at).toLocaleDateString()}
-                      </span>
+                      
+                      <div>
+                        <h3 className="font-bold text-lg mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                          {repo.name.replace(/-/g, ' ')}
+                        </h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
+                          {repo.description || "Read more about this project..."}
+                        </p>
+                      </div>
+                      
+                      <div className="flex items-center justify-center gap-4 text-sm">
+                        <div className="flex items-center gap-1 bg-yellow-500/10 px-3 py-1 rounded-full">
+                          <Star className="h-4 w-4 text-yellow-500" />
+                          <span className="font-medium">{repo.stargazers_count}</span>
+                        </div>
+                        <div className="flex items-center gap-1 bg-blue-500/10 px-3 py-1 rounded-full">
+                          <GitFork className="h-4 w-4 text-blue-500" />
+                          <span className="font-medium">{repo.forks_count}</span>
+                        </div>
+                        <div className="flex items-center gap-1 bg-green-500/10 px-3 py-1 rounded-full">
+                          <Eye className="h-4 w-4 text-green-500" />
+                          <span className="font-medium">{repo.watchers_count}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center justify-center text-primary font-medium group-hover:text-primary/80 transition-colors pt-2">
+                        <span>View on GitHub</span>
+                        <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                      </div>
                     </div>
                     
-                    <div>
-                      <h3 className="font-bold text-lg mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-                        {repo.name.replace(/-/g, ' ')}
-                      </h3>
-                      <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
-                        {repo.description || "Read more about this project..."}
-                      </p>
-                    </div>
-                    
-                    <div className="flex items-center justify-center gap-4 text-sm">
-                      <div className="flex items-center gap-1 bg-yellow-500/10 px-3 py-1 rounded-full">
-                        <Star className="h-4 w-4 text-yellow-500" />
-                        <span className="font-medium">{repo.stargazers_count}</span>
-                      </div>
-                      <div className="flex items-center gap-1 bg-blue-500/10 px-3 py-1 rounded-full">
-                        <GitFork className="h-4 w-4 text-blue-500" />
-                        <span className="font-medium">{repo.forks_count}</span>
-                      </div>
-                      <div className="flex items-center gap-1 bg-green-500/10 px-3 py-1 rounded-full">
-                        <Eye className="h-4 w-4 text-green-500" />
-                        <span className="font-medium">{repo.watchers_count}</span>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center justify-center text-primary font-medium group-hover:text-primary/80 transition-colors pt-2">
-                      <span>View on GitHub</span>
-                      <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </div>
-                  
-                  {/* Hover gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl" />
-                </a>
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl" />
+                  </a>
                 ))}
               </div>
             )}
@@ -549,13 +547,13 @@ export default function Home() {
             </ScrollReveal>
 
             {isLoading ? (
-              <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto justify-items-center">
+              <div className="grid gap-6 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 max-w-7xl mx-auto justify-items-center">
                 {[...Array(6)].map((_, index) => (
                   <ArticleSkeleton key={index} />
                 ))}
               </div>
             ) : (
-              <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto justify-items-center">
+              <div className="grid gap-6 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 max-w-7xl mx-auto justify-items-center">
                   {mediumArticles.slice(0, 6).map((article, index) => (
                 <a 
                   key={article.link}
