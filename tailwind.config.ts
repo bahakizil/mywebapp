@@ -8,6 +8,15 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/**/*.{js,ts,jsx,tsx}',
   ],
+  safelist: [
+    'grid-cols-1',
+    'sm:grid-cols-1', 
+    'md:grid-cols-2',
+    'lg:grid-cols-3',
+    'max-w-6xl',
+    'max-w-md',
+    'justify-items-center'
+  ],
   theme: {
     extend: {
       backgroundImage: {
