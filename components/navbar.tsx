@@ -1,186 +1,135 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/theme-toggle";
-
-import { navLinks } from "@/src/config/siteConfig";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { navLinks } from "@/src/config/siteConfig";
+import { cn } from "@/lib/utils";
+
+function useIstanbulClock() {
+  const [time, setTime] = useState<string>("--:--:--");
+  useEffect(() => {
+    const tick = () => {
+      setTime(
+        new Intl.DateTimeFormat("en-GB", {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+          timeZone: "Europe/Istanbul",
+        }).format(new Date()),
+      );
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+  return time;
+}
+
+function scrollTo(href: string) {
+  if (typeof window === "undefined") return;
+  const id = href === "/" ? "hero" : href.replace("#", "");
+  const el = document.getElementById(id);
+  el?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 export function Navbar() {
-  const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("hero");
-  
-  // Scroll-based animations
-  const { scrollY } = useScroll();
-  const navbarY = useTransform(scrollY, [0, 100], [0, -10]);
-  const navbarOpacity = useTransform(scrollY, [0, 50, 100], [1, 0.95, 0.9]);
-
-  // Handle scroll effect
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout;
-    
-    const handleScroll = () => {
-      if (typeof window === 'undefined') return;
-      
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-      
-      // Debounce section detection to prevent excessive DOM queries
-      if (timeoutId) clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        try {
-          // Update active section based on scroll position
-          const sections = document.querySelectorAll("section[id]");
-          if (sections.length === 0) return;
-          
-          sections.forEach(section => {
-            if (!section || !section.getBoundingClientRect) return;
-            
-            const sectionTop = section.getBoundingClientRect().top;
-            const sectionId = section.getAttribute("id");
-            
-            if (sectionTop < window.innerHeight / 2 && sectionTop > -window.innerHeight / 2) {
-              if (sectionId) setActiveSection(sectionId);
-            }
-          });
-        } catch (error) {
-          // Silently handle DOM query errors during hot reload
-          console.debug('Section detection error (safe to ignore):', error);
-        }
-      }, 50);
-    };
-
-    if (typeof window !== 'undefined') {
-      window.addEventListener("scroll", handleScroll, { passive: true });
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-        if (timeoutId) clearTimeout(timeoutId);
-      };
-    }
-  }, []);
-
-  // Handle mobile menu
-  const closeMobileMenu = () => setIsMobileMenuOpen(false);
-
-  // Scroll to section
-  const scrollToSection = (href: string) => {
-    closeMobileMenu();
-    
-    if (typeof window === 'undefined') return;
-    
-    try {
-      if (href === "/") {
-        const section = document.getElementById("hero");
-        if (section && section.scrollIntoView) {
-          section.scrollIntoView({ behavior: "smooth" });
-        }
-      } else {
-        const id = href.replace("#", "");
-        const section = document.getElementById(id);
-        if (section && section.scrollIntoView) {
-          section.scrollIntoView({ behavior: "smooth" });
-        }
-      }
-    } catch (error) {
-      // Silently handle scrolling errors
-      console.debug('Scroll error (safe to ignore):', error);
-    }
-  };
+  const time = useIstanbulClock();
+  const [open, setOpen] = useState(false);
 
   return (
-    <motion.header
-      style={{ y: navbarY, opacity: navbarOpacity }}
-      className={cn(
-        "fixed top-0 z-50 w-full transition-all duration-300 backdrop-blur-md navbar-bg",
-        isScrolled
-          ? "bg-background/95 border-b shadow-sm"
-          : "bg-background/50"
-      )}
-    >
-      <div className="container mx-auto max-w-7xl flex h-20 items-center justify-center px-4 md:px-6">
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {navLinks.map((link) => {
-            const id = link.href === "/" ? "hero" : link.href.replace("#", "");
+    <header className="sticky top-0 z-50 border-b border-rule bg-paper/85 backdrop-blur-md">
+      {/* Micro status strip */}
+      <div className="hidden md:block border-b border-rule/70">
+        <div className="lab-container flex items-center justify-between py-1.5 text-[0.62rem] uppercase tracking-widest text-mute font-mono">
+          <span className="flex items-center gap-4">
+            <span>41.01°N · 28.97°E</span>
+            <span>Istanbul · Türkiye</span>
+          </span>
+          <span className="flex items-center gap-4">
+            <span className="flex items-center gap-1.5">
+              <span className="dot-live" />
+              <span>online</span>
+            </span>
+            <span className="tabular-nums">{time} TRT</span>
+            <span>lab notebook · v2026</span>
+          </span>
+        </div>
+      </div>
+
+      {/* Primary bar */}
+      <div className="lab-container flex items-center justify-between h-14 md:h-16">
+        <Link
+          href="/"
+          className="flex items-baseline gap-3 group"
+          aria-label="Home"
+        >
+          <span className="font-display italic text-2xl md:text-[1.7rem] leading-none tracking-tightest">
+            Baha Kızıl
+          </span>
+          <span className="hidden sm:inline meta">· AI Engineer</span>
+        </Link>
+
+        <nav className="hidden md:flex items-center gap-7">
+          {navLinks.map((link, idx) => {
+            const label = link.title.toUpperCase();
+            const n = String(idx + 1).padStart(2, "0");
             return (
               <button
                 key={link.href}
-                onClick={() => scrollToSection(link.href)}
-                className={cn(
-                  "text-base font-medium transition-colors hover:text-primary relative",
-                  activeSection === id
-                    ? "text-foreground font-semibold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary"
-                    : "text-muted-foreground"
-                )}
+                onClick={() => scrollTo(link.href)}
+                className="group flex items-center gap-1.5 text-xs font-mono tracking-widest uppercase text-ink hover:text-ink"
               >
-                {link.title}
+                <span className="text-mute group-hover:text-ink transition-colors">
+                  {n}
+                </span>
+                <span className="link-underline">{label}</span>
               </button>
             );
           })}
           <ThemeToggle />
         </nav>
 
-        {/* Mobile Menu Button */}
-        <div className="absolute right-4 flex items-center space-x-4 md:hidden">
+        <div className="flex items-center gap-3 md:hidden">
           <ThemeToggle />
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-foreground"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="p-2 -mr-2"
+            aria-label={open ? "Close menu" : "Open menu"}
           >
-            {isMobileMenuOpen ? (
-              <X className="h-5 w-5" />
-            ) : (
-              <Menu className="h-5 w-5" />
-            )}
-          </Button>
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden border-b bg-background/95 backdrop-blur-sm"
-          >
-            <nav className="container mx-auto max-w-7xl py-4 flex flex-col space-y-4 px-4 md:px-6">
-              {navLinks.map((link) => {
-                const id = link.href === "/" ? "hero" : link.href.replace("#", "");
-                return (
-                  <button
-                    key={link.href}
-                    onClick={() => scrollToSection(link.href)}
-                    className={cn(
-                      "text-base font-medium transition-colors hover:text-primary py-2 relative text-left",
-                      activeSection === id
-                        ? "text-foreground font-semibold after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary"
-                        : "text-muted-foreground"
-                    )}
-                  >
-                    {link.title}
-                  </button>
-                );
-              })}
-            </nav>
-          </motion.div>
+      {/* Mobile drop */}
+      <div
+        className={cn(
+          "md:hidden border-t border-rule overflow-hidden transition-[max-height] duration-500 ease-smooth-out",
+          open ? "max-h-96" : "max-h-0",
         )}
-      </AnimatePresence>
-    </motion.header>
+      >
+        <div className="lab-container py-4 flex flex-col gap-3">
+          {navLinks.map((link, idx) => {
+            const n = String(idx + 1).padStart(2, "0");
+            return (
+              <button
+                key={link.href}
+                onClick={() => {
+                  scrollTo(link.href);
+                  setOpen(false);
+                }}
+                className="flex items-baseline gap-3 text-left"
+              >
+                <span className="font-mono text-xs text-mute">§ {n}</span>
+                <span className="display-md">{link.title}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    </header>
   );
 }

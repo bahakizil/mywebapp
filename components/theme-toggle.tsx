@@ -1,33 +1,38 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
-  // Prevent hydration mismatch
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return <div className="w-9 h-9" />;
-  }
+  const active = mounted
+    ? theme === "system"
+      ? resolvedTheme
+      : theme
+    : "light";
+  const next = active === "dark" ? "light" : "dark";
 
   return (
-    <Button
-      variant="ghost"
-      size="icon"
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      aria-label="Toggle theme"
+    <button
+      onClick={() => setTheme(next)}
+      className="inline-flex items-center gap-1.5 font-mono text-[0.62rem] uppercase tracking-widest text-mute hover:text-ink transition-colors"
+      aria-label={`Switch to ${next} mode`}
     >
-      <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-      <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-      <span className="sr-only">Toggle theme</span>
-    </Button>
+      {active === "dark" ? (
+        <>
+          <Moon className="h-3 w-3" aria-hidden />
+          <span className="hidden lg:inline">dark</span>
+        </>
+      ) : (
+        <>
+          <Sun className="h-3 w-3" aria-hidden />
+          <span className="hidden lg:inline">light</span>
+        </>
+      )}
+    </button>
   );
 }
