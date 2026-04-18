@@ -1,232 +1,222 @@
 "use client";
 
 import { useState } from "react";
-import { ScrollReveal } from "./ui/scroll-reveal";
-import { Mail, Linkedin, MapPin, Send } from "lucide-react";
-import { Button } from "./ui/button";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import { Section } from "@/src/components/Section";
+import { SectionHeader } from "./sections/section-header";
 
 export function ContactFormSection() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  // Form submission handler
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    
+    setSubmitting(true);
+    setError(null);
+
     const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get('name') as string,
-      email: formData.get('email') as string,
-      subject: formData.get('subject') as string,
-      message: formData.get('message') as string,
+    const payload = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      subject: formData.get("subject") as string,
+      message: formData.get("message") as string,
     };
 
-    // Validate fields
-    if (!data.name || !data.email || !data.subject || !data.message) {
-      alert('Please fill in all fields');
-      setIsSubmitting(false);
+    if (!payload.name || !payload.email || !payload.subject || !payload.message) {
+      setError("Every field is required.");
+      setSubmitting(false);
       return;
     }
 
     try {
-      // Send email using API
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       });
-
-      if (response.ok) {
-        setIsSuccess(true);
+      if (res.ok) {
+        setSuccess(true);
         (e.target as HTMLFormElement).reset();
       } else {
-        const error = await response.json();
-        alert(error.error || 'Failed to send message');
+        const data = await res.json();
+        setError(data.error ?? "Delivery failed. Try email directly.");
       }
-    } catch (error) {
-      console.error('Error sending message:', error);
-      alert('An error occurred while sending your message');
+    } catch {
+      setError("Transport error. Reach out via email.");
     } finally {
-      setIsSubmitting(false);
+      setSubmitting(false);
     }
   };
 
   return (
-    <div className="py-20 bg-muted/50">
-      <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-        <div className="max-w-6xl mx-auto">
-          <ScrollReveal direction="up" delay={0.2}>
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">
-                Get In Touch
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Have a question or want to work together? I'd love to hear from you. 
-                Send me a message and I'll respond as soon as possible.
-              </p>
-            </div>
-          </ScrollReveal>
+    <Section id="contact" className="!min-h-0">
+      <div className="lab-container w-full">
+        <SectionHeader
+          index="05"
+          kicker="Correspondence"
+          title={
+            <>
+              Send a note. <em>I read everything.</em>
+            </>
+          }
+          lede="Currently accepting AI engineering consulting and collaboration requests. Replies within 48h on weekdays from Istanbul."
+        />
 
-          <div className="grid gap-12 lg:grid-cols-2 items-start">
-            {/* Contact Information */}
-            <ScrollReveal direction="left" delay={0.3}>
-              <div className="space-y-8">
-                <div>
-                  <h3 className="text-2xl font-semibold mb-6">Let's Connect</h3>
-                  <div className="space-y-4">
-                    <a 
-                      href="mailto:kizilbaha26@gmail.com"
-                      className="flex items-center gap-3 p-4 rounded-lg border bg-card hover:bg-accent transition-colors"
-                    >
-                      <div className="bg-primary/10 p-2 rounded-full">
-                        <Mail className="h-5 w-5 text-primary" />
-                      </div>
-                      <div>
-                        <div className="font-medium">Email</div>
-                        <div className="text-sm text-muted-foreground">kizilbaha26@gmail.com</div>
-                      </div>
-                    </a>
-                    
-                    <a 
-                      href="https://linkedin.com/in/bahakizil" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-4 rounded-lg border bg-card hover:bg-accent transition-colors"
-                    >
-                      <div className="bg-blue-600/10 p-2 rounded-full">
-                        <Linkedin className="h-5 w-5 text-blue-600" />
-                      </div>
-                      <div>
-                        <div className="font-medium">LinkedIn</div>
-                        <div className="text-sm text-muted-foreground">Connect with me professionally</div>
-                      </div>
-                    </a>
-                    
-                    <div className="flex items-center gap-3 p-4 rounded-lg border bg-card">
-                      <div className="bg-green-600/10 p-2 rounded-full">
-                        <MapPin className="h-5 w-5 text-green-600" />
-                      </div>
-                      <div>
-                        <div className="font-medium">Location</div>
-                        <div className="text-sm text-muted-foreground">Istanbul, Turkey</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-16">
+          {/* Contact metadata */}
+          <aside className="md:col-span-4 flex flex-col gap-8">
+            <dl className="space-y-5">
+              <div>
+                <dt className="meta mb-1">Direct</dt>
+                <dd>
+                  <a
+                    href="mailto:kizilbaha26@gmail.com"
+                    className="display-md leading-none link-underline"
+                  >
+                    kizilbaha26@gmail.com
+                  </a>
+                </dd>
               </div>
-            </ScrollReveal>
+              <div>
+                <dt className="meta mb-1">Social</dt>
+                <dd className="flex flex-col gap-1 text-sm">
+                  <a
+                    href="https://linkedin.com/in/bahakizil"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-underline"
+                  >
+                    linkedin.com/in/bahakizil
+                  </a>
+                  <a
+                    href="https://github.com/bahakizil"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-underline"
+                  >
+                    github.com/bahakizil
+                  </a>
+                  <a
+                    href="https://medium.com/@bahakizil"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-underline"
+                  >
+                    medium.com/@bahakizil
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt className="meta mb-1">Station</dt>
+                <dd className="text-sm leading-relaxed">
+                  Beşiktaş · Istanbul · Türkiye
+                  <br />
+                  41.01°N · 28.97°E · UTC+3
+                </dd>
+              </div>
+              <div>
+                <dt className="meta mb-1">Availability</dt>
+                <dd className="text-sm leading-relaxed flex items-center gap-2">
+                  <span className="dot-live" />
+                  taking requests for 2026 engagements
+                </dd>
+              </div>
+            </dl>
+          </aside>
 
-            {/* Contact Form */}
-            <ScrollReveal direction="right" delay={0.4}>
-              <div className="bg-card p-8 rounded-lg border shadow-sm">
-                {isSuccess ? (
-                  <div className="text-center py-8">
-                    <div className="bg-green-100 dark:bg-green-900/20 p-6 rounded-lg mb-6">
-                      <div className="text-green-600 dark:text-green-400 text-4xl mb-4">✓</div>
-                      <h3 className="text-xl font-semibold text-green-800 dark:text-green-300 mb-2">
-                        Message Sent Successfully!
-                      </h3>
-                      <p className="text-green-600 dark:text-green-400">
-                        Thank you for your message. I'll get back to you soon!
-                      </p>
-                    </div>
-                    <Button 
-                      onClick={() => setIsSuccess(false)}
-                      variant="outline"
-                    >
-                      Send Another Message
-                    </Button>
+          {/* Form */}
+          <div className="md:col-span-8 border border-ink/90 bg-paper">
+            {success ? (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="p-8 md:p-12"
+              >
+                <div className="meta mb-6">◈ Transmission received</div>
+                <h3 className="display-lg mb-4">
+                  Thanks — I&apos;ll be in touch.
+                </h3>
+                <p className="text-mute mb-8 max-w-md">
+                  Your note is on its way to my inbox. Expect a reply within
+                  48 hours (Istanbul time, excluding weekends).
+                </p>
+                <button
+                  onClick={() => setSuccess(false)}
+                  className="font-mono text-xs tracking-widest uppercase link-underline"
+                >
+                  send another →
+                </button>
+              </motion.div>
+            ) : (
+              <form
+                onSubmit={handleSubmit}
+                className="divide-y divide-rule text-ink"
+              >
+                <label className="grid grid-cols-[110px_1fr] items-baseline gap-4 px-5 py-4">
+                  <span className="meta-strong">Name</span>
+                  <input
+                    name="name"
+                    required
+                    className="bg-transparent border-none outline-none focus:outline-none focus:ring-0 text-base placeholder:text-mute/70"
+                    placeholder="Who&#x2019;s writing?"
+                  />
+                </label>
+                <label className="grid grid-cols-[110px_1fr] items-baseline gap-4 px-5 py-4">
+                  <span className="meta-strong">Email</span>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    className="bg-transparent border-none outline-none focus:outline-none focus:ring-0 text-base placeholder:text-mute/70"
+                    placeholder="your@domain.com"
+                  />
+                </label>
+                <label className="grid grid-cols-[110px_1fr] items-baseline gap-4 px-5 py-4">
+                  <span className="meta-strong">Subject</span>
+                  <input
+                    name="subject"
+                    required
+                    className="bg-transparent border-none outline-none focus:outline-none focus:ring-0 text-base placeholder:text-mute/70"
+                    placeholder="What&#x2019;s the premise?"
+                  />
+                </label>
+                <label className="grid grid-cols-[110px_1fr] items-baseline gap-4 px-5 py-4">
+                  <span className="meta-strong pt-2">Message</span>
+                  <textarea
+                    name="message"
+                    required
+                    rows={6}
+                    className="bg-transparent border-none outline-none focus:outline-none focus:ring-0 text-base placeholder:text-mute/70 resize-none"
+                    placeholder="Tell me the story — problem, constraints, timeline."
+                  />
+                </label>
+
+                {error && (
+                  <div className="px-5 py-3 text-oxide font-mono text-[0.7rem] tracking-widest uppercase">
+                    ! {error}
                   </div>
-                ) : (
-                  <>
-                    <h3 className="text-xl font-semibold mb-6">Send a Message</h3>
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                      <div className="grid gap-4 sm:grid-cols-2">
-                        <div>
-                          <label htmlFor="name" className="block text-sm font-medium mb-2">
-                            Name *
-                          </label>
-                          <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            required
-                            className="w-full px-3 py-2 border border-input bg-background rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                            placeholder="Your name"
-                          />
-                        </div>
-                        <div>
-                          <label htmlFor="email" className="block text-sm font-medium mb-2">
-                            Email *
-                          </label>
-                          <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            required
-                            className="w-full px-3 py-2 border border-input bg-background rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                            placeholder="your.email@example.com"
-                          />
-                        </div>
-                      </div>
-                      
-                      <div>
-                        <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                          Subject *
-                        </label>
-                        <input
-                          type="text"
-                          id="subject"
-                          name="subject"
-                          required
-                          className="w-full px-3 py-2 border border-input bg-background rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                          placeholder="What's this about?"
-                        />
-                      </div>
-                      
-                      <div>
-                        <label htmlFor="message" className="block text-sm font-medium mb-2">
-                          Message *
-                        </label>
-                        <textarea
-                          id="message"
-                          name="message"
-                          required
-                          rows={6}
-                          className="w-full px-3 py-2 border border-input bg-background rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent resize-vertical"
-                          placeholder="Your message..."
-                        />
-                      </div>
-                      
-                      <Button 
-                        type="submit" 
-                        disabled={isSubmitting}
-                        className="w-full"
-                        size="lg"
-                      >
-                        {isSubmitting ? (
-                          <>
-                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                            Sending...
-                          </>
-                        ) : (
-                          <>
-                            <Send className="h-4 w-4 mr-2" />
-                            Send Message
-                          </>
-                        )}
-                      </Button>
-                    </form>
-                  </>
                 )}
-              </div>
-            </ScrollReveal>
+
+                <div className="flex items-center justify-between px-5 py-4">
+                  <span className="meta">
+                    powered by resend · free-tier friendly
+                  </span>
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="inline-flex items-center gap-2 px-5 py-3 border border-ink bg-ink text-paper hover:bg-lime hover:text-ink transition-colors font-mono text-xs tracking-widest uppercase disabled:opacity-60"
+                  >
+                    {submitting ? "transmitting…" : "send"}
+                    <ArrowUpRight className="h-3.5 w-3.5" />
+                  </button>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       </div>
-    </div>
+    </Section>
   );
-} 
+}

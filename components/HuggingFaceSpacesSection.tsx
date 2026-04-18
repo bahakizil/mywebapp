@@ -1,13 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, ExternalLink, Heart, Star, TrendingUp, Zap, Filter } from "lucide-react";
-import { GsapScrollAnimation } from "@/src/components/GsapScrollAnimation";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Heart } from "lucide-react";
+import { Section } from "@/src/components/Section";
+import { SectionHeader } from "./sections/section-header";
 
 interface HuggingFaceSpace {
   id: string;
@@ -16,278 +13,136 @@ interface HuggingFaceSpace {
   author: string;
   category: string;
   likes: number;
-  trending_score: number;
   url: string;
-  relevance?: number;
-}
-
-interface ApiResponse {
-  spaces: HuggingFaceSpace[];
-  total: number;
-  categories: string[];
 }
 
 export default function HuggingFaceSpacesSection() {
   const [spaces, setSpaces] = useState<HuggingFaceSpace[]>([]);
   const [loading, setLoading] = useState(true);
-  const [searchLoading, setSearchLoading] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [categories, setCategories] = useState<string[]>([]);
 
-  // Fetch initial data
   useEffect(() => {
-    fetchSpaces();
+    let cancelled = false;
+    async function load() {
+      try {
+        const res = await fetch("/api/huggingface");
+        const data = await res.json();
+        if (!cancelled && Array.isArray(data.spaces)) {
+          setSpaces(data.spaces);
+        }
+      } catch {
+        // ignore
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
+    load();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  const fetchSpaces = async (query?: string, category?: string) => {
-    const loadingState = query || category ? setSearchLoading : setLoading;
-    loadingState(true);
-    
-    try {
-      const params = new URLSearchParams();
-      if (query) params.append('query', query);
-      if (category && category !== 'all') params.append('category', category);
-      
-      const response = await fetch(`/api/huggingface?${params.toString()}`);
-      const data: ApiResponse = await response.json();
-      
-      setSpaces(data.spaces);
-      setCategories(data.categories);
-    } catch (error) {
-      console.error("Failed to fetch spaces:", error);
-    } finally {
-      loadingState(false);
-    }
-  };
-
-  const handleSearch = async () => {
-    if (!searchQuery.trim() && selectedCategory === 'all') {
-      await fetchSpaces();
-      return;
-    }
-    await fetchSpaces(searchQuery, selectedCategory);
-  };
-
-  const handleCategoryChange = async (category: string) => {
-    setSelectedCategory(category);
-    await fetchSpaces(searchQuery, category);
-  };
-
-  const getCategoryIcon = (category: string) => {
-    switch (category.toLowerCase()) {
-      case 'image processing':
-      case 'image generation':
-        return "🖼️";
-      case 'text generation':
-      case 'text analysis':
-        return "📝";
-      case 'object detection':
-        return "🎯";
-      case 'research':
-        return "🔬";
-      case 'video generation':
-        return "🎬";
-      case 'machine learning':
-        return "🤖";
-      default:
-        return "⚡";
-    }
-  };
-
-  const getCategoryColor = (category: string) => {
-    switch (category.toLowerCase()) {
-      case 'image processing':
-      case 'image generation':
-        return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300";
-      case 'text generation':
-      case 'text analysis':
-        return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300";
-      case 'object detection':
-        return "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300";
-      case 'research':
-        return "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300";
-      case 'video generation':
-        return "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300";
-      case 'machine learning':
-        return "bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300";
-      default:
-        return "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300";
-    }
-  };
+  const totalLikes = spaces.reduce((s, x) => s + x.likes, 0);
 
   return (
-    <div className="py-20">
-      <div className="container mx-auto px-4 md:px-6 max-w-7xl">
-        
-        {/* Header */}
-        <GsapScrollAnimation animation="fadeIn" className="text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">
-            🤗 Hugging Face Spaces
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Discover and explore amazing AI applications and machine learning demos built by the community
-          </p>
-        </GsapScrollAnimation>
+    <Section id="huggingface" className="!min-h-0">
+      <div className="lab-container w-full">
+        <SectionHeader
+          index="04"
+          kicker="Apparatus"
+          title={
+            <>
+              Public demos on <em className="lime-underline">Hugging Face</em>{" "}
+              Spaces.
+            </>
+          }
+          lede="Live apparatus: detection models, transcript tools, experimental agents — hosted and runnable on huggingface.co. Fed straight from the HF public API."
+          count={spaces.length}
+        />
 
-        {/* Search and Filters */}
-        <div className="max-w-4xl mx-auto mb-12">
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-              <Input
-                placeholder="Search spaces by name, description, author, or category..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-                className="pl-10"
-              />
+        {/* Stats row */}
+        <div className="grid grid-cols-2 md:grid-cols-4 border-t border-b border-ink/90 divide-x divide-rule mb-10">
+          {[
+            { k: "spaces live", v: loading ? "—" : spaces.length },
+            { k: "cumulative ♡", v: loading ? "—" : totalLikes },
+            {
+              k: "categories",
+              v: loading
+                ? "—"
+                : new Set(spaces.map((s) => s.category)).size,
+            },
+            { k: "runtime", v: "HF · Gradio" },
+          ].map((s) => (
+            <div
+              key={s.k}
+              className="px-4 py-5 md:px-6 md:py-6 first:pl-0 last:pr-0"
+            >
+              <div className="display-md leading-none tabular-nums">{s.v}</div>
+              <div className="meta mt-2">{s.k}</div>
             </div>
-            
-            <div className="flex gap-2">
-              <Select value={selectedCategory} onValueChange={handleCategoryChange}>
-                <SelectTrigger className="w-40">
-                  <Filter className="h-4 w-4 mr-2" />
-                  <SelectValue placeholder="Category" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Categories</SelectItem>
-                  {categories.map((category) => (
-                    <SelectItem key={category} value={category}>
-                      {getCategoryIcon(category)} {category}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              
-              <Button onClick={handleSearch} disabled={searchLoading}>
-                {searchLoading ? (
-                  <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-                ) : (
-                  <Search className="h-4 w-4" />
-                )}
-              </Button>
-            </div>
-          </div>
+          ))}
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-4xl mx-auto">
-          <Card className="text-center">
-            <CardContent className="pt-6">
-              <Zap className="h-8 w-8 mx-auto mb-2 text-primary" />
-              <div className="text-2xl font-bold">{spaces.length}</div>
-              <p className="text-sm text-muted-foreground">AI Spaces</p>
-            </CardContent>
-          </Card>
-          <Card className="text-center">
-            <CardContent className="pt-6">
-              <Heart className="h-8 w-8 mx-auto mb-2 text-red-500" />
-              <div className="text-2xl font-bold">{spaces.reduce((sum, s) => sum + s.likes, 0)}</div>
-              <p className="text-sm text-muted-foreground">Total Likes</p>
-            </CardContent>
-          </Card>
-          <Card className="text-center">
-            <CardContent className="pt-6">
-              <TrendingUp className="h-8 w-8 mx-auto mb-2 text-green-500" />
-              <div className="text-2xl font-bold">{spaces.filter(s => s.trending_score > 0).length}</div>
-              <p className="text-sm text-muted-foreground">Trending</p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Loading State */}
-        {loading && (
-          <div className="text-center py-12">
-            <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-            <p className="text-muted-foreground">Loading Hugging Face Spaces...</p>
-          </div>
-        )}
-
-        {/* Spaces Grid */}
-        {!loading && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto justify-items-center">
-            {spaces.slice(0, 6).map((space) => (
-              <Card key={space.id} className="group hover:shadow-xl hover:shadow-primary/10 hover:border-primary/50 transition-all duration-300 hover:scale-[1.02] w-full max-w-md">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-2xl">{getCategoryIcon(space.category)}</span>
-                      <Badge className={getCategoryColor(space.category)}>
-                        {space.category}
-                      </Badge>
-                    </div>
-                    {space.trending_score > 0 && (
-                      <Badge variant="outline" className="border-green-500 text-green-600">
-                        <TrendingUp className="h-3 w-3 mr-1" />
-                        Trending
-                      </Badge>
-                    )}
-                  </div>
-                  <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                    {space.title}
-                  </CardTitle>
-                  <CardDescription className="text-sm">
-                    by <span className="font-medium text-primary">@{space.author}</span>
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-4 line-clamp-3">
-                    {space.description}
-                  </p>
-                  
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <Heart className="h-4 w-4 text-red-500" />
-                        <span>{space.likes}</span>
-                      </div>
-                      {space.relevance && (
-                        <div className="flex items-center gap-1">
-                          <Star className="h-4 w-4 text-yellow-500" />
-                          <span>{space.relevance.toFixed(1)}%</span>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  <Button asChild className="w-full group">
-                    <a href={space.url} target="_blank" rel="noopener noreferrer">
-                      Try Space
-                      <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </a>
-                  </Button>
-                </CardContent>
-              </Card>
+        {loading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-ink/90 border border-ink/90">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="bg-paper p-5 animate-pulse">
+                <div className="h-4 bg-rule w-1/4 mb-4" />
+                <div className="h-6 bg-rule w-2/3 mb-3" />
+                <div className="h-4 bg-rule w-full mb-2" />
+                <div className="h-4 bg-rule w-3/4" />
+              </div>
             ))}
           </div>
-        )}
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-ink/90 border border-ink/90">
+            {spaces.slice(0, 6).map((space, i) => {
+              const id = `S-${String(i + 1).padStart(2, "0")}`;
+              return (
+                <motion.a
+                  key={space.id}
+                  href={space.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 18 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{
+                    duration: 0.6,
+                    delay: i * 0.06,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className="invert-card group bg-paper text-ink p-5 md:p-6 flex flex-col min-h-[220px]"
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="meta-strong">[{id}]</span>
+                    <span className="meta">{space.category}</span>
+                  </div>
 
-        {/* Empty State */}
-        {!loading && spaces.length === 0 && (
-          <div className="text-center py-12">
-            <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-xl font-semibold mb-2">No spaces found</h3>
-            <p className="text-muted-foreground mb-4">
-              {searchQuery || selectedCategory !== 'all' 
-                ? "Try adjusting your search or filters" 
-                : "Unable to load spaces at the moment"}
-            </p>
-            {(searchQuery || selectedCategory !== 'all') && (
-              <Button 
-                variant="outline" 
-                onClick={() => {
-                  setSearchQuery("");
-                  setSelectedCategory("all");
-                  fetchSpaces();
-                }}
-              >
-                Clear Filters
-              </Button>
-            )}
+                  <h3 className="display-md mb-3 line-clamp-2 capitalize">
+                    {space.title}
+                  </h3>
+
+                  <p className="text-sm leading-relaxed line-clamp-3 mb-4">
+                    {space.description}
+                  </p>
+
+                  <div className="mt-auto pt-4 border-t border-current flex items-center justify-between font-mono text-[0.62rem] tracking-widest uppercase">
+                    <span className="flex items-center gap-3">
+                      <span className="flex items-center gap-1">
+                        <Heart className="h-3 w-3" /> {space.likes}
+                      </span>
+                      <span>@{space.author}</span>
+                    </span>
+                    <span className="card-accent inline-flex items-center gap-1 opacity-0 translate-x-[-4px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
+                      launch <ArrowUpRight className="h-3 w-3" />
+                    </span>
+                  </div>
+                </motion.a>
+              );
+            })}
           </div>
         )}
       </div>
-    </div>
+    </Section>
   );
-} 
+}

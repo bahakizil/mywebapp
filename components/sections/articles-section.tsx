@@ -1,131 +1,160 @@
 "use client";
 
 import Image from "next/image";
-import { BookOpen, ExternalLink, Eye } from "lucide-react";
-import type { MediumArticle } from "@/types/portfolio";
-import { Skeleton } from "@/components/ui/skeleton";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { Section } from "@/src/components/Section";
-import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { SectionHeader } from "./section-header";
+import type { MediumArticle } from "@/types/portfolio";
+
+function formatDate(value?: string) {
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.valueOf())) return "";
+  return date
+    .toLocaleDateString("en-GB", {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+    })
+    .toUpperCase();
+}
+
+function readTime(description: string) {
+  const words = description?.split(/\s+/).length ?? 0;
+  return Math.max(2, Math.round(words / 180));
+}
+
+function ArticleRow({
+  article,
+  index,
+}: {
+  article: MediumArticle;
+  index: number;
+}) {
+  const id = `A-${String(index + 1).padStart(2, "0")}`;
+  const thumbnail = article.thumbnail ?? article.image_url;
+  const published = formatDate(article.publishedDate ?? article.pubDate);
+
+  return (
+    <motion.a
+      href={article.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.25 }}
+      transition={{
+        duration: 0.6,
+        delay: index * 0.05,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      className="group grid grid-cols-12 gap-6 items-start py-8 border-b border-rule hover:border-ink transition-colors"
+    >
+      <div className="col-span-12 md:col-span-1 flex md:block items-baseline justify-between gap-2">
+        <span className="meta-strong">[{id}]</span>
+        <span className="meta md:block md:mt-2">
+          {readTime(article.description)} min
+        </span>
+      </div>
+
+      <div className="col-span-12 md:col-span-6 space-y-3">
+        <h3 className="display-md transition-transform duration-500 ease-smooth-out group-hover:-translate-x-1">
+          {article.title}
+        </h3>
+        {article.description && (
+          <p className="text-sm md:text-base text-mute leading-relaxed max-w-xl line-clamp-2">
+            {article.description}
+          </p>
+        )}
+        {(article.categories?.length ?? 0) > 0 && (
+          <ul className="flex flex-wrap gap-x-3 gap-y-1 pt-1">
+            {article.categories.slice(0, 4).map((c) => (
+              <li
+                key={c}
+                className="font-mono text-[0.62rem] tracking-widest uppercase text-mute"
+              >
+                ◈ {c}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      <div className="col-span-8 md:col-span-3">
+        {thumbnail && (
+          <div className="relative aspect-[4/3] w-full overflow-hidden border border-rule bg-card">
+            <Image
+              src={thumbnail}
+              alt={article.title}
+              fill
+              sizes="(max-width: 768px) 60vw, 20vw"
+              className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+              unoptimized
+            />
+          </div>
+        )}
+      </div>
+
+      <div className="col-span-4 md:col-span-2 flex flex-col items-end justify-between h-full text-right">
+        <span className="meta">{published}</span>
+        <span className="mt-6 md:mt-0 inline-flex items-center gap-1 meta-strong">
+          read <ArrowUpRight className="h-3 w-3" />
+        </span>
+      </div>
+    </motion.a>
+  );
+}
 
 interface ArticlesSectionProps {
   articles: MediumArticle[];
   isLoading: boolean;
 }
 
-function formatDate(value?: string) {
-  if (!value) return "";
-  const date = new Date(value);
-  if (Number.isNaN(date.valueOf())) return "";
-  return date.toLocaleDateString(undefined, {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
-
-function ArticleCard({ article }: { article: MediumArticle }) {
-  const thumbnail = article.thumbnail || article.image_url;
-  const published = article.publishedDate || article.pubDate;
-
-  return (
-    <a
-      href={article.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group flex flex-col overflow-hidden rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-green-500/50 hover:shadow-xl hover:shadow-green-500/10"
-    >
-      {thumbnail && (
-        <div className="relative aspect-video w-full overflow-hidden bg-muted">
-          <Image
-            src={thumbnail}
-            alt={article.title}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-            unoptimized
-          />
-        </div>
-      )}
-
-      <div className="flex flex-1 flex-col gap-3 p-5">
-        <div className="flex items-center justify-between text-xs text-muted-foreground">
-          <span>Medium</span>
-          {published && <span>{formatDate(published)}</span>}
-        </div>
-        <h3 className="font-semibold text-lg line-clamp-2 group-hover:text-green-600 transition-colors">
-          {article.title}
-        </h3>
-        {article.description && (
-          <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">
-            {article.description}
-          </p>
-        )}
-
-        <div className="mt-auto flex items-center justify-between border-t pt-3 text-xs text-muted-foreground">
-          <div className="flex items-center gap-4">
-            {article.claps > 0 && <span>👏 {article.claps.toLocaleString()}</span>}
-            {article.reads && (
-              <span className="flex items-center gap-1">
-                <BookOpen className="h-3.5 w-3.5" /> {article.reads.toLocaleString()}
-              </span>
-            )}
-            {article.views && (
-              <span className="flex items-center gap-1">
-                <Eye className="h-3.5 w-3.5" /> {article.views.toLocaleString()}
-              </span>
-            )}
-          </div>
-          <span className="flex items-center gap-1 text-green-600 opacity-0 transition-opacity group-hover:opacity-100">
-            Read <ExternalLink className="h-3 w-3" />
-          </span>
-        </div>
-      </div>
-    </a>
-  );
-}
-
-function ArticleSkeleton() {
-  return (
-    <div className="flex flex-col overflow-hidden rounded-xl border bg-card">
-      <Skeleton className="aspect-video w-full" />
-      <div className="space-y-3 p-5">
-        <Skeleton className="h-4 w-24" />
-        <Skeleton className="h-5 w-5/6" />
-        <Skeleton className="h-4 w-full" />
-        <Skeleton className="h-4 w-4/5" />
-      </div>
-    </div>
-  );
-}
-
 export function ArticlesSection({ articles, isLoading }: ArticlesSectionProps) {
   return (
-    <Section id="blog">
-      <div className="py-16 md:py-20 lg:py-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <ScrollReveal direction="down" delay={0.3}>
-            <div className="text-center mb-12 md:mb-16">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl leading-tight">
-                Latest Articles {articles.length > 0 && `(${articles.length})`}
-              </h2>
-              <p className="mt-4 text-muted-foreground max-w-3xl mx-auto">
-                My thoughts and insights on AI engineering, computer vision, and related topics.
-              </p>
-            </div>
-          </ScrollReveal>
+    <Section id="blog" className="!min-h-0">
+      <div className="lab-container w-full">
+        <SectionHeader
+          index="02"
+          kicker="Writing"
+          title={
+            <>
+              Notes I&apos;ve published on the way — <em>Medium dispatches</em>.
+            </>
+          }
+          lede="Fresh from medium.com/@bahakizil via RSS. Traffic YOLO, fire & smoke detectors, and the practical side of agent engineering."
+          count={articles.length}
+        />
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-            {isLoading
-              ? Array.from({ length: 6 }).map((_, i) => <ArticleSkeleton key={i} />)
-              : articles.slice(0, 6).map((article) => (
-                  <ArticleCard key={article.link} article={article} />
+        <div className="border-t border-ink/90">
+          {isLoading
+            ? Array.from({ length: 3 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="grid grid-cols-12 gap-6 py-8 border-b border-rule animate-pulse"
+                >
+                  <div className="col-span-1 h-4 bg-rule" />
+                  <div className="col-span-6 space-y-2">
+                    <div className="h-8 bg-rule/60 w-3/4" />
+                    <div className="h-4 bg-rule/40 w-full" />
+                  </div>
+                  <div className="col-span-3 aspect-[4/3] bg-rule" />
+                  <div className="col-span-2 h-4 bg-rule" />
+                </div>
+              ))
+            : articles
+                .slice(0, 6)
+                .map((article, i) => (
+                  <ArticleRow key={article.link} article={article} index={i} />
                 ))}
-          </div>
-
-          {!isLoading && articles.length === 0 && (
-            <p className="text-center py-12 text-muted-foreground">No articles found.</p>
-          )}
         </div>
+
+        {!isLoading && articles.length === 0 && (
+          <p className="py-12 text-center text-mute">
+            No articles indexed yet.
+          </p>
+        )}
       </div>
     </Section>
   );

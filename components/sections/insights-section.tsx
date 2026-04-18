@@ -1,131 +1,146 @@
 "use client";
 
 import Image from "next/image";
-import { ExternalLink, Heart, Linkedin, MessagesSquare, Share2 } from "lucide-react";
-import type { LinkedInPost } from "@/types/portfolio";
-import { Skeleton } from "@/components/ui/skeleton";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { Section } from "@/src/components/Section";
-import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { SectionHeader } from "./section-header";
+import type { LinkedInPost } from "@/types/portfolio";
+
+function formatDate(value?: string) {
+  if (!value) return "recently";
+  const date = new Date(value);
+  if (Number.isNaN(date.valueOf())) return "recently";
+  return date
+    .toLocaleDateString("en-GB", {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+    })
+    .toUpperCase();
+}
+
+function InsightCard({
+  post,
+  index,
+}: {
+  post: LinkedInPost;
+  index: number;
+}) {
+  const id = `I-${String(index + 1).padStart(2, "0")}`;
+  const likes = post.engagement?.likes ?? post.likes ?? 0;
+  const comments = post.engagement?.comments ?? post.comments ?? 0;
+  const shares = post.engagement?.shares ?? post.shares ?? 0;
+  const published = formatDate(post.publishedAt || post.date);
+
+  return (
+    <motion.a
+      href={post.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{
+        duration: 0.6,
+        delay: index * 0.05,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      className="invert-card group flex flex-col justify-between border border-ink/90 bg-paper text-ink p-5 min-h-[280px]"
+    >
+      <div className="flex items-center justify-between mb-4">
+        <span className="meta-strong">[{id}]</span>
+        <span className="meta">{published}</span>
+      </div>
+
+      {post.image_url && (
+        <div className="relative aspect-video w-full overflow-hidden border border-current mb-5">
+          <Image
+            src={post.image_url}
+            alt={post.text?.slice(0, 50) ?? "LinkedIn post"}
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700"
+            unoptimized
+          />
+        </div>
+      )}
+
+      <p className="font-display italic text-xl leading-snug text-balance line-clamp-6 flex-1">
+        <span className="card-accent text-ink">“</span>
+        {(post.text || post.content || "Professional insight shared on LinkedIn.")
+          .replace(/\n/g, " ")
+          .slice(0, 240)}
+        <span className="card-accent text-ink">”</span>
+      </p>
+
+      <div className="mt-6 pt-4 border-t border-current flex items-center justify-between font-mono text-[0.62rem] tracking-widest uppercase">
+        <span className="flex items-center gap-3">
+          <span>♡ {likes}</span>
+          <span>✎ {comments}</span>
+          {shares > 0 && <span>⇉ {shares}</span>}
+        </span>
+        <span className="card-accent inline-flex items-center gap-1 opacity-0 translate-x-[-4px] transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0">
+          read <ArrowUpRight className="h-3 w-3" />
+        </span>
+      </div>
+    </motion.a>
+  );
+}
 
 interface InsightsSectionProps {
   posts: LinkedInPost[];
   isLoading: boolean;
 }
 
-function formatDate(value?: string) {
-  if (!value) return "Recently";
-  const date = new Date(value);
-  if (Number.isNaN(date.valueOf())) return "Recently";
-  return date.toLocaleDateString(undefined, {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
-}
-
-function PostCard({ post }: { post: LinkedInPost }) {
-  const likes = post.engagement?.likes ?? post.likes ?? 0;
-  const comments = post.engagement?.comments ?? post.comments ?? 0;
-  const shares = post.engagement?.shares ?? post.shares ?? 0;
-  const published = post.publishedAt || post.date;
-
-  return (
-    <a
-      href={post.url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group flex flex-col overflow-hidden rounded-xl border bg-card text-card-foreground shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10"
-    >
-      {post.image_url && (
-        <div className="relative aspect-video w-full overflow-hidden bg-muted">
-          <Image
-            src={post.image_url}
-            alt={post.text?.slice(0, 60) ?? "LinkedIn post"}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-            unoptimized
-          />
-        </div>
-      )}
-
-      <div className="flex flex-1 flex-col gap-3 p-5">
-        <div className="flex items-center justify-between text-xs text-muted-foreground">
-          <span className="flex items-center gap-1.5 text-blue-600">
-            <Linkedin className="h-3.5 w-3.5" /> LinkedIn
-          </span>
-          <span>{formatDate(published)}</span>
-        </div>
-
-        <p className="text-sm leading-relaxed text-foreground line-clamp-4">
-          {post.text || post.content || "Professional insight shared on LinkedIn."}
-        </p>
-
-        <div className="mt-auto flex items-center justify-between border-t pt-3 text-xs text-muted-foreground">
-          <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1">
-              <Heart className="h-3.5 w-3.5" /> {likes}
-            </span>
-            <span className="flex items-center gap-1">
-              <MessagesSquare className="h-3.5 w-3.5" /> {comments}
-            </span>
-            {shares > 0 && (
-              <span className="flex items-center gap-1">
-                <Share2 className="h-3.5 w-3.5" /> {shares}
-              </span>
-            )}
-          </div>
-          <span className="flex items-center gap-1 text-blue-600 opacity-0 transition-opacity group-hover:opacity-100">
-            View <ExternalLink className="h-3 w-3" />
-          </span>
-        </div>
-      </div>
-    </a>
-  );
-}
-
-function PostSkeleton() {
-  return (
-    <div className="flex flex-col overflow-hidden rounded-xl border bg-card">
-      <Skeleton className="aspect-video w-full" />
-      <div className="space-y-3 p-5">
-        <Skeleton className="h-4 w-24" />
-        <Skeleton className="h-4 w-full" />
-        <Skeleton className="h-4 w-11/12" />
-        <Skeleton className="h-4 w-4/5" />
-      </div>
-    </div>
-  );
-}
-
 export function InsightsSection({ posts, isLoading }: InsightsSectionProps) {
   return (
-    <Section id="insights">
-      <div className="py-16 md:py-20 lg:py-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-          <ScrollReveal direction="right" delay={0.4}>
-            <div className="text-center mb-12 md:mb-16">
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                Latest Insights {posts.length > 0 && `(${posts.length})`}
-              </h2>
-              <p className="mt-4 text-muted-foreground max-w-3xl mx-auto">
-                Professional insights and thoughts from my LinkedIn posts.
-              </p>
-            </div>
-          </ScrollReveal>
+    <Section id="insights" className="!min-h-0">
+      <div className="lab-container w-full">
+        <SectionHeader
+          index="03"
+          kicker="Broadcast"
+          title={
+            <>
+              Short-form <em>signal</em> — curated from LinkedIn.
+            </>
+          }
+          lede="Dispatches that landed: capstone projects, training experiments, certifications, client-facing wins. Engagement numbers are frozen at the time of posting."
+          count={posts.length}
+        />
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
-            {isLoading
-              ? Array.from({ length: 6 }).map((_, i) => <PostSkeleton key={i} />)
-              : posts.slice(0, 12).map((post, index) => (
-                  <PostCard key={post.id ?? post.url ?? index} post={post} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-ink/90 border border-ink/90">
+          {isLoading
+            ? Array.from({ length: 6 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="bg-paper min-h-[260px] p-5 flex flex-col justify-between animate-pulse"
+                >
+                  <div className="h-4 bg-rule w-1/3" />
+                  <div className="space-y-2">
+                    <div className="h-6 bg-rule w-full" />
+                    <div className="h-6 bg-rule w-11/12" />
+                    <div className="h-6 bg-rule w-3/4" />
+                  </div>
+                  <div className="h-4 bg-rule w-1/2" />
+                </div>
+              ))
+            : posts
+                .slice(0, 6)
+                .map((post, i) => (
+                  <InsightCard
+                    key={post.id ?? post.url ?? i}
+                    post={post}
+                    index={i}
+                  />
                 ))}
-          </div>
-
-          {!isLoading && posts.length === 0 && (
-            <p className="text-center py-12 text-muted-foreground">No insights yet.</p>
-          )}
         </div>
+
+        {!isLoading && posts.length === 0 && (
+          <p className="py-12 text-center text-mute">
+            No insights indexed yet.
+          </p>
+        )}
       </div>
     </Section>
   );
