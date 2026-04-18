@@ -27,9 +27,9 @@ jobs:
       - name: Refresh portfolio data
         env:
           GITHUB_USERNAME: bahakizil
-          MEDIUM_USER_ID: 60a0e4269377
+          MEDIUM_USERNAME: bahakizil
+          HUGGINGFACE_USERNAME: bahakizil
           GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
         run: node scripts/refresh-portfolio.mjs
 
       - name: Commit + push if data changed
