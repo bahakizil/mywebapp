@@ -8,9 +8,13 @@ const CONFIG = {
   // Change this to your production URL after deployment
   PRODUCTION_URL: 'https://bahakizil.vercel.app',
   LOCAL_URL: 'http://localhost:3000',
-  // This token should match the one in your environment variables
-  TOKEN: process.env.DATA_REFRESH_TOKEN || 'baha-portfolio-2024'
+  TOKEN: process.env.DATA_REFRESH_TOKEN
 };
+
+if (!CONFIG.TOKEN) {
+  console.error('❌ DATA_REFRESH_TOKEN env var is not set. Export it before running this script.');
+  process.exit(1);
+}
 
 function makeRequest(url, token) {
   return new Promise((resolve, reject) => {
