@@ -1,23 +1,22 @@
-import { NextResponse } from 'next/server';
-import { getRepos } from '@/lib/github';
+import { NextResponse } from "next/server";
+import { getStaticRepos } from "@/lib/static-data";
 
-export const runtime = 'nodejs';
-export const revalidate = 86400; // 24 hours (daily cache)
+export const runtime = "nodejs";
+export const revalidate = 300;
 
 export async function GET() {
   try {
-    const repos = await getRepos();
-    
+    const repos = getStaticRepos();
     return NextResponse.json(repos, {
       headers: {
-        'Cache-Control': 'public, s-maxage=86400, stale-while-revalidate=43200'
-      }
+        "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600",
+      },
     });
   } catch (error) {
-    console.error('Error in repos API route:', error);
+    const details = error instanceof Error ? error.message : "Unknown error";
     return NextResponse.json(
-      { error: 'Failed to fetch repositories' },
-      { status: 500 }
+      { error: "Failed to fetch repositories", details },
+      { status: 500 },
     );
   }
 }

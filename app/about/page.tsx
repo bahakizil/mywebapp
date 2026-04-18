@@ -3,33 +3,29 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
-import { StaggeredReveal } from "@/components/ui/staggered-reveal";
-import { ParallaxScroll } from "@/components/ui/parallax-scroll";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { 
+import {
   Github, Mail, Download, MapPin, Linkedin, ExternalLink,
-  Brain, Code, Target, Eye, Zap, Camera
+  Brain, Code, Target, Eye, Zap, Camera,
 } from "lucide-react";
-
-interface GitHubRepo {
-  name: string;
-  description: string;
-  stars: number;
-  language: string;
-  url: string;
-  topics?: string[];
-}
+import type { Repository } from "@/types/portfolio";
 
 export default function About() {
-  const [repos, setRepos] = useState<GitHubRepo[]>([]);
+  const [repos, setRepos] = useState<Repository[]>([]);
 
   useEffect(() => {
-    fetch('/api/repos')
-      .then(res => res.json())
-      .then(data => setRepos(data.slice(0, 4)))
-      .catch(console.error);
+    let cancelled = false;
+    fetch("/api/repos")
+      .then((res) => res.json())
+      .then((data: Repository[]) => {
+        if (!cancelled && Array.isArray(data)) setRepos(data.slice(0, 4));
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const skills = [
@@ -189,20 +185,20 @@ export default function About() {
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {repos.map((repo) => (
-                  <div key={repo.name} className="p-4 border rounded-lg hover:bg-muted/50 transition-colors">
+                  <div key={repo.id} className="p-4 border rounded-lg hover:bg-muted/50 transition-colors">
                     <div className="flex items-start justify-between mb-2">
                       <h3 className="font-semibold truncate">{repo.name}</h3>
                       <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                        <span>{repo.stars}</span>
+                        <span>{repo.stargazers_count}</span>
                         <span>⭐</span>
                       </div>
                     </div>
-                    <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{repo.description}</p>
+                    <p className="text-muted-foreground text-sm mb-3 line-clamp-2">{repo.description ?? ""}</p>
                     <div className="flex items-center justify-between">
-                      <Badge variant="outline" className="text-xs">{repo.language}</Badge>
-                      <a 
-                        href={repo.url} 
-                        target="_blank" 
+                      {repo.language && <Badge variant="outline" className="text-xs">{repo.language}</Badge>}
+                      <a
+                        href={repo.html_url}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="text-primary hover:underline text-sm flex items-center gap-1"
                       >
