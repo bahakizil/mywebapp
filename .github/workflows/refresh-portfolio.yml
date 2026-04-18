@@ -1,0 +1,45 @@
+name: Refresh portfolio data
+
+on:
+  schedule:
+    # Run once a day at 04:00 UTC
+    - cron: "0 4 * * *"
+  workflow_dispatch: {}
+
+concurrency:
+  group: refresh-portfolio
+  cancel-in-progress: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Refresh portfolio data
+        env:
+          GITHUB_USERNAME: bahakizil
+          MEDIUM_USER_ID: 60a0e4269377
+          GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RAPIDAPI_KEY: ${{ secrets.RAPIDAPI_KEY }}
+        run: node scripts/refresh-portfolio.mjs
+
+      - name: Commit + push if data changed
+        run: |
+          if git diff --quiet -- data/portfolio-data.json; then
+            echo "No changes to portfolio-data.json"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/portfolio-data.json
+          git commit -m "chore(data): refresh portfolio data"
+          git push
