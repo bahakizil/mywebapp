@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-04-18T12:46:30.081Z",
+  "lastUpdated": "2026-04-18T13:19:47.674Z",
   "repos": [
     {
       "id": 944608309,
@@ -126,6 +126,20 @@
       "topics": [],
       "created_at": "2025-04-17T16:27:55Z",
       "updated_at": "2025-05-28T09:17:53Z"
+    },
+    {
+      "id": 999109700,
+      "name": "mywebapp",
+      "description": null,
+      "html_url": "https://github.com/bahakizil/mywebapp",
+      "homepage": "https://mypage-silk-ten.vercel.app",
+      "language": "TypeScript",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "watchers_count": 0,
+      "topics": [],
+      "created_at": "2025-06-09T18:51:02Z",
+      "updated_at": "2026-04-18T12:53:22Z"
     },
     {
       "id": 828230021,
@@ -257,20 +271,6 @@
       "updated_at": "2025-11-17T14:50:14Z"
     },
     {
-      "id": 999109700,
-      "name": "mywebapp",
-      "description": null,
-      "html_url": "https://github.com/bahakizil/mywebapp",
-      "homepage": "https://mypage-silk-ten.vercel.app",
-      "language": "TypeScript",
-      "stargazers_count": 0,
-      "forks_count": 0,
-      "watchers_count": 0,
-      "topics": [],
-      "created_at": "2025-06-09T18:51:02Z",
-      "updated_at": "2025-08-25T13:09:36Z"
-    },
-    {
       "id": 1013312035,
       "name": "flows",
       "description": null,
@@ -344,251 +344,199 @@
   "articles": [
     {
       "title": "Build an Autonomous Slack AI Assistant in 5 Minutes — Introducing Slack MCP Server",
-      "subtitle": "Turn any Slack workspace into a self‑driving research & productivity engine powered by GPT‑4o, Tavily, and the open MCP protocol.",
-      "link": "https://medium.com/@bahakizil/build-an-autonomous-slack-ai-assistant-in-5-minutes-introducing-slack-mcp-server-6a2443b07529",
-      "publishedDate": "2025-07-04 13:31:23",
-      "description": "Turn any Slack workspace into a self‑driving research & productivity engine powered by GPT‑4o, Tavily, and the open MCP protocol.",
-      "thumbnail": "https://miro.medium.com/1*Zcu_q7IS9m3nPEcwdB_yXA.png",
-      "claps": 0,
-      "reads": 18,
-      "views": 40,
-      "responses": 0,
-      "author": "Baha Kizil",
+      "link": "https://medium.com/@bahakizil/build-an-autonomous-slack-ai-assistant-in-5-minutes-introducing-slack-mcp-server-6a2443b07529?source=rss-60a0e4269377------2",
+      "publishedDate": "2025-07-04T13:31:23.000Z",
+      "description": "Build an Autonomous Slack AI Assistant in 5 Minutes — Introducing Slack MCP Server Turn any Slack workspace into a self‑driving research & productivity engine powered by GPT‑4o, Tavily, and the open MCP protocol. 1 · Why Another Slack Bot? Slack is where…",
+      "thumbnail": "https://cdn-images-1.medium.com/max/1024/1*Zcu_q7IS9m3nPEcwdB_yXA.png",
+      "image_url": "https://cdn-images-1.medium.com/max/1024/1*Zcu_q7IS9m3nPEcwdB_yXA.png",
       "categories": [
-        "mcp-server",
         "agents",
-        "claude",
+        "mcp-server",
         "model-context-protocol",
+        "claude",
         "llm"
       ],
-      "word_count": 896,
-      "reading_time": 4,
-      "lang": "en"
+      "claps": 0
     },
     {
       "title": "AI Supported Smart Growbox : Building an Edge-to-Cloud AI System That Sees, Thinks and Grows Your…",
-      "subtitle": "Overview",
-      "link": "https://medium.com/@bahakizil/ai-supported-smart-growbox-building-an-edge-to-cloud-ai-system-that-sees-thinks-and-grows-your-766d9d555770",
-      "publishedDate": "2025-06-09 17:03:32",
-      "description": "Overview",
-      "thumbnail": "https://miro.medium.com/1*r16FU6qszHevl-OQnfrkkw.jpeg",
-      "claps": 0,
-      "reads": 1,
-      "views": 14,
-      "responses": 0,
-      "author": "Baha Kizil",
+      "link": "https://medium.com/@bahakizil/ai-supported-smart-growbox-building-an-edge-to-cloud-ai-system-that-sees-thinks-and-grows-your-766d9d555770?source=rss-60a0e4269377------2",
+      "publishedDate": "2025-06-09T17:03:32.000Z",
+      "description": "AI Supported Smart Growbox : Building an Edge-to-Cloud AI System That Sees , Thinks and Grows Your Plants 🌱 Overview Smart Growbox is a capstone project that unites sustainability goals with modern edge-AI engineering . The system: Monitors temperature, soil…",
+      "thumbnail": "https://cdn-images-1.medium.com/max/1024/1*r16FU6qszHevl-OQnfrkkw.jpeg",
+      "image_url": "https://cdn-images-1.medium.com/max/1024/1*r16FU6qszHevl-OQnfrkkw.jpeg",
       "categories": [
+        "plants",
+        "api",
         "agriculture",
         "smart-agriculture",
-        "api",
-        "plants",
         "computer-vision"
       ],
-      "word_count": 771,
-      "reading_time": 4,
-      "lang": "en"
+      "claps": 0
     },
     {
       "title": "Smart Traffic Analysis With Yolo",
-      "subtitle": "Smart Traffic Monitoring: Real-Time CCTV Analysis with YOLOv12N",
-      "link": "https://medium.com/@bahakizil/smart-traffic-analysiswith-yolo-7eef0441ca91",
-      "publishedDate": "2025-03-07 17:04:38",
-      "description": "Smart Traffic Monitoring: Real-Time CCTV Analysis with YOLOv12N",
-      "thumbnail": "https://miro.medium.com/1*LZV6QVhEHgadr8XHVnePyg.png",
-      "claps": 37,
-      "reads": 56,
-      "views": 121,
-      "responses": 0,
-      "author": "Baha Kizil",
+      "link": "https://medium.com/@bahakizil/smart-traffic-analysiswith-yolo-7eef0441ca91?source=rss-60a0e4269377------2",
+      "publishedDate": "2025-03-07T17:04:38.000Z",
+      "description": "Smart Traffic Monitoring: Real-Time CCTV Analysis with YOLOv12N Traffic management and road safety are crucial for modern smart cities. Detecting traffic violations, ensuring road safety, and improving urban transportation require innovative solutions. This…",
+      "thumbnail": "https://cdn-images-1.medium.com/max/747/1*LZV6QVhEHgadr8XHVnePyg.png",
+      "image_url": "https://cdn-images-1.medium.com/max/747/1*LZV6QVhEHgadr8XHVnePyg.png",
       "categories": [
-        "computer-vision",
-        "yolo",
         "opencv",
-        "roboflow"
+        "computer-vision",
+        "roboflow",
+        "yolo"
       ],
-      "word_count": 575,
-      "reading_time": 3,
-      "lang": "en"
+      "claps": 0
     },
     {
       "title": "Threat Detection",
-      "subtitle": "Threat Detection: Real-Time Firearm Detection with YOLOv11n and DeepSeek 1.5B Local Analysis",
-      "link": "https://medium.com/@bahakizil/threat-detection-bde7fff47e06",
-      "publishedDate": "2025-02-21 16:25:23",
-      "description": "Threat Detection: Real-Time Firearm Detection with YOLOv11n and DeepSeek 1.5B Local Analysis",
-      "thumbnail": "https://miro.medium.com/1*ODpUNpv2un5nr1bFK4D4rA.jpeg",
-      "claps": 1,
-      "reads": 36,
-      "views": 83,
-      "responses": 0,
-      "author": "Baha Kizil",
+      "link": "https://medium.com/@bahakizil/threat-detection-bde7fff47e06?source=rss-60a0e4269377------2",
+      "publishedDate": "2025-02-21T16:25:23.000Z",
+      "description": "Threat Detection: Real-Time Firearm Detection with YOLOv11n and DeepSeek 1.5B Local Analysis Ensuring security and real-time video analytics has become a growing necessity in various sectors. DeepSeek Agent takes center stage by combining object detection —…",
+      "thumbnail": "https://cdn-images-1.medium.com/max/1024/1*ODpUNpv2un5nr1bFK4D4rA.jpeg",
+      "image_url": "https://cdn-images-1.medium.com/max/1024/1*ODpUNpv2un5nr1bFK4D4rA.jpeg",
       "categories": [
-        "detection",
-        "computer-vision",
         "deepseek",
+        "agents",
+        "computer-vision",
         "yolo",
-        "agents"
+        "detection"
       ],
-      "word_count": 631,
-      "reading_time": 3,
-      "lang": "en"
+      "claps": 0
     },
     {
       "title": "Kahve Satış Tahmininde Derin Öğrenme: Günlük Satışların Analizi ve Geleceğin Öngörülmesi",
-      "subtitle": "Kahve, dünya genelinde milyonlarca insanın günlük rutinlerinin vazgeçilmez bir parçasıdır. Küresel kahve tüketimi her geçen yıl artarken…",
-      "link": "https://medium.com/@bahakizil/kahve-sat%C4%B1%C5%9F-tahmininde-derin-%C3%B6%C4%9Frenme-g%C3%BCnl%C3%BCk-sat%C4%B1%C5%9Flar%C4%B1n-analizi-ve-gelece%C4%9Fin-%C3%B6ng%C3%B6r%C3%BClmesi-6d575ebb5a4b",
-      "publishedDate": "2024-07-13 18:22:44",
-      "description": "Kahve, dünya genelinde milyonlarca insanın günlük rutinlerinin vazgeçilmez bir parçasıdır. Küresel kahve tüketimi her geçen yıl artarken…",
-      "thumbnail": "https://miro.medium.com/1*tvdh-ZiioF7X0os8S7XPWQ.jpeg",
-      "claps": 0,
-      "reads": 4,
-      "views": 17,
-      "responses": 0,
-      "author": "Baha Kizil",
+      "link": "https://medium.com/@bahakizil/kahve-sat%C4%B1%C5%9F-tahmininde-derin-%C3%B6%C4%9Frenme-g%C3%BCnl%C3%BCk-sat%C4%B1%C5%9Flar%C4%B1n-analizi-ve-gelece%C4%9Fin-%C3%B6ng%C3%B6r%C3%BClmesi-6d575ebb5a4b?source=rss-60a0e4269377------2",
+      "publishedDate": "2024-07-13T18:22:44.000Z",
+      "description": "Kahve, dünya genelinde milyonlarca insanın günlük rutinlerinin vazgeçilmez bir parçasıdır. Küresel kahve tüketimi her geçen yıl artarken, kahve dükkanları da müşteri taleplerini karşılamak ve rekabet avantajı sağlamak için yenilikçi yöntemlere başvurmaktadır.…",
+      "thumbnail": "https://cdn-images-1.medium.com/max/1024/1*tvdh-ZiioF7X0os8S7XPWQ.jpeg",
+      "image_url": "https://cdn-images-1.medium.com/max/1024/1*tvdh-ZiioF7X0os8S7XPWQ.jpeg",
       "categories": [
-        "machine-learning",
         "jupyter-notebook",
-        "pytorch",
         "matplotlib",
-        "numpy"
+        "machine-learning",
+        "numpy",
+        "pytorch"
       ],
-      "word_count": 553,
-      "reading_time": 3,
-      "lang": "tr"
+      "claps": 0
     }
   ],
   "linkedinPosts": [
     {
-      "id": "kafein-internship-completion",
-      "text": "𝗜 𝗮𝗺 𝗽𝗹𝗲𝗮𝘀𝗲𝗱 𝘁𝗼 𝘀𝗵𝗮𝗿𝗲 𝘁𝗵𝗮𝘁 𝗜 𝗵𝗮𝘃𝗲 𝘀𝘂𝗰𝗰𝗲𝘀𝘀𝗳𝘂𝗹𝗹𝘆 𝗰𝗼𝗺𝗽𝗹𝗲𝘁𝗲𝗱 𝗺𝘆 𝗔𝗜 𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿 𝗶𝗻𝘁𝗲𝗿𝗻𝘀𝗵𝗶𝗽 𝗮𝘁 Kafein Technology Solutions. During this journey, I had the opportunity to work with modern technologies, improve my technical skills, and contribute to enterprise-scale projects.",
-      "date": "2025-08-22T00:30:33.593Z",
-      "likes": 51,
-      "comments": 2,
-      "shares": 0,
-      "url": "https://www.linkedin.com/in/bahakizil",
-      "image_url": "/images/kafein-internship.jpg",
-      "author": "Baha Kizil"
-    },
-    {
-      "id": "slack-mcp-server",
-      "text": "🚀 𝗜𝗻𝘁𝗿𝗼𝗱𝘂𝗰𝗶𝗻𝗴 𝗦𝗹𝗮𝗰𝗸 𝗠𝗖𝗣 𝗦𝗲𝗿𝘃𝗲𝗿 - 𝗧𝗿𝗮𝗻𝘀𝗳𝗼𝗿𝗺 𝗬𝗼𝘂𝗿 𝗦𝗹𝗮𝗰𝗸 𝗪𝗼𝗿𝗸𝘀𝗽𝗮𝗰𝗲 𝗶𝗻𝘁𝗼 𝗮𝗻 𝗔𝘂𝘁𝗼𝗻𝗼𝗺𝗼𝘂𝘀 𝗣𝗿𝗼𝗱𝘂𝗰𝘁𝗶𝘃𝗶𝘁𝘆 & 𝗥𝗲𝘀𝗲𝗮𝗿𝗰𝗵 𝗘𝗻𝗴𝗶𝗻𝗲! Slack MCP Server powered by GPT-4.1-nano, FastMCP 2.8.0, Tavily & Claude Desktop.",
-      "date": "2025-07-23T07:30:33.593Z",
-      "likes": 22,
-      "comments": 0,
-      "shares": 0,
-      "url": "https://www.linkedin.com/in/bahakizil",
-      "image_url": "/images/slack-mcp-server.jpg",
-      "author": "Baha Kizil"
-    },
-    {
-      "id": "bachelor-degree-completion",
-      "text": "I am happy to share that I have completed my Bachelor's degree in Mechatronics Engineering at Bahçeşehir Üniversitesi! During these intense 4 years, I spent my first 1.5 years working as a student assistant, and the last 2 years doing internships in R&D and IT fields.",
-      "date": "2025-07-23T07:30:33.593Z",
-      "likes": 111,
-      "comments": 12,
-      "shares": 0,
-      "url": "https://www.linkedin.com/in/bahakizil",
-      "image_url": "/images/graduation.jpg",
-      "author": "Baha Kizil"
-    },
-    {
-      "id": "mcp-course-certification",
-      "text": "I'm excited to share that I've earned a new certification: Model Context Protocol (MCP) Course – Hugging Face!",
-      "date": "2025-06-23T07:30:33.593Z",
-      "likes": 37,
+      "id": "7337890647703486465",
+      "text": "🎓 Capstone Project – Smart Growbox: AI-Powered Autonomous Plant Monitoring & Cultivation System. An AI-enhanced cultivation platform designed for indoor and small-scale farming — integrating IoT sensing, edge AI, computer vision and GPT-driven decision intelligence.",
+      "date": "2025-06-09T17:17:41.000Z",
+      "publishedAt": "2025-06-09T17:17:41.000Z",
+      "engagement": {
+        "likes": 12,
+        "comments": 1,
+        "shares": 0
+      },
+      "likes": 12,
       "comments": 1,
       "shares": 0,
-      "url": "https://www.linkedin.com/in/bahakizil",
-      "image_url": "/images/mcp-certification.jpg",
-      "author": "Baha Kizil"
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7337890647703486465",
+      "author": "Baha Kızıl"
     },
     {
-      "id": "kafein-ai-engineer-start",
-      "text": "I'm excited to share that I've started working as a full-time AI Engineer Intern at Kafein Technology Solutions",
-      "date": "2025-06-23T07:30:33.593Z",
-      "likes": 111,
-      "comments": 14,
-      "shares": 0,
-      "url": "https://www.linkedin.com/in/bahakizil",
-      "image_url": "/images/kafein-tech.jpg",
-      "author": "Baha Kizil"
-    },
-    {
-      "id": "smart-growbox-capstone",
-      "text": "🎓 𝗖𝗮𝗽𝘀𝘁𝗼𝗻𝗲 𝗣𝗿𝗼𝗷𝗲𝗰𝘁 – 𝗦𝗺𝗮𝗿𝘁 𝗚𝗿𝗼𝘄𝗯𝗼𝘅: 𝗔𝗜-𝗣𝗼𝘄𝗲𝗿𝗲𝗱 𝗔𝘂𝘁𝗼𝗻𝗼𝗺𝗼𝘂𝘀 𝗣𝗹𝗮𝗻𝘁 𝗠𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴 & 𝗖𝘂𝗹𝘁𝗶𝘃𝗮𝘁𝗶𝗼𝗻 𝗦𝘆𝘀𝘁𝗲𝗺. An autonomous plant cultivation system that integrates IoT sensing, edge AI, computer vision, and GPT-driven decision intelligence.",
-      "date": "2025-06-23T07:30:33.593Z",
-      "likes": 75,
-      "comments": 5,
-      "shares": 3,
-      "url": "https://www.linkedin.com/in/bahakizil",
-      "image_url": "/images/smart-growbox.jpg",
-      "author": "Baha Kizil"
-    },
-    {
-      "id": "kairu-ai-bootcamp",
-      "text": "I'm happy to share that I've been accepted into the AI Bootcamp organized by Kairu. It's a great opportunity to improve my skills in AI engineering. Thanks to the Kairu team for this opportunity!",
-      "date": "2025-06-23T07:30:33.593Z",
-      "likes": 52,
+      "id": "7335017540236075008",
+      "text": "I'm happy to share that I've been accepted into the AI Bootcamp organized by Kairu. It's a great opportunity to improve my skills in AI engineering. Thanks to the Kairu team!",
+      "date": "2025-06-01T19:00:59.000Z",
+      "publishedAt": "2025-06-01T19:00:59.000Z",
+      "engagement": {
+        "likes": 44,
+        "comments": 5,
+        "shares": 0
+      },
+      "likes": 44,
       "comments": 5,
       "shares": 0,
-      "url": "https://www.linkedin.com/in/bahakizil",
-      "image_url": "/images/kairu-bootcamp.jpg",
-      "author": "Baha Kizil"
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7335017540236075008",
+      "author": "Baha Kızıl"
     },
     {
-      "id": "yolovx-traffic-management",
-      "text": "🚦Real-Time Traffic Management with Computer Vision 🕶️ An innovative project that turns ordinary CCTV cameras into powerful traffic analysis tools! Integrated Supervision Polygon Tool with CCTV footage, used OpenCV for image processing.",
-      "date": "2025-03-25T07:30:33.593Z",
-      "likes": 536,
-      "comments": 17,
+      "id": "7306290344348807169",
+      "text": "AI-Powered Security System Project. I developed an AI-powered human detection system using YOLOv11 that analyzes security camera footage, detects humans in real time, and sends instant email notifications with captured frames. Trained on a Roboflow dataset and wrapped in a friendly web UI.",
+      "date": "2025-03-14T12:29:22.000Z",
+      "publishedAt": "2025-03-14T12:29:22.000Z",
+      "engagement": {
+        "likes": 64,
+        "comments": 4,
+        "shares": 2
+      },
+      "likes": 64,
+      "comments": 4,
+      "shares": 2,
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7306290344348807169",
+      "author": "Baha Kızıl"
+    },
+    {
+      "id": "7304154595822338049",
+      "text": "🚦 Real-Time Traffic Management with Computer Vision — turning ordinary CCTV cameras into powerful traffic analysis tools. Lane-level flow, classification, and violations in real time.",
+      "date": "2025-03-08T15:02:40.000Z",
+      "publishedAt": "2025-03-08T15:02:40.000Z",
+      "engagement": {
+        "likes": 537,
+        "comments": 15,
+        "shares": 47
+      },
+      "likes": 537,
+      "comments": 15,
       "shares": 47,
-      "url": "https://www.linkedin.com/in/bahakizil",
-      "image_url": "/images/traffic-yolo.jpg",
-      "author": "Baha Kizil"
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7304154595822338049",
+      "image_url": "/images/traffic-monitoring.png",
+      "author": "Baha Kızıl"
     },
     {
-      "id": "smart-traffic-monitoring",
-      "text": "𝗦𝗺𝗮𝗿𝘁 𝗧𝗿𝗮𝗳𝗳𝗶𝗰 𝗠𝗼𝗻𝗶𝘁𝗼𝗿𝗶𝗻𝗴: 𝗥𝗲𝗮𝗹-𝗧𝗶𝗺𝗲 𝗖𝗖𝗧𝗩 𝗔𝗻𝗮𝗹𝘆𝘀𝗶𝘀 🚗📊 I am excited to share my latest project, which aims to detect traffic violations and contribute to smart city solutions!",
-      "date": "2025-03-25T07:30:33.593Z",
-      "likes": 750,
+      "id": "7303829659937341440",
+      "text": "Smart Traffic Monitoring: Real-Time CCTV Analysis. Integrating Roboflow's polygon tool with CCTV footage, YOLOv12N trained for 250 epochs for real-time traffic violation detection.",
+      "date": "2025-03-07T17:31:29.000Z",
+      "publishedAt": "2025-03-07T17:31:29.000Z",
+      "engagement": {
+        "likes": 751,
+        "comments": 22,
+        "shares": 49
+      },
+      "likes": 751,
       "comments": 22,
       "shares": 49,
-      "url": "https://www.linkedin.com/in/bahakizil",
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7303829659937341440",
       "image_url": "/images/traffic-monitoring.png",
-      "author": "Baha Kizil"
+      "author": "Baha Kızıl"
     },
     {
-      "id": "fire-smoke-detection",
-      "text": "🚀 𝗙𝗶𝗻𝗲-𝗧𝘂𝗻𝗶𝗻𝗴 𝗬𝗢𝗟𝗢𝘃𝟭𝟮𝗻 𝗳𝗼𝗿 𝗙𝗶𝗿𝗲 & 𝗦𝗺𝗼𝗸𝗲 𝗗𝗲𝘁𝗲𝗰𝘁𝗶𝗼𝗻! Fire and smoke detection is a critical application of computer vision. Enhanced detection accuracy and high-performance real-time analysis.",
-      "date": "2025-03-25T07:30:33.593Z",
-      "likes": 812,
-      "comments": 23,
-      "shares": 39,
-      "url": "https://www.linkedin.com/in/bahakizil",
+      "id": "7301633709449863168",
+      "text": "🚀 Fine-Tuning YOLOv12n for Fire & Smoke Detection. 250 epochs on Google Colab A100. Enhanced detection accuracy with high-performance real-time analysis.",
+      "date": "2025-03-01T16:05:34.000Z",
+      "publishedAt": "2025-03-01T16:05:34.000Z",
+      "engagement": {
+        "likes": 811,
+        "comments": 22,
+        "shares": 40
+      },
+      "likes": 811,
+      "comments": 22,
+      "shares": 40,
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7301633709449863168",
       "image_url": "/images/fire-detection.png",
-      "author": "Baha Kizil"
+      "author": "Baha Kızıl"
     },
     {
-      "id": "ai-agents-fundamentals-hf",
-      "text": "I am happy to share that I have earned a new certification: AI Agents Fundamentals - Hugging Face!",
-      "date": "2025-03-25T07:30:33.593Z",
+      "id": "7301252813429387264",
+      "text": "I'm happy to share that I have earned a new certification: AI Agents Fundamentals — Hugging Face!",
+      "date": "2025-02-28T14:52:01.000Z",
+      "publishedAt": "2025-02-28T14:52:01.000Z",
+      "engagement": {
+        "likes": 46,
+        "comments": 6,
+        "shares": 0
+      },
       "likes": 46,
-      "comments": 5,
+      "comments": 6,
       "shares": 0,
-      "url": "https://www.linkedin.com/in/bahakizil",
-      "image_url": "/images/ai-agents-cert.jpg",
-      "author": "Baha Kizil"
-    },
-    {
-      "id": "threat-detection-project",
-      "text": "𝗥𝗘𝗔𝗟-𝗧𝗜𝗠𝗘 𝗧𝗛𝗥𝗘𝗔𝗧 𝗗𝗘𝗧𝗘𝗖𝗧𝗜𝗢𝗡 - This fully local AI-powered threat detection agent, developed with Ultralytics YOLOv11n and DeepSeek AI 1.5B, identifies firearms in real time from CCTV footage.",
-      "date": "2025-03-25T07:30:33.593Z",
-      "likes": 110,
-      "comments": 4,
-      "shares": 8,
-      "url": "https://www.linkedin.com/in/bahakizil",
-      "image_url": "/images/threat-detection.jpg",
-      "author": "Baha Kizil"
+      "url": "https://www.linkedin.com/feed/update/urn:li:activity:7301252813429387264",
+      "author": "Baha Kızıl"
     }
   ],
   "githubStats": {

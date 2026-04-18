@@ -1,97 +1,49 @@
 import { NextResponse } from "next/server";
+import {
+  extractFirstImage,
+  parseRssItems,
+  stripHtml,
+} from "@/lib/rss";
 
 export const runtime = "nodejs";
-export const revalidate = 0;
+export const revalidate = 1800; // 30 minutes
 
-const RAPIDAPI_KEY = process.env.RAPIDAPI_KEY;
-const USER_ID = process.env.MEDIUM_USER_ID ?? "60a0e4269377";
-
-interface MediumUserResponse {
-  associated_articles: string[];
-  count: number;
-}
-
-interface MediumArticle {
-  id: string;
-  title: string;
-  subtitle: string;
-  url: string;
-  published_at: string;
-  image_url: string;
-  tags: string[];
-  claps: number;
-  voters: number;
-  reads: number;
-  views: number;
-  word_count: number;
-  responses_count: number;
-  reading_time: number;
-  lang: string;
-}
-
-const headers = {
-  "X-RapidAPI-Key": RAPIDAPI_KEY ?? "",
-  "X-RapidAPI-Host": "medium2.p.rapidapi.com",
-};
-
-async function fetchArticleIds(): Promise<string[]> {
-  const res = await fetch(
-    `https://medium2.p.rapidapi.com/user/${USER_ID}/articles`,
-    { headers },
-  );
-  if (!res.ok) return [];
-  const data = (await res.json()) as MediumUserResponse;
-  return data.associated_articles ?? [];
-}
-
-async function fetchArticle(id: string): Promise<MediumArticle | null> {
-  const res = await fetch(`https://medium2.p.rapidapi.com/article/${id}`, {
-    headers,
-  });
-  if (!res.ok) return null;
-  return (await res.json()) as MediumArticle;
-}
+const MEDIUM_USERNAME = process.env.MEDIUM_USERNAME ?? "bahakizil";
+const FEED_URL = `https://medium.com/feed/@${MEDIUM_USERNAME}`;
 
 export async function GET() {
-  if (!RAPIDAPI_KEY) {
-    return NextResponse.json([], {
-      headers: { "Cache-Control": "no-cache" },
-    });
-  }
-
   try {
-    const ids = await fetchArticleIds();
-    if (ids.length === 0) {
+    const response = await fetch(FEED_URL, {
+      headers: { "User-Agent": "portfolio-medium-reader" },
+      next: { revalidate },
+    });
+    if (!response.ok) {
       return NextResponse.json([], {
-        headers: { "Cache-Control": "no-cache" },
+        headers: { "Cache-Control": "public, max-age=60" },
       });
     }
 
-    const articles = await Promise.all(ids.slice(0, 8).map(fetchArticle));
-    const formatted = articles
-      .filter((a): a is MediumArticle => a !== null)
-      .map((article) => ({
-        title: article.title,
-        subtitle: article.subtitle,
-        link: article.url,
-        publishedDate: article.published_at,
-        description:
-          article.subtitle ||
-          `${article.word_count} words • ${Math.ceil(article.reading_time)} min read`,
-        thumbnail: article.image_url,
-        image_url: article.image_url,
-        categories: article.tags,
-        claps: article.claps ?? 0,
-        views: article.views ?? 0,
-        reads: article.reads ?? 0,
-        responses: article.responses_count ?? 0,
-        word_count: article.word_count,
-        reading_time: Math.ceil(article.reading_time),
-        lang: article.lang,
-      }));
+    const xml = await response.text();
+    const items = parseRssItems(xml).slice(0, 8);
 
-    return NextResponse.json(formatted, {
-      headers: { "Cache-Control": "no-cache, no-store, must-revalidate" },
+    const articles = items.map((item) => {
+      const thumbnail = extractFirstImage(item.content || item.description);
+      return {
+        title: item.title,
+        link: item.link,
+        publishedDate: new Date(item.pubDate).toISOString(),
+        description: stripHtml(item.description || item.content),
+        thumbnail,
+        image_url: thumbnail,
+        categories: item.categories,
+        claps: 0,
+      };
+    });
+
+    return NextResponse.json(articles, {
+      headers: {
+        "Cache-Control": "public, s-maxage=1800, stale-while-revalidate=3600",
+      },
     });
   } catch (error) {
     const details = error instanceof Error ? error.message : "Unknown error";

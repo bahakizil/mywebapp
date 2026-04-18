@@ -1,29 +1,31 @@
 #!/usr/bin/env node
 /**
- * Refresh portfolio-data.json with live data from GitHub + Medium.
- * Designed for GitHub Actions cron; runs without Next.js runtime.
+ * Refresh data/portfolio-data.json using only free endpoints.
  *
- * Required env (optional ones fall back gracefully):
- *   GITHUB_USERNAME     (default: bahakizil)
- *   GITHUB_API_TOKEN    (optional; lifts API rate limit)
- *   MEDIUM_USER_ID      (default: 60a0e4269377)
- *   RAPIDAPI_KEY        (optional; enables Medium engagement data)
+ * Sources:
+ *   - GitHub REST API (repos + profile HTML for pinned/contributions)
+ *   - Medium public RSS feed (medium.com/feed/@USERNAME)
+ *   - Hugging Face public API (huggingface.co/api/spaces)
+ *   - data/linkedin-posts.json (manual curated list)
+ *
+ * No paid APIs, no auth required (GITHUB_API_TOKEN optional for rate limit).
  */
 
-import { writeFileSync, readFileSync, existsSync, mkdirSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const GITHUB_USERNAME = process.env.GITHUB_USERNAME ?? "bahakizil";
 const GITHUB_TOKEN = process.env.GITHUB_API_TOKEN ?? process.env.GITHUB_TOKEN;
-const MEDIUM_USER_ID = process.env.MEDIUM_USER_ID ?? "60a0e4269377";
-const RAPIDAPI_KEY = process.env.RAPIDAPI_KEY;
+const MEDIUM_USERNAME = process.env.MEDIUM_USERNAME ?? "bahakizil";
+const HF_USERNAME = process.env.HUGGINGFACE_USERNAME ?? "bahakizil";
 
 const DATA_DIR = join(process.cwd(), "data");
 const DATA_FILE = join(DATA_DIR, "portfolio-data.json");
+const LINKEDIN_FILE = join(DATA_DIR, "linkedin-posts.json");
 
-function log(msg) {
-  console.log(`[refresh] ${msg}`);
-}
+const log = (msg) => console.log(`[refresh] ${msg}`);
+
+// ---------------------------------------------------------------- GitHub ----
 
 async function fetchRepos() {
   const headers = {
@@ -58,7 +60,7 @@ async function fetchRepos() {
     .sort((a, b) => b.stargazers_count - a.stargazers_count);
 }
 
-async function fetchProfile() {
+async function fetchGithubProfile() {
   try {
     const res = await fetch(`https://github.com/${GITHUB_USERNAME}`, {
       headers: {
@@ -119,60 +121,106 @@ async function fetchProfile() {
   }
 }
 
+// ----------------------------------------------------------- Medium (RSS) ----
+
+const stripCdata = (v) =>
+  v.replace(/^<!\[CDATA\[/, "").replace(/\]\]>$/, "").trim();
+const decode = (v) =>
+  v
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&amp;/g, "&");
+
+function pickTag(block, tag) {
+  const re = new RegExp(`<${tag}>([\\s\\S]*?)<\\/${tag}>`);
+  const m = block.match(re);
+  return m ? decode(stripCdata(m[1])) : "";
+}
+
+function stripHtml(html, max = 260) {
+  const text = html
+    .replace(/<figure[\s\S]*?<\/figure>/g, "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (text.length <= max) return text;
+  return text.slice(0, max).replace(/\s+\S*$/, "") + "…";
+}
+
 async function fetchMediumArticles() {
-  if (!RAPIDAPI_KEY) {
-    log("RAPIDAPI_KEY missing, skipping Medium fetch");
-    return null;
-  }
-
-  const headers = {
-    "X-RapidAPI-Key": RAPIDAPI_KEY,
-    "X-RapidAPI-Host": "medium2.p.rapidapi.com",
-  };
-
   try {
-    const listRes = await fetch(
-      `https://medium2.p.rapidapi.com/user/${MEDIUM_USER_ID}/articles`,
-      { headers },
+    const res = await fetch(
+      `https://medium.com/feed/@${MEDIUM_USERNAME}`,
+      { headers: { "User-Agent": "portfolio-medium-reader" } },
     );
-    if (!listRes.ok) throw new Error(`medium list ${listRes.status}`);
-    const listData = await listRes.json();
-    const ids = (listData.associated_articles ?? []).slice(0, 8);
+    if (!res.ok) {
+      log(`medium rss ${res.status}, skipping`);
+      return null;
+    }
+    const xml = await res.text();
+    const items = [];
+    const itemRe = /<item>([\s\S]*?)<\/item>/g;
+    let match;
+    while ((match = itemRe.exec(xml)) !== null) {
+      const block = match[1];
+      const title = pickTag(block, "title");
+      const link = pickTag(block, "link");
+      const pubDate = pickTag(block, "pubDate");
+      const description = pickTag(block, "description");
+      const content = pickTag(block, "content:encoded");
+      const categories = Array.from(
+        block.matchAll(/<category>([\s\S]*?)<\/category>/g),
+      ).map((m) => decode(stripCdata(m[1])));
 
-    const details = await Promise.all(
-      ids.map(async (id) => {
-        const res = await fetch(
-          `https://medium2.p.rapidapi.com/article/${id}`,
-          { headers },
-        );
-        if (!res.ok) return null;
-        return res.json();
-      }),
-    );
+      const imgMatch = (content || description).match(/<img[^>]+src="([^"]+)"/);
+      const thumbnail = imgMatch ? imgMatch[1] : undefined;
 
-    return details
-      .filter(Boolean)
-      .map((a) => ({
-        title: a.title,
-        subtitle: a.subtitle,
-        link: a.url,
-        publishedDate: a.published_at,
-        description:
-          a.subtitle ||
-          `${a.word_count} words • ${Math.ceil(a.reading_time)} min read`,
-        thumbnail: a.image_url,
-        image_url: a.image_url,
-        categories: a.tags ?? [],
-        claps: a.claps ?? 0,
-        views: a.views ?? 0,
-        reads: a.reads ?? 0,
-        responses: a.responses_count ?? 0,
-      }));
+      items.push({
+        title,
+        link,
+        publishedDate: new Date(pubDate).toISOString(),
+        description: stripHtml(description || content),
+        thumbnail,
+        image_url: thumbnail,
+        categories,
+        claps: 0,
+      });
+    }
+    return items.slice(0, 8);
   } catch (err) {
     log(`medium fetch failed: ${err.message}`);
     return null;
   }
 }
+
+// --------------------------------------------------------------- LinkedIn ----
+
+function loadLinkedInPosts() {
+  if (!existsSync(LINKEDIN_FILE)) return [];
+  try {
+    const raw = JSON.parse(readFileSync(LINKEDIN_FILE, "utf8"));
+    return raw.map((p) => ({
+      id: p.id,
+      text: p.text,
+      date: p.publishedAt,
+      publishedAt: p.publishedAt,
+      engagement: p.engagement,
+      likes: p.engagement?.likes ?? 0,
+      comments: p.engagement?.comments ?? 0,
+      shares: p.engagement?.shares ?? 0,
+      url: p.url,
+      image_url: p.image_url ?? undefined,
+      author: p.author?.name ?? "Baha Kızıl",
+    }));
+  } catch (err) {
+    log(`linkedin static read failed: ${err.message}`);
+    return [];
+  }
+}
+
+// ----------------------------------------------------------------- Main ----
 
 function loadExisting() {
   if (!existsSync(DATA_FILE)) return null;
@@ -185,9 +233,10 @@ function loadExisting() {
 
 async function main() {
   log("starting refresh");
+
   const [repos, githubStats, freshArticles] = await Promise.all([
     fetchRepos(),
-    fetchProfile(),
+    fetchGithubProfile(),
     fetchMediumArticles(),
   ]);
 
@@ -196,7 +245,7 @@ async function main() {
     freshArticles && freshArticles.length > 0
       ? freshArticles
       : previous?.articles ?? [];
-  const linkedinPosts = previous?.linkedinPosts ?? [];
+  const linkedinPosts = loadLinkedInPosts();
 
   const portfolio = {
     lastUpdated: new Date().toISOString(),
@@ -210,7 +259,7 @@ async function main() {
   writeFileSync(DATA_FILE, JSON.stringify(portfolio, null, 2), "utf8");
 
   log(
-    `wrote ${repos.length} repos, ${articles.length} articles, ${linkedinPosts.length} linkedin posts`,
+    `wrote ${repos.length} repos, ${articles.length} medium articles, ${linkedinPosts.length} linkedin posts`,
   );
 }
 

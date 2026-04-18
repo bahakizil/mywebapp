@@ -1,5 +1,10 @@
-import { existsSync, mkdirSync, writeFileSync } from "fs";
-import { join } from "path";
+import fs from "fs";
+import path from "path";
+import {
+  extractFirstImage,
+  parseRssItems,
+  stripHtml,
+} from "@/lib/rss";
 import type {
   GitHubStats,
   LinkedInPost,
@@ -10,6 +15,7 @@ import type {
 } from "@/types/portfolio";
 
 const GITHUB_USERNAME = process.env.GITHUB_USERNAME ?? "bahakizil";
+const MEDIUM_USERNAME = process.env.MEDIUM_USERNAME ?? "bahakizil";
 
 interface GitHubApiRepo {
   id: number;
@@ -46,7 +52,7 @@ function toRepository(repo: GitHubApiRepo): Repository {
   };
 }
 
-async function fetchGitHubRepos(): Promise<Repository[]> {
+async function fetchRepos(): Promise<Repository[]> {
   const headers: Record<string, string> = {
     Accept: "application/vnd.github.v3+json",
     "User-Agent": "portfolio-refresh",
@@ -59,10 +65,7 @@ async function fetchGitHubRepos(): Promise<Repository[]> {
     `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`,
     { headers, cache: "no-store" },
   );
-
-  if (!response.ok) {
-    throw new Error(`GitHub API ${response.status}`);
-  }
+  if (!response.ok) throw new Error(`GitHub API ${response.status}`);
 
   const data = (await response.json()) as GitHubApiRepo[];
   return data
@@ -71,7 +74,7 @@ async function fetchGitHubRepos(): Promise<Repository[]> {
     .sort((a, b) => b.stargazers_count - a.stargazers_count);
 }
 
-async function fetchGitHubProfile(): Promise<GitHubStats> {
+async function fetchProfile(): Promise<GitHubStats> {
   try {
     const response = await fetch(`https://github.com/${GITHUB_USERNAME}`, {
       headers: {
@@ -81,10 +84,7 @@ async function fetchGitHubProfile(): Promise<GitHubStats> {
       },
       cache: "no-store",
     });
-
-    if (!response.ok) {
-      return { pinnedRepos: [], contributionChart: null };
-    }
+    if (!response.ok) return { pinnedRepos: [], contributionChart: null };
 
     const html = await response.text();
     return {
@@ -103,7 +103,6 @@ function parsePinnedRepos(html: string): PinnedRepo[] {
   for (const match of blocks) {
     const nameMatch = match.match(new RegExp(`href="/${GITHUB_USERNAME}/([^"]+)"`));
     if (!nameMatch) continue;
-
     const descMatch = match.match(
       /<p[^>]*class="[^"]*pinned-item-desc[^"]*"[^>]*>(.*?)<\/p>/s,
     );
@@ -136,45 +135,88 @@ function parseContributionChart(html: string) {
   };
 }
 
-async function fetchInternal<T>(path: string, fallback: T): Promise<T> {
-  const base = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+async function fetchMediumArticles(): Promise<MediumArticle[] | null> {
   try {
-    const response = await fetch(`${base}${path}`, { cache: "no-store" });
-    if (!response.ok) return fallback;
-    return (await response.json()) as T;
+    const response = await fetch(
+      `https://medium.com/feed/@${MEDIUM_USERNAME}`,
+      {
+        headers: { "User-Agent": "portfolio-medium-reader" },
+        cache: "no-store",
+      },
+    );
+    if (!response.ok) return null;
+
+    const xml = await response.text();
+    const items = parseRssItems(xml).slice(0, 8);
+
+    return items.map((item) => {
+      const thumbnail = extractFirstImage(item.content || item.description);
+      return {
+        title: item.title,
+        link: item.link,
+        publishedDate: new Date(item.pubDate).toISOString(),
+        description: stripHtml(item.description || item.content),
+        thumbnail,
+        image_url: thumbnail,
+        categories: item.categories,
+        claps: 0,
+      };
+    });
   } catch {
-    return fallback;
+    return null;
   }
 }
 
-async function fetchMediumArticles(): Promise<MediumArticle[]> {
-  return fetchInternal<MediumArticle[]>("/api/medium", []);
-}
-
-async function fetchLinkedInPosts(): Promise<LinkedInPost[]> {
-  return fetchInternal<LinkedInPost[]>("/api/linkedin", []);
+function loadLinkedInPosts(): LinkedInPost[] {
+  const file = path.join(process.cwd(), "data", "linkedin-posts.json");
+  if (!fs.existsSync(file)) return [];
+  try {
+    const raw = JSON.parse(fs.readFileSync(file, "utf8")) as Array<{
+      id: string;
+      text: string;
+      publishedAt: string;
+      author: { name: string; headline: string };
+      engagement: { likes: number; comments: number; shares: number };
+      url: string;
+      image_url?: string | null;
+    }>;
+    return raw.map((post) => ({
+      id: post.id,
+      text: post.text,
+      publishedAt: post.publishedAt,
+      engagement: post.engagement,
+      likes: post.engagement.likes,
+      comments: post.engagement.comments,
+      shares: post.engagement.shares,
+      url: post.url,
+      image_url: post.image_url ?? undefined,
+    }));
+  } catch {
+    return [];
+  }
 }
 
 export async function refreshPortfolioData(): Promise<PortfolioData> {
-  const [repos, stats, articles, linkedinPosts] = await Promise.all([
-    fetchGitHubRepos(),
-    fetchGitHubProfile(),
+  const [repos, githubStats, freshArticles] = await Promise.all([
+    fetchRepos(),
+    fetchProfile(),
     fetchMediumArticles(),
-    fetchLinkedInPosts(),
   ]);
+
+  const linkedinPosts = loadLinkedInPosts();
 
   const portfolio: PortfolioData = {
     lastUpdated: new Date().toISOString(),
     repos,
-    articles,
+    articles: freshArticles ?? [],
     linkedinPosts,
-    githubStats: stats,
+    githubStats,
   };
 
-  const dataDir = join(process.cwd(), "data");
-  if (!existsSync(dataDir)) mkdirSync(dataDir, { recursive: true });
-  writeFileSync(
-    join(dataDir, "portfolio-data.json"),
+  const dataDir = path.join(process.cwd(), "data");
+  if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
+  fs.writeFileSync(
+    path.join(dataDir, "portfolio-data.json"),
     JSON.stringify(portfolio, null, 2),
     "utf8",
   );
