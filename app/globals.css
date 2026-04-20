@@ -83,12 +83,11 @@
     padding-inline: clamp(1.25rem, 4vw, 3rem);
   }
 
-  /* Let the browser skip off-screen section work. `auto` makes the
-     browser remember the actual rendered size on subsequent scroll
-     passes, avoiding scrollbar jumps when sections come into view. */
+  /* `cv-section` used to set content-visibility:auto, which caused
+     scrollbar jumps when Chrome re-estimated section heights. Kept as
+     a no-op so existing markup still compiles. */
   .cv-section {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 900px;
+    /* intentionally empty */
   }
 
   /* Horizontal hairline rule */

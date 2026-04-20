@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
 import { ArrowUpRight, Download } from "lucide-react";
 import { siteConfig } from "@/src/config/siteConfig";
 import { useCountUp } from "@/hooks/use-count-up";
@@ -51,28 +49,15 @@ const STATS: Stat[] = [
 const NAME_CHARS = "Baha Kızıl".split("");
 
 export function HeroSection() {
-  const ref = useRef<HTMLElement | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  // Gentle parallax: meta column rises, right column stays put.
-  const metaY = useTransform(scrollYProgress, [0, 1], [0, -90]);
-  const metaOpacity = useTransform(scrollYProgress, [0, 0.6, 0.95], [1, 1, 0.2]);
-
   return (
     <section
       id="hero"
-      ref={ref}
       className="min-h-screen flex items-center justify-center relative pt-6 md:pt-10 texture-hero"
     >
       <div className="lab-container w-full">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-10 pt-10 md:pt-14">
           {/* Left meta column */}
-          <motion.aside
-            className="md:col-span-3 flex flex-col gap-8"
-            style={{ y: metaY, opacity: metaOpacity }}
-          >
+          <aside className="md:col-span-3 flex flex-col gap-8">
             <div className="space-y-2">
               <div className="meta">Fieldnotes / 2026</div>
               <div className="meta-strong">Volume 04 · Edition Spring</div>
@@ -112,7 +97,7 @@ export function HeroSection() {
                 agents · vision · rag · infra
               </div>
             </div>
-          </motion.aside>
+          </aside>
 
           {/* Right content column */}
           <div className="md:col-span-9 flex flex-col">

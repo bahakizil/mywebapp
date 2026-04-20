@@ -28,7 +28,8 @@ export function SectionRail() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    // Collect currently-intersecting section IDs and prefer the topmost.
+    // Track which sections are currently on screen; pick the topmost in
+    // document order as the "active" one. No scroll listener at all.
     const inView = new Set<string>();
     const observer = new IntersectionObserver(
       (entries) => {
@@ -37,7 +38,6 @@ export function SectionRail() {
           else inView.delete(e.target.id);
         }
         if (inView.size === 0) return;
-        // pick the first section (in document order) currently in view
         for (const entry of ENTRIES) {
           if (inView.has(entry.id)) {
             setActive(entry.id);
@@ -53,13 +53,21 @@ export function SectionRail() {
       if (el) observer.observe(el);
     });
 
-    // Reveal the rail once the user has scrolled past the first viewport.
-    const onScroll = () => setVisible(window.scrollY > window.innerHeight * 0.4);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
+    // Reveal the rail once the hero leaves the viewport — again, no
+    // scroll handler, just another observer on hero itself.
+    const hero = document.getElementById("hero");
+    let heroObs: IntersectionObserver | null = null;
+    if (hero) {
+      heroObs = new IntersectionObserver(
+        ([entry]) => setVisible(!entry.isIntersecting),
+        { threshold: 0.2 },
+      );
+      heroObs.observe(hero);
+    }
+
     return () => {
       observer.disconnect();
-      window.removeEventListener("scroll", onScroll);
+      heroObs?.disconnect();
     };
   }, []);
 

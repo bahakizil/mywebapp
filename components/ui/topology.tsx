@@ -1,20 +1,12 @@
 "use client";
 
-import {
-  motion,
-  useScroll,
-  useTransform,
-  type MotionValue,
-} from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 
 /**
- * Agent-pipeline topology that powers itself on as the reader scrolls.
- * Nodes and edges are tied to the section's scroll progress; once the
- * graph is complete, lime packets start flowing along the paths (SMIL
- * animateMotion, compositor-only). Pinned for ~2 viewports on desktop;
- * on mobile the whole graph scrolls naturally so the pin-and-reveal
- * trick doesn't trap touch users.
+ * Agent-pipeline topology. One-shot reveal driven by IntersectionObserver
+ * (via framer-motion's `whileInView`) — no scroll-bound math, so the
+ * build happens once when the section enters the viewport and then
+ * sits still. Packets flow via SMIL after the build completes.
  */
 
 const NODE_W = 148;
@@ -71,311 +63,235 @@ function edgeMidpoint(from: Node, to: Node) {
   return { x: (sx + ex) / 2, y: (sy + ey) / 2 };
 }
 
-// Progress windows — spread elements across the pin so each reveal
-// takes roughly 8% of the scroll.
-const NODE_START = 0.02;
-const NODE_SPAN = 0.5;
-const EDGE_START = 0.08;
-const EDGE_SPAN = 0.5;
-const PACKET_ON = [0.62, 0.72] as const;
-
-function AnimatedNode({
-  node,
-  progress,
-  triggerAt,
-}: {
-  node: Node;
-  progress: MotionValue<number>;
-  triggerAt: number;
-}) {
-  const opacity = useTransform(progress, [triggerAt, triggerAt + 0.04], [0, 1]);
-  const y = useTransform(progress, [triggerAt, triggerAt + 0.04], [12, 0]);
-  const isCore = node.kind === "core";
-  const isTool = node.kind === "tool";
-
-  return (
-    <motion.g style={{ opacity, y }}>
-      <rect
-        x={node.x}
-        y={node.y}
-        width={NODE_W}
-        height={NODE_H}
-        className={`fill-paper ${
-          isCore ? "stroke-ink" : "stroke-ink/70"
-        }`}
-        strokeWidth={isCore ? "1.5" : "1"}
-      />
-      <text
-        x={node.x + 10}
-        y={node.y + 16}
-        fontFamily="var(--font-mono)"
-        fontSize="8.5"
-        letterSpacing="0.22em"
-        className="uppercase fill-ink/55"
-      >
-        [§ {node.tag} · {node.kind}]
-      </text>
-      <text
-        x={node.x + 10}
-        y={node.y + 38}
-        fontFamily="var(--font-mono)"
-        fontSize="12"
-        className="fill-ink"
-      >
-        {node.label}
-      </text>
-      <circle
-        cx={node.x + NODE_W - 10}
-        cy={node.y + 10}
-        r="2.4"
-        fill={isCore || isTool ? "hsl(var(--lime))" : "hsl(var(--ink))"}
-      />
-    </motion.g>
-  );
-}
-
-function AnimatedEdge({
-  d,
-  label,
-  midX,
-  midY,
-  progress,
-  triggerAt,
-}: {
-  d: string;
-  label?: string;
-  midX: number;
-  midY: number;
-  progress: MotionValue<number>;
-  triggerAt: number;
-}) {
-  const pathLength = useTransform(progress, [triggerAt, triggerAt + 0.06], [0, 1]);
-  const labelOpacity = useTransform(
-    progress,
-    [triggerAt + 0.05, triggerAt + 0.09],
-    [0, 1],
-  );
-  const arrowOpacity = useTransform(
-    progress,
-    [triggerAt + 0.04, triggerAt + 0.07],
-    [0, 1],
-  );
-  return (
-    <g>
-      <motion.path
-        d={d}
-        stroke="currentColor"
-        strokeWidth="1"
-        strokeDasharray="4 4"
-        fill="none"
-        style={{ pathLength, opacity: arrowOpacity }}
-        markerEnd="url(#arrow)"
-      />
-      {label && (
-        <motion.g
-          transform={`translate(${midX}, ${midY - 8})`}
-          style={{ opacity: labelOpacity }}
-        >
-          <rect
-            x="-18"
-            y="-8"
-            width="36"
-            height="14"
-            className="fill-paper stroke-ink/40"
-            strokeWidth="0.5"
-          />
-          <text
-            textAnchor="middle"
-            y="2"
-            fontFamily="var(--font-mono)"
-            fontSize="8"
-            letterSpacing="0.14em"
-            className="uppercase fill-ink/70"
-          >
-            {label}
-          </text>
-        </motion.g>
-      )}
-    </g>
-  );
-}
+const BUILD_EASE = [0.16, 1, 0.3, 1] as const;
 
 export function TopologyDiagram() {
-  const ref = useRef<HTMLElement | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-
-  // Remap the full enter→exit range into an "active build" window so the
-  // drama happens while the diagram is centred, not as it enters/leaves.
-  // Map the full enter→exit range so build completes comfortably while
-  // the section is on screen — no pin, just normal scroll flow.
-  const p = useTransform(scrollYProgress, [0.15, 0.75], [0, 1], {
-    clamp: true,
-  });
-
-  const packetOpacity = useTransform(p, [PACKET_ON[0], PACKET_ON[1]], [0, 1]);
-  const captionOpacity = useTransform(p, [0.05, 0.2], [0.4, 1]);
-  const progressDash = useTransform(p, [0, 1], [0, 1]);
-
   return (
     <section
-      ref={ref}
       className="relative border-t border-b border-ink/90 py-10 md:py-14"
       aria-label="Agent pipeline topology"
     >
-      <div>
-        <figure className="w-full">
-          <div className="lab-container">
-            <motion.figcaption
-              className="flex items-baseline justify-between mb-6 md:mb-8"
-              style={{ opacity: captionOpacity }}
+      <div className="lab-container">
+        <figcaption className="flex items-baseline justify-between mb-6 md:mb-8">
+          <span className="section-index">§ Topology / agent graph</span>
+          <span className="meta">7-node pipeline · built on reveal</span>
+        </figcaption>
+
+        <motion.svg
+          viewBox="0 0 1100 360"
+          preserveAspectRatio="xMidYMid meet"
+          className="w-full h-auto"
+          role="img"
+          aria-label="Multi-agent pipeline: user prompt, router, tool/vector/memory, llm, stream reply"
+          initial="hidden"
+          whileInView="shown"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={{
+            hidden: {},
+            shown: { transition: { staggerChildren: 0.08 } },
+          }}
+        >
+          <defs>
+            <marker
+              id="arrow"
+              viewBox="0 0 10 10"
+              refX="8"
+              refY="5"
+              markerWidth="6"
+              markerHeight="6"
+              orient="auto-start-reverse"
+              className="text-ink"
             >
-              <span className="section-index">§ Topology / agent graph</span>
-              <span className="meta">
-                build-on-scroll · 7-node pipeline
-              </span>
-            </motion.figcaption>
-
-            <svg
-              viewBox="0 0 1100 360"
-              preserveAspectRatio="xMidYMid meet"
-              className="w-full h-auto"
-              role="img"
-              aria-label="Multi-agent pipeline topology — user prompt, router, tool/vector/memory, llm, stream reply"
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" />
+            </marker>
+            <pattern
+              id="grid"
+              width="22"
+              height="22"
+              patternUnits="userSpaceOnUse"
             >
-              <defs>
-                <marker
-                  id="arrow"
-                  viewBox="0 0 10 10"
-                  refX="8"
-                  refY="5"
-                  markerWidth="6"
-                  markerHeight="6"
-                  orient="auto-start-reverse"
-                  className="text-ink"
-                >
-                  <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" />
-                </marker>
-                <pattern
-                  id="grid"
-                  width="22"
-                  height="22"
-                  patternUnits="userSpaceOnUse"
-                >
-                  <circle cx="1" cy="1" r="0.6" className="fill-ink/20" />
-                </pattern>
-              </defs>
+              <circle cx="1" cy="1" r="0.6" className="fill-ink/20" />
+            </pattern>
+          </defs>
 
-              <rect width="1100" height="360" fill="url(#grid)" />
+          <rect width="1100" height="360" fill="url(#grid)" />
 
-              {/* edges (drawn under nodes) */}
-              <g className="text-ink/55" fill="none">
-                {EDGES.map((e, i) => {
-                  const a = nodeById(e.from);
-                  const b = nodeById(e.to);
-                  const d = edgePath(a, b);
-                  const mid = edgeMidpoint(a, b);
-                  const triggerAt =
-                    EDGE_START + (i / Math.max(1, EDGES.length - 1)) * EDGE_SPAN;
-                  return (
-                    <AnimatedEdge
-                      key={`edge-${i}`}
-                      d={d}
-                      label={e.label}
-                      midX={mid.x}
-                      midY={mid.y}
-                      progress={p}
-                      triggerAt={triggerAt}
-                    />
-                  );
-                })}
-              </g>
-
-              {/* packets — fade in after the graph is complete */}
-              <motion.g style={{ opacity: packetOpacity }}>
-                {EDGES.map((e, i) => {
-                  const a = nodeById(e.from);
-                  const b = nodeById(e.to);
-                  const d = edgePath(a, b);
-                  return (
-                    <circle
-                      key={`packet-${i}`}
-                      r="3.5"
-                      fill="hsl(var(--lime))"
+          {/* edges — drawn under nodes, stroke length animates from 0 → 1 */}
+          <g className="text-ink/55" fill="none">
+            {EDGES.map((e, i) => {
+              const a = nodeById(e.from);
+              const b = nodeById(e.to);
+              const d = edgePath(a, b);
+              const mid = edgeMidpoint(a, b);
+              return (
+                <motion.g key={`edge-${i}`} variants={{ hidden: {}, shown: {} }}>
+                  <motion.path
+                    d={d}
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    strokeDasharray="4 4"
+                    fill="none"
+                    markerEnd="url(#arrow)"
+                    variants={{
+                      hidden: { pathLength: 0, opacity: 0 },
+                      shown: {
+                        pathLength: 1,
+                        opacity: 1,
+                        transition: { duration: 0.9, ease: BUILD_EASE },
+                      },
+                    }}
+                  />
+                  {e.label && (
+                    <motion.g
+                      transform={`translate(${mid.x}, ${mid.y - 8})`}
+                      variants={{
+                        hidden: { opacity: 0 },
+                        shown: {
+                          opacity: 1,
+                          transition: { duration: 0.5, delay: 0.7 },
+                        },
+                      }}
                     >
-                      <animateMotion
-                        dur={`${2.4 + (i % 4) * 0.4}s`}
-                        begin={`${i * 0.35}s`}
-                        repeatCount="indefinite"
-                        path={d}
-                        rotate="auto"
+                      <rect
+                        x="-18"
+                        y="-8"
+                        width="36"
+                        height="14"
+                        className="fill-paper stroke-ink/40"
+                        strokeWidth="0.5"
                       />
-                    </circle>
-                  );
-                })}
-              </motion.g>
+                      <text
+                        textAnchor="middle"
+                        y="2"
+                        fontFamily="var(--font-mono)"
+                        fontSize="8"
+                        letterSpacing="0.14em"
+                        className="uppercase fill-ink/70"
+                      >
+                        {e.label}
+                      </text>
+                    </motion.g>
+                  )}
+                </motion.g>
+              );
+            })}
+          </g>
 
-              {/* nodes */}
-              <g>
-                {NODES.map((n, i) => {
-                  const triggerAt =
-                    NODE_START +
-                    (i / Math.max(1, NODES.length - 1)) * NODE_SPAN;
-                  return (
-                    <AnimatedNode
-                      key={n.id}
-                      node={n}
-                      progress={p}
-                      triggerAt={triggerAt}
-                    />
-                  );
-                })}
-              </g>
+          {/* packets — fade in after the build */}
+          <motion.g
+            variants={{
+              hidden: { opacity: 0 },
+              shown: {
+                opacity: 1,
+                transition: { delay: 1.6, duration: 0.5 },
+              },
+            }}
+          >
+            {EDGES.map((e, i) => {
+              const a = nodeById(e.from);
+              const b = nodeById(e.to);
+              const d = edgePath(a, b);
+              return (
+                <circle key={`packet-${i}`} r="3.5" fill="hsl(var(--lime))">
+                  <animateMotion
+                    dur={`${2.4 + (i % 4) * 0.4}s`}
+                    begin={`${i * 0.35}s`}
+                    repeatCount="indefinite"
+                    path={d}
+                    rotate="auto"
+                  />
+                </circle>
+              );
+            })}
+          </motion.g>
 
-              {/* schematic corner brackets */}
-              <g
-                className="text-ink/70"
-                stroke="currentColor"
-                strokeWidth="1"
-                fill="none"
-              >
-                <path d="M 6 6 L 6 24 M 6 6 L 24 6" />
-                <path d="M 1094 6 L 1094 24 M 1094 6 L 1076 6" />
-                <path d="M 6 354 L 6 336 M 6 354 L 24 354" />
-                <path d="M 1094 354 L 1094 336 M 1094 354 L 1076 354" />
-              </g>
-            </svg>
+          {/* nodes */}
+          <g>
+            {NODES.map((n) => {
+              const isCore = n.kind === "core";
+              const isTool = n.kind === "tool";
+              return (
+                <motion.g
+                  key={n.id}
+                  variants={{
+                    hidden: { opacity: 0, y: 12 },
+                    shown: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.6, ease: BUILD_EASE },
+                    },
+                  }}
+                >
+                  <rect
+                    x={n.x}
+                    y={n.y}
+                    width={NODE_W}
+                    height={NODE_H}
+                    className={`fill-paper ${
+                      isCore ? "stroke-ink" : "stroke-ink/70"
+                    }`}
+                    strokeWidth={isCore ? "1.5" : "1"}
+                  />
+                  <text
+                    x={n.x + 10}
+                    y={n.y + 16}
+                    fontFamily="var(--font-mono)"
+                    fontSize="8.5"
+                    letterSpacing="0.22em"
+                    className="uppercase fill-ink/55"
+                  >
+                    [§ {n.tag} · {n.kind}]
+                  </text>
+                  <text
+                    x={n.x + 10}
+                    y={n.y + 38}
+                    fontFamily="var(--font-mono)"
+                    fontSize="12"
+                    className="fill-ink"
+                  >
+                    {n.label}
+                  </text>
+                  <circle
+                    cx={n.x + NODE_W - 10}
+                    cy={n.y + 10}
+                    r="2.4"
+                    fill={
+                      isCore || isTool ? "hsl(var(--lime))" : "hsl(var(--ink))"
+                    }
+                  />
+                </motion.g>
+              );
+            })}
+          </g>
 
-            {/* Progress rail + legend */}
-            <div className="mt-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <ul className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-2 font-mono text-[0.62rem] tracking-widest uppercase text-mute">
-                <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-lime" /> core
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-lime" /> tool
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="inline-block h-px w-4 bg-ink/50" /> edges
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-lime animate-pulse" />
-                  packets
-                </li>
-              </ul>
+          {/* corner brackets */}
+          <g
+            className="text-ink/70"
+            stroke="currentColor"
+            strokeWidth="1"
+            fill="none"
+          >
+            <path d="M 6 6 L 6 24 M 6 6 L 24 6" />
+            <path d="M 1094 6 L 1094 24 M 1094 6 L 1076 6" />
+            <path d="M 6 354 L 6 336 M 6 354 L 24 354" />
+            <path d="M 1094 354 L 1094 336 M 1094 354 L 1076 354" />
+          </g>
+        </motion.svg>
 
-              {/* Build progress rail */}
-              <div className="relative h-px bg-rule w-full md:w-64 overflow-hidden">
-                <motion.span
-                  className="absolute inset-y-0 left-0 bg-lime origin-left"
-                  style={{ width: "100%", scaleX: progressDash }}
-                />
-              </div>
-            </div>
-          </div>
-        </figure>
+        <ul className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-2 font-mono text-[0.62rem] tracking-widest uppercase text-mute">
+          <li className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-lime" /> core
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-lime" /> tool
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="inline-block h-px w-4 bg-ink/50" /> edges
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-lime" /> packets
+          </li>
+        </ul>
       </div>
     </section>
   );
