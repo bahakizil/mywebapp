@@ -6,6 +6,7 @@ import { ProjectsSection } from "@/components/sections/projects-section";
 import { ArticlesSection } from "@/components/sections/articles-section";
 import { InsightsSection } from "@/components/sections/insights-section";
 import { ContactFormSection } from "@/components/contact-form-section";
+import { TopologyDiagram } from "@/components/ui/topology";
 import { usePortfolioData, prioritizeRepos } from "@/hooks/use-portfolio-data";
 
 const HuggingFaceSpacesSection = dynamic(
@@ -21,6 +22,7 @@ export default function Home() {
   return (
     <>
       <HeroSection />
+      <TopologyDiagram />
       <ProjectsSection repos={prioritizedRepos} isLoading={isLoading} />
       <ArticlesSection articles={articles} isLoading={isLoading} />
       <InsightsSection posts={linkedInPosts} isLoading={isLoading} />

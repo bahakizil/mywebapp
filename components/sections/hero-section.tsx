@@ -6,6 +6,17 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, Download } from "lucide-react";
 import { Section } from "@/src/components/Section";
 import { siteConfig } from "@/src/config/siteConfig";
+import { useCountUp } from "@/hooks/use-count-up";
+
+function CountStat({ value, suffix = "" }: { value: number; suffix?: string }) {
+  const { value: n, ref } = useCountUp(value);
+  return (
+    <span ref={ref} className="tabular-nums">
+      {String(n).padStart(String(value).length, "0")}
+      {suffix}
+    </span>
+  );
+}
 
 const FOCUS = [
   {
@@ -26,11 +37,15 @@ const FOCUS = [
   },
 ];
 
-const STATS = [
-  { k: "years shipping AI", v: "02" },
-  { k: "open-source repos", v: "24+" },
-  { k: "certifications", v: "04" },
-  { k: "coffee · mate", v: "∞" },
+type Stat =
+  | { k: string; kind: "num"; value: number; suffix?: string }
+  | { k: string; kind: "glyph"; symbol: string };
+
+const STATS: Stat[] = [
+  { k: "years shipping AI", kind: "num", value: 2 },
+  { k: "open-source repos", kind: "num", value: 24, suffix: "+" },
+  { k: "certifications", kind: "num", value: 4 },
+  { k: "coffee · mate", kind: "glyph", symbol: "∞" },
 ];
 
 export function HeroSection() {
@@ -217,8 +232,17 @@ export function HeroSection() {
         {/* Stats strip */}
         <div className="mt-16 md:mt-24 grid grid-cols-2 md:grid-cols-4 border-t border-b border-ink/90 divide-x divide-rule">
           {STATS.map((s) => (
-            <div key={s.k} className="px-4 py-5 md:px-6 md:py-7 first:pl-0 last:pr-0">
-              <div className="display-md leading-none">{s.v}</div>
+            <div
+              key={s.k}
+              className="px-4 py-5 md:px-6 md:py-7 first:pl-0 last:pr-0"
+            >
+              <div className="display-md leading-none">
+                {s.kind === "num" ? (
+                  <CountStat value={s.value} suffix={s.suffix} />
+                ) : (
+                  s.symbol
+                )}
+              </div>
               <div className="meta mt-3">{s.k}</div>
             </div>
           ))}
