@@ -144,18 +144,6 @@ export function HeroSection() {
                   </motion.span>
                 ))}
               </span>
-              <motion.span
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.9,
-                  delay: 0.6,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className="block not-italic font-sans font-normal text-[0.18em] leading-[1.2] tracking-widest uppercase text-mute mt-6"
-              >
-                —— AI Engineer · Multi-Agent Systems · Computer Vision
-              </motion.span>
             </motion.h1>
 
             <motion.p
