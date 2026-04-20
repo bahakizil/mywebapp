@@ -83,12 +83,12 @@
     padding-inline: clamp(1.25rem, 4vw, 3rem);
   }
 
-  /* Let the browser skip off-screen section work. Drop-in huge scroll
-     win on long documents — paint + layout are deferred until the
-     section is near the viewport. */
+  /* Let the browser skip off-screen section work. `auto` makes the
+     browser remember the actual rendered size on subsequent scroll
+     passes, avoiding scrollbar jumps when sections come into view. */
   .cv-section {
     content-visibility: auto;
-    contain-intrinsic-size: 1px 900px;
+    contain-intrinsic-size: auto 900px;
   }
 
   /* Horizontal hairline rule */

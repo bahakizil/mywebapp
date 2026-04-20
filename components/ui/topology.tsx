@@ -209,7 +209,9 @@ export function TopologyDiagram() {
 
   // Remap the full enter→exit range into an "active build" window so the
   // drama happens while the diagram is centred, not as it enters/leaves.
-  const p = useTransform(scrollYProgress, [0.18, 0.82], [0, 1], {
+  // Map the full enter→exit range so build completes comfortably while
+  // the section is on screen — no pin, just normal scroll flow.
+  const p = useTransform(scrollYProgress, [0.15, 0.75], [0, 1], {
     clamp: true,
   });
 
@@ -220,10 +222,10 @@ export function TopologyDiagram() {
   return (
     <section
       ref={ref}
-      className="relative md:h-[220vh]"
+      className="relative border-t border-b border-ink/90 py-10 md:py-14"
       aria-label="Agent pipeline topology"
     >
-      <div className="md:sticky md:top-0 md:h-screen md:flex md:items-center md:overflow-hidden border-t border-b border-ink/90 py-10 md:py-0">
+      <div>
         <figure className="w-full">
           <div className="lab-container">
             <motion.figcaption
