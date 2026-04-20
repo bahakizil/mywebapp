@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { ArrowUpRight, Download } from "lucide-react";
 import { Section } from "@/src/components/Section";
 import { siteConfig } from "@/src/config/siteConfig";
@@ -48,9 +47,9 @@ const STATS: Stat[] = [
   { k: "coffee · mate", kind: "glyph", symbol: "∞" },
 ];
 
-export function HeroSection() {
-  const name = ["Baha", "Kızıl"];
+const NAME_CHARS = "Baha Kızıl".split("");
 
+export function HeroSection() {
   return (
     <Section id="hero" className="pt-6 md:pt-10 texture-hero">
       <div className="lab-container w-full">
@@ -70,6 +69,7 @@ export function HeroSection() {
                 sizes="(max-width: 768px) 60vw, 22vw"
                 className="object-cover contrast-[1.02]"
                 priority
+                fetchPriority="high"
               />
               <div className="absolute left-0 right-0 bottom-0 px-3 py-2 flex items-center justify-between bg-paper border-t border-ink/90">
                 <span className="meta-strong">◈ Subject</span>
@@ -106,51 +106,24 @@ export function HeroSection() {
               </span>
             </div>
 
-            <motion.h1
-              initial="hidden"
-              animate="show"
-              variants={{
-                hidden: {},
-                show: { transition: { staggerChildren: 0.08 } },
-              }}
-              className="display-xl"
-            >
-              <span className="block">
-                {name[0].split("").map((c, i) => (
-                  <motion.span
-                    key={`n0-${i}`}
-                    variants={{
-                      hidden: { opacity: 0, y: "40%" },
-                      show: { opacity: 1, y: 0 },
-                    }}
-                    transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-                    className="inline-block"
-                  >
+            {/* Name — CSS-driven character stagger (no framer-motion) */}
+            <h1 className="display-xl char-reveal">
+              {NAME_CHARS.map((c, i) =>
+                c === " " ? (
+                  <span key={i} style={{ animationDelay: `${i * 55}ms` }}>
+                    &nbsp;
+                  </span>
+                ) : (
+                  <span key={i} style={{ animationDelay: `${i * 55}ms` }}>
                     {c}
-                  </motion.span>
-                ))}
-                &nbsp;
-                {name[1].split("").map((c, i) => (
-                  <motion.span
-                    key={`n1-${i}`}
-                    variants={{
-                      hidden: { opacity: 0, y: "40%" },
-                      show: { opacity: 1, y: 0 },
-                    }}
-                    transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-                    className="inline-block"
-                  >
-                    {c}
-                  </motion.span>
-                ))}
-              </span>
-            </motion.h1>
+                  </span>
+                ),
+              )}
+            </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-10 md:mt-14 max-w-2xl text-lg md:text-xl leading-snug text-ink"
+            <p
+              className="mt-10 md:mt-14 max-w-2xl text-lg md:text-xl leading-snug text-ink opacity-0 animate-fade-up"
+              style={{ animationDelay: "750ms" }}
             >
               I design{" "}
               <span className="lime-underline font-medium">
@@ -161,13 +134,11 @@ export function HeroSection() {
               with hybrid retrieval and reranking. Computer-vision stacks
               fine-tuned on custom datasets and shipped to edge devices — all
               wired with LangSmith observability and cost controls.
-            </motion.p>
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, delay: 1.05, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3"
+            <div
+              className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 opacity-0 animate-fade-up"
+              style={{ animationDelay: "900ms" }}
             >
               <Link
                 href="#projects"
@@ -194,14 +165,12 @@ export function HeroSection() {
               >
                 {siteConfig.email} →
               </a>
-            </motion.div>
+            </div>
 
             {/* Focus block */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.9, delay: 1.3 }}
-              className="mt-16 md:mt-20 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-6 border-t border-rule pt-8"
+            <div
+              className="mt-16 md:mt-20 grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-6 border-t border-rule pt-8 opacity-0 animate-fade-up"
+              style={{ animationDelay: "1050ms" }}
             >
               {FOCUS.map((f) => (
                 <div key={f.k} className="flex gap-4">
@@ -213,7 +182,7 @@ export function HeroSection() {
                   </span>
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
 
