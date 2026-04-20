@@ -1,32 +1,31 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { navLinks } from "@/src/config/siteConfig";
 import { cn } from "@/lib/utils";
 
-function useIstanbulClock() {
-  const [time, setTime] = useState<string>("--:--:--");
+// Isolated clock so that its 1Hz state updates do not re-render the
+// entire navbar (and therefore do not invalidate the sticky bar each
+// second during scroll).
+const Clock = memo(function Clock() {
+  const [time, setTime] = useState<string>("--:--");
   useEffect(() => {
-    const tick = () => {
-      setTime(
-        new Intl.DateTimeFormat("en-GB", {
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: false,
-          timeZone: "Europe/Istanbul",
-        }).format(new Date()),
-      );
-    };
+    const fmt = new Intl.DateTimeFormat("en-GB", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+      timeZone: "Europe/Istanbul",
+    });
+    const tick = () => setTime(fmt.format(new Date()));
     tick();
-    const id = setInterval(tick, 1000);
+    const id = setInterval(tick, 30_000);
     return () => clearInterval(id);
   }, []);
-  return time;
-}
+  return <span className="tabular-nums">{time} TRT</span>;
+});
 
 function scrollTo(href: string) {
   if (typeof window === "undefined") return;
@@ -36,11 +35,10 @@ function scrollTo(href: string) {
 }
 
 export function Navbar() {
-  const time = useIstanbulClock();
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-rule bg-paper/85 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-rule bg-paper">
       {/* Micro status strip */}
       <div className="hidden md:block border-b border-rule/70">
         <div className="lab-container flex items-center justify-between py-1.5 text-[0.62rem] uppercase tracking-widest text-mute font-mono">
@@ -53,7 +51,7 @@ export function Navbar() {
               <span className="dot-live" />
               <span>online</span>
             </span>
-            <span className="tabular-nums">{time} TRT</span>
+            <Clock />
             <span>lab notebook · v2026</span>
           </span>
         </div>

@@ -146,7 +146,7 @@ export function ProjectsSection({ repos, isLoading }: ProjectsSectionProps) {
   const visible = repos.slice(0, 6);
 
   return (
-    <Section id="projects" className="!min-h-0">
+    <Section id="projects" className="!min-h-0 cv-section">
       <div className="lab-container w-full">
         <SectionHeader
           index="01"

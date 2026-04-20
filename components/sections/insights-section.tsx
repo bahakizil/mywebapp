@@ -95,7 +95,7 @@ interface InsightsSectionProps {
 
 export function InsightsSection({ posts, isLoading }: InsightsSectionProps) {
   return (
-    <Section id="insights" className="!min-h-0">
+    <Section id="insights" className="!min-h-0 cv-section">
       <div className="lab-container w-full">
         <SectionHeader
           index="03"

@@ -83,6 +83,14 @@
     padding-inline: clamp(1.25rem, 4vw, 3rem);
   }
 
+  /* Let the browser skip off-screen section work. Drop-in huge scroll
+     win on long documents — paint + layout are deferred until the
+     section is near the viewport. */
+  .cv-section {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 900px;
+  }
+
   /* Horizontal hairline rule */
   .hr-rule {
     border-top: 1px solid hsl(var(--rule));
@@ -207,26 +215,16 @@
     animation: fade-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
-  /* Pulsing status dot */
+  /* Static status dot — no box-shadow animation so it never triggers a
+     composite repaint on scroll (that was the 60fps killer). */
   .dot-live {
     width: 0.4rem;
     height: 0.4rem;
     border-radius: 9999px;
     background: hsl(var(--lime));
-    box-shadow: 0 0 0 0 hsl(var(--lime) / 0.6);
-    animation: pulse-dot 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-  }
-
-  @keyframes pulse-dot {
-    0% {
-      box-shadow: 0 0 0 0 hsl(var(--lime) / 0.55);
-    }
-    60% {
-      box-shadow: 0 0 0 10px hsl(var(--lime) / 0);
-    }
-    100% {
-      box-shadow: 0 0 0 0 hsl(var(--lime) / 0);
-    }
+    box-shadow:
+      0 0 0 1px hsl(var(--lime) / 0.25),
+      0 0 6px 1px hsl(var(--lime) / 0.35);
   }
 
   .cursor-caret::after {

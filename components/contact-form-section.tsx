@@ -51,7 +51,7 @@ export function ContactFormSection() {
   };
 
   return (
-    <Section id="contact" className="!min-h-0">
+    <Section id="contact" className="!min-h-0 cv-section">
       <div className="lab-container w-full">
         <SectionHeader
           index="05"

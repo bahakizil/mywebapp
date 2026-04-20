@@ -44,7 +44,7 @@ export default function HuggingFaceSpacesSection() {
   const totalLikes = spaces.reduce((s, x) => s + x.likes, 0);
 
   return (
-    <Section id="huggingface" className="!min-h-0">
+    <Section id="huggingface" className="!min-h-0 cv-section">
       <div className="lab-container w-full">
         <SectionHeader
           index="04"

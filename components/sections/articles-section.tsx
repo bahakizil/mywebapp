@@ -113,7 +113,7 @@ interface ArticlesSectionProps {
 
 export function ArticlesSection({ articles, isLoading }: ArticlesSectionProps) {
   return (
-    <Section id="blog" className="!min-h-0">
+    <Section id="blog" className="!min-h-0 cv-section">
       <div className="lab-container w-full">
         <SectionHeader
           index="02"
