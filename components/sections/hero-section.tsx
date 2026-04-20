@@ -68,7 +68,7 @@ export function HeroSection() {
                 alt="Baha Kızıl"
                 fill
                 sizes="(max-width: 768px) 60vw, 22vw"
-                className="object-cover grayscale contrast-[1.05]"
+                className="object-cover contrast-[1.02]"
                 priority
               />
               <div className="absolute left-0 right-0 bottom-0 px-3 py-2 flex items-center justify-between bg-paper border-t border-ink/90">

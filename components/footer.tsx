@@ -156,7 +156,12 @@ export function Footer() {
           © {year} · Baha Kızıl · Istanbul TR · All fieldnotes released under
           MIT
         </span>
-        <span className="flex items-center gap-4">
+        <span className="flex items-center gap-4 flex-wrap">
+          <span className="inline-flex items-center gap-1">
+            press
+            <kbd className="px-1.5 py-0.5 border border-rule text-ink">⌘K</kbd>
+            to navigate
+          </span>
           <span>
             set in{" "}
             <em className="not-italic font-display italic tracking-normal">

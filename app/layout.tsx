@@ -6,6 +6,8 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { Toaster } from "@/components/ui/toaster";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { SectionRail } from "@/components/ui/section-rail";
+import { CommandPalette } from "@/components/ui/command-palette";
 import { siteConfig } from "@/src/config/siteConfig";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -81,6 +83,8 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <ScrollProgress />
+          <SectionRail />
+          <CommandPalette />
           <div className="flex min-h-screen flex-col">
             <Navbar />
             <main className="flex-1">{children}</main>
