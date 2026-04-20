@@ -37,7 +37,7 @@ export function HeroSection() {
   const name = ["Baha", "Kızıl"];
 
   return (
-    <Section id="hero" className="pt-6 md:pt-10">
+    <Section id="hero" className="pt-6 md:pt-10 texture-hero">
       <div className="lab-container w-full">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-10 pt-10 md:pt-14">
           {/* Left meta column */}
@@ -53,7 +53,7 @@ export function HeroSection() {
                 alt="Baha Kızıl"
                 fill
                 sizes="(max-width: 768px) 60vw, 22vw"
-                className="object-cover grayscale contrast-[1.05] hover:grayscale-0 transition-all duration-700 ease-out"
+                className="object-cover grayscale contrast-[1.05]"
                 priority
               />
               <div className="absolute left-0 right-0 bottom-0 px-3 py-2 flex items-center justify-between bg-paper border-t border-ink/90">

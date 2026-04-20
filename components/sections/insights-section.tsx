@@ -60,7 +60,7 @@ function InsightCard({
             alt={post.text?.slice(0, 50) ?? "LinkedIn post"}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
-            className="object-cover grayscale-[0.3] group-hover:grayscale-0 transition-all duration-700"
+            className="object-cover"
             unoptimized
           />
         </div>

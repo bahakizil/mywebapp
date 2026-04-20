@@ -61,7 +61,7 @@ export function Footer() {
     <footer className="border-t border-rule mt-24 bg-paper text-ink">
       {/* Stack marquee */}
       <div className="border-b border-rule py-3 overflow-hidden ticker-mask">
-        <div className="flex gap-10 whitespace-nowrap animate-marquee-x">
+        <div className="marquee-track flex gap-10 whitespace-nowrap animate-marquee-x">
           {[...STACK, ...STACK].map((s, i) => (
             <span
               key={`${s}-${i}`}

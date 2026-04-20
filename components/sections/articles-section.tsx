@@ -89,7 +89,7 @@ function ArticleRow({
               alt={article.title}
               fill
               sizes="(max-width: 768px) 60vw, 20vw"
-              className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+              className="object-cover"
               unoptimized
             />
           </div>
