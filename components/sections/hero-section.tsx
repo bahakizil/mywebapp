@@ -5,22 +5,32 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Download } from "lucide-react";
 import { Section } from "@/src/components/Section";
-
-const COORDS = "41.01°N · 28.97°E";
-const LOCATION = "Istanbul · Türkiye";
+import { siteConfig } from "@/src/config/siteConfig";
 
 const FOCUS = [
-  { k: "Computer Vision", v: "YOLOv8–12, DeepStream, edge inference" },
-  { k: "Agent Systems", v: "LangGraph, MCP servers, tool use" },
-  { k: "RAG Pipelines", v: "PGVector, hybrid search, rerankers" },
-  { k: "Edge Deployment", v: "Jetson, Raspberry Pi, ONNX runtime" },
+  {
+    k: "Multi-Agent Systems",
+    v: "LangGraph · MCP · Strands Agents on AWS Bedrock",
+  },
+  {
+    k: "RAG Architectures",
+    v: "PGVector, hybrid retrieval, GPT-4.1-nano rerankers",
+  },
+  {
+    k: "Computer Vision",
+    v: "YOLOv11/v12, DeepStream, Roboflow, edge inference",
+  },
+  {
+    k: "Cloud & Serverless",
+    v: "AWS (Lambda · SQS · DynamoDB), Docker, Runpod",
+  },
 ];
 
 const STATS = [
-  { k: "repositories", v: "24+" },
-  { k: "years building", v: "04" },
-  { k: "cities on deck", v: "01" },
-  { k: "mate consumed", v: "∞" },
+  { k: "years shipping AI", v: "02" },
+  { k: "open-source repos", v: "24+" },
+  { k: "certifications", v: "04" },
+  { k: "coffee · mate", v: "∞" },
 ];
 
 export function HeroSection() {
@@ -34,7 +44,7 @@ export function HeroSection() {
           <aside className="md:col-span-3 flex flex-col gap-8">
             <div className="space-y-2">
               <div className="meta">Fieldnotes / 2026</div>
-              <div className="meta-strong">Volume 03 · Edition Spring</div>
+              <div className="meta-strong">Volume 04 · Edition Spring</div>
             </div>
 
             <div className="aspect-[4/5] relative overflow-hidden border border-ink/90">
@@ -55,15 +65,19 @@ export function HeroSection() {
             <div className="space-y-1.5 meta">
               <div>
                 <span className="meta-strong mr-2">Coords</span>
-                {COORDS}
+                {siteConfig.coords}
               </div>
               <div>
                 <span className="meta-strong mr-2">Place</span>
-                {LOCATION}
+                Ortaköy · Istanbul
               </div>
               <div>
-                <span className="meta-strong mr-2">Stack</span>
-                Python · TS · CUDA · paper
+                <span className="meta-strong mr-2">Cell</span>
+                {siteConfig.phone}
+              </div>
+              <div>
+                <span className="meta-strong mr-2">Currently</span>
+                AI Eng @ Cool Digital Solutions
               </div>
             </div>
           </aside>
@@ -72,7 +86,9 @@ export function HeroSection() {
           <div className="md:col-span-9 flex flex-col">
             <div className="flex items-center gap-3 meta mb-6">
               <span className="dot-live" />
-              <span>Available for 2026 — AI engineering · consulting</span>
+              <span>
+                Available Q2/Q3 2026 — agent engineering · computer vision
+              </span>
             </div>
 
             <motion.h1
@@ -123,7 +139,7 @@ export function HeroSection() {
                 }}
                 className="block not-italic font-sans font-normal text-[0.18em] leading-[1.2] tracking-widest uppercase text-mute mt-6"
               >
-                —— AI Engineer · Computer Vision · Agent Systems
+                —— AI Engineer · Multi-Agent Systems · Computer Vision
               </motion.span>
             </motion.h1>
 
@@ -137,9 +153,11 @@ export function HeroSection() {
               <span className="lime-underline font-medium">
                 production-grade AI systems
               </span>
-              — from YOLO-backed vision pipelines running on Jetson edge devices
-              to multi-agent orchestration over FastAPI + LangGraph. Currently
-              shipping semantic CV tooling at Kafein Technology.
+              — multi-agent platforms on AWS Bedrock + Strands, RAG pipelines
+              over PGVector, and computer-vision stacks shipping at the edge.
+              Currently the sole AI &amp; backend engineer behind{" "}
+              <em className="font-medium">Maxeo.ai</em> at{" "}
+              <span className="font-medium">Cool Digital Solutions</span>.
             </motion.p>
 
             <motion.div
@@ -168,10 +186,10 @@ export function HeroSection() {
                 <Download className="h-4 w-4" />
               </a>
               <a
-                href="mailto:kizilbaha26@gmail.com"
+                href={`mailto:${siteConfig.email}`}
                 className="link-underline font-mono text-xs tracking-widest uppercase text-mute hover:text-ink"
               >
-                kizilbaha26@gmail.com →
+                {siteConfig.email} →
               </a>
             </motion.div>
 
@@ -184,7 +202,7 @@ export function HeroSection() {
             >
               {FOCUS.map((f) => (
                 <div key={f.k} className="flex gap-4">
-                  <span className="meta-strong pt-1.5 shrink-0 w-36">
+                  <span className="meta-strong pt-1.5 shrink-0 w-40">
                     {f.k}
                   </span>
                   <span className="text-sm md:text-base text-mute leading-relaxed">
