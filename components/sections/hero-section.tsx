@@ -76,8 +76,8 @@ export function HeroSection() {
                 {siteConfig.phone}
               </div>
               <div>
-                <span className="meta-strong mr-2">Currently</span>
-                AI Eng @ Cool Digital Solutions
+                <span className="meta-strong mr-2">Depth</span>
+                agents · vision · rag · infra
               </div>
             </div>
           </aside>
@@ -153,11 +153,11 @@ export function HeroSection() {
               <span className="lime-underline font-medium">
                 production-grade AI systems
               </span>
-              — multi-agent platforms on AWS Bedrock + Strands, RAG pipelines
-              over PGVector, and computer-vision stacks shipping at the edge.
-              Currently the sole AI &amp; backend engineer behind{" "}
-              <em className="font-medium">Maxeo.ai</em> at{" "}
-              <span className="font-medium">Cool Digital Solutions</span>.
+              . Multi-agent platforms orchestrated with LangGraph · Strands ·
+              MCP on serverless AWS. RAG pipelines over PostgreSQL + PGVector
+              with hybrid retrieval and reranking. Computer-vision stacks
+              fine-tuned on custom datasets and shipped to edge devices — all
+              wired with LangSmith observability and cost controls.
             </motion.p>
 
             <motion.div

@@ -7,94 +7,170 @@ import { Section } from "@/src/components/Section";
 import { SectionHeader } from "@/components/sections/section-header";
 import { siteConfig } from "@/src/config/siteConfig";
 
-const SKILLS = {
-  Languages: ["Python"],
-  "AI / ML": [
-    "Model Training & Fine-Tuning",
-    "Time Series Forecasting",
-    "NLP · Prompt & Context Engineering",
-    "Computer Vision",
-    "LLMs & Multi-Agent Systems",
-    "RAG Architectures",
-    "Chatbot Development",
-    "Workflow Automation",
-  ],
-  "Libraries & Frameworks": [
-    "OpenCV",
-    "Pandas · NumPy · Matplotlib",
-    "FastAPI",
-    "FastMCP",
-    "LangChain",
-    "LangGraph",
-    "Strands Agents",
-    "Supervision",
-    "PyTorch",
-  ],
-  "Platforms & Integrations": [
-    "n8n · Langflow · Flowise",
-    "OpenAI · Gemini",
-    "Hugging Face",
-    "ElevenLabs",
-    "Supabase",
-    "Roboflow",
-    "DeepStream",
-    "Tavily",
-    "LangSmith",
-  ],
-  "Cloud & Infra": [
-    "AWS (Bedrock · Lambda · SQS · DynamoDB · S3)",
-    "Google Cloud",
-    "Docker",
-    "Linux",
-    "Runpod",
-    "Celery",
-    "PostgreSQL + PGVector",
-  ],
-};
+interface Practice {
+  id: string;
+  title: string;
+  summary: string;
+  depth: string[];
+  stack: string[];
+}
+
+const PRACTICES: Practice[] = [
+  {
+    id: "AGENTS",
+    title: "Multi-Agent Systems",
+    summary:
+      "I architect agentic platforms that stay stable under real traffic — parallel pipelines with fallback chains, tool-calling via MCP, and deterministic handoffs between specialized agents.",
+    depth: [
+      "Orchestration with LangGraph, Strands Agents, LangChain, and custom MCP servers built on FastMCP.",
+      "Multi-provider routing across OpenAI, Gemini, and open-source models with intelligent fallback and cost-aware selection.",
+      "Async task orchestration on Celery for long-running workflows; synchronous tool calls for sub-second replies.",
+      "End-to-end observability via LangSmith — traces, evals, latency + token budgets per agent node.",
+    ],
+    stack: [
+      "LangGraph",
+      "Strands Agents",
+      "LangChain",
+      "FastMCP · MCP",
+      "Tavily",
+      "Celery",
+      "LangSmith",
+      "OpenAI",
+      "Gemini",
+    ],
+  },
+  {
+    id: "RAG",
+    title: "RAG & Semantic Search",
+    summary:
+      "I build retrieval systems that actually retrieve the right thing — hybrid indexes, aggressive chunking experiments, dynamic embeddings, and rerankers tuned against a hold-out set.",
+    depth: [
+      "Hybrid keyword + embedding retrieval on PostgreSQL + PGVector and Supabase vector store.",
+      "Custom chunking strategies tuned per content type; dynamic embedding models selected by query intent.",
+      "GPT-4.1-nano and open-source rerankers layered over raw retrieval, measured against reference queries.",
+      "Natural-language query interfaces wired through LangChain agents that decide when to search versus answer directly.",
+    ],
+    stack: [
+      "PostgreSQL",
+      "PGVector",
+      "Supabase",
+      "LangChain",
+      "OpenAI embeddings",
+      "GPT-4.1-nano",
+      "Hybrid retrieval",
+      "Reranking",
+    ],
+  },
+  {
+    id: "VISION",
+    title: "Computer Vision",
+    summary:
+      "I ship vision systems that have to hold up on live video — fine-tuned detectors, real-time tracking, and deployment on consumer or edge hardware, not just benchmarks.",
+    depth: [
+      "Fine-tuned YOLOv11 / YOLOv12 detectors on custom Roboflow datasets for vehicle, firearm, plant-health, and fire / smoke classes.",
+      "Real-time RTSP ingestion with polygon-based lane or zone tracking via OpenCV + Supervision.",
+      "Multi-camera flow analysis, emergency-lane violation detection, per-lane speed and density estimation.",
+      "Local CCTV threat-detection pipelines combining YOLO with DeepSeek 1.5B for scene-level reasoning and automated alert agents.",
+    ],
+    stack: [
+      "YOLOv11 · YOLOv12",
+      "OpenCV",
+      "Supervision",
+      "Roboflow",
+      "DeepStream",
+      "PyTorch",
+      "Colab",
+      "DeepSeek",
+    ],
+  },
+  {
+    id: "INFRA",
+    title: "Backend & Serverless Infrastructure",
+    summary:
+      "Under every AI feature there is a plain boring backend that has to not fall over. I build those the same way I build the models — measurable, reproducible, cheap to run.",
+    depth: [
+      "FastAPI services with typed contracts, structured logging, and OpenTelemetry traces.",
+      "Serverless on AWS — Lambda, SQS, DynamoDB, S3 — with full CI/CD pipelines and infrastructure as code.",
+      "Docker-based deploys, GPU compute on Runpod, managed Postgres on Supabase for auth + data.",
+      "Prompt-engineering layer with intelligent fallback chains; cost optimization at scale across LLM providers.",
+    ],
+    stack: [
+      "FastAPI",
+      "Python",
+      "AWS Bedrock",
+      "AWS Lambda",
+      "SQS · DynamoDB · S3",
+      "Docker",
+      "Runpod",
+      "Google Cloud",
+      "Linux",
+    ],
+  },
+  {
+    id: "WORKFLOW",
+    title: "Workflow Automation & Integrations",
+    summary:
+      "The AI is only a part of it — most of the value comes from wiring it into existing tools. I build the glue: visual workflows, low-code integrations, voice front-ends.",
+    depth: [
+      "Visual workflow orchestration with n8n, Langflow, and Flowise for business-facing operators.",
+      "Voice-first interfaces: Whisper for STT, ElevenLabs for TTS, GPT-4o mini for structured generation.",
+      "Power Automate + ERP integrations for HR and finance workflows at a global retail brand.",
+      "Time-series forecasting pipelines in PyTorch with Pandas / NumPy / Matplotlib for operational dashboards.",
+    ],
+    stack: [
+      "n8n",
+      "Langflow",
+      "Flowise",
+      "Whisper",
+      "ElevenLabs",
+      "GPT-4o mini",
+      "Power Automate",
+      "Pandas",
+      "PyTorch",
+    ],
+  },
+];
 
 const EXPERIENCE = [
   {
     period: "09/2025 — now",
-    role: "AI Engineer",
-    org: "Cool Digital Solutions",
+    role: "AI Engineer · Fintech + Marketing-Tech",
+    domain: "Multi-agent platforms · serverless AWS",
     bullets: [
-      "Built a fintech stock-market analysis platform powered by multi-agent AI — parallel agent pipelines with Strands Agents + LangGraph on AWS Bedrock for sentiment and technical-indicator analysis.",
-      "Developed MCP servers (FastMCP) for agent-to-tool communication; deployed serverless infra on AWS (Lambda · SQS · DynamoDB · S3) with full CI/CD.",
-      "Sole AI + backend engineer behind Maxeo.ai — an AI platform optimizing brand visibility across SEO/GEO/AEO search engines.",
-      "Architecting agentic orchestration with LangChain, LangGraph, Tavily, MCP across multiple LLM providers (OpenAI, Gemini, open-source).",
-      "Designed prompt pipelines with intelligent fallback chains; managed async task orchestration via Celery on AWS.",
-      "Implementing end-to-end observability with LangSmith and cost optimization at scale.",
+      "Architecting a fintech stock-market analysis platform with parallel Strands + LangGraph agent pipelines running on AWS Bedrock.",
+      "Sole AI + backend engineer behind a brand-visibility engine that optimizes presence across SEO / GEO / AEO search surfaces.",
+      "Designed MCP servers (FastMCP) for agent-to-tool comms; deployed full serverless stack (Lambda · SQS · DynamoDB · S3) with CI/CD.",
+      "Wired end-to-end observability and cost controls via LangSmith; async task orchestration with Celery on AWS.",
     ],
   },
   {
     period: "06/2025 — 09/2025",
-    role: "AI Engineer",
-    org: "Kafein Technology Solutions",
+    role: "AI Engineer · Enterprise Workflow Automation",
+    domain: "Agent workflows · RAG · FastMCP",
     bullets: [
-      "Contributed to an enterprise AI workflow-automation platform: modular MCP servers (FastMCP), FastAPI backend services, and LangChain/LangGraph orchestration.",
-      "Integrated flow tools (n8n, Langflow, Flowise) for visual workflow design.",
+      "Contributed to an enterprise AI workflow-automation platform: modular FastMCP servers, FastAPI backend services, and LangChain / LangGraph orchestration.",
+      "Integrated n8n, Langflow, and Flowise to let non-engineers assemble and monitor agent flows visually.",
       "Designed RAG systems on PostgreSQL + PGVector with optimized chunking, dynamic embeddings, and reranker integration.",
-      "Improved observability with LangSmith.",
     ],
   },
   {
     period: "08/2024 — 02/2025",
-    role: "IT Intern (Full-time)",
-    org: "GUESS — Turkey",
+    role: "IT Automation Intern · Global Retail",
+    domain: "Power Automate · ERP integrations",
     bullets: [
-      "Handled regional tech support and head-office equipment.",
+      "Full-time IT intern handling regional support and head-office equipment at a global fashion retailer.",
       "Developed Power Automate solutions for HR workflows and finance ERP automation.",
-      "Collaborated with GUESS Europe IT Lugano on cross-regional initiatives.",
+      "Collaborated with a European IT team on cross-regional automation initiatives.",
     ],
   },
   {
     period: "02/2024 — 06/2024",
-    role: "R&D Intern",
-    org: "TAV Technologies",
+    role: "R&D Intern · Aviation Tech",
+    domain: "CV · Time-series · Human action recognition",
     bullets: [
-      "Worked on AI projects covering Time-Series Analysis, Human Action Recognition, and Object Detection.",
-      "Developed internal APIs; explored SOTA models via Hugging Face, Papers with Code, Kaggle, and GitHub.",
-      "Hands-on CNN/RNN work in PyTorch — focused on training, fine-tuning, and optimization while contributing to dataset design.",
+      "Five-month R&D internship on computer-vision and time-series projects — object detection, human action recognition, forecasting.",
+      "Built internal APIs and explored SOTA models via Hugging Face, Papers with Code, Kaggle, and GitHub.",
+      "Hands-on CNN / RNN work in PyTorch focused on training, fine-tuning, and optimization while contributing to dataset design.",
     ],
   },
 ];
@@ -106,42 +182,42 @@ const CERTIFICATIONS = [
   { name: "AI Developer Specialization", issuer: "IBM", date: "12/2024" },
 ];
 
-const HIGHLIGHT_PROJECTS = [
+const CASE_STUDIES = [
   {
     id: "SEMANTIC CV",
     title: "Semantic CV Management Web App",
     date: "06/2025",
-    body: "FastAPI + React + Supabase + LangChain + OpenAI. Hybrid keyword-plus-embeddings search in Supabase with GPT-4.1-nano reranking and natural-language CV queries via LangChain agents.",
+    body: "FastAPI + React + Supabase + LangChain + OpenAI. Hybrid keyword-plus-embeddings search with GPT-4.1-nano reranking; natural-language CV queries handled by a LangChain agent that decides when to search and when to synthesize.",
   },
   {
     id: "SMART TRAFFIC",
     title: "Smart Traffic Monitoring",
     date: "03/2025",
-    body: "Real-time RTSP system classifying vehicles, estimating per-lane speeds, detecting emergency-lane violations. Fine-tuned YOLOv12n on a custom Roboflow dataset with polygon-based lane zones and multi-camera tracking.",
+    body: "Real-time RTSP system classifying vehicles, estimating per-lane speeds, and detecting emergency-lane violations. Fine-tuned YOLOv12n on a custom Roboflow dataset with polygon-based lane zones and multi-camera flow tracking (OpenCV + Supervision).",
   },
   {
     id: "THREAT DETECTION",
     title: "Real-Time Threat Detection",
     date: "02/2025",
-    body: "Fully local CCTV firearms-detection system — fine-tuned YOLOv11n on a custom Roboflow dataset plus DeepSeek 1.5B for scene analysis. Automated email alerts orchestrated via LangChain.",
+    body: "Fully local CCTV firearms-detection stack — fine-tuned YOLOv11n on a custom Roboflow dataset plus DeepSeek 1.5B for scene-level reasoning. Automated email alerting orchestrated by a LangChain agent.",
   },
   {
     id: "SMART GROWBOX",
     title: "AI-Supported Smart Growbox (Capstone)",
     date: "10/2024 — 05/2025",
-    body: "Closed growbox for fully autonomous indoor cultivation: Raspberry Pi 5 environmental control, YOLO camera for plant-health assessment, OpenAI-powered decision loop, FastAPI dashboard with time-series analytics.",
+    body: "Closed growbox for fully autonomous indoor cultivation — Raspberry Pi 5 environmental control, a YOLO camera for plant-health assessment, an OpenAI-powered decision loop, and a FastAPI dashboard with time-series analytics.",
   },
   {
     id: "VOICE AI",
-    title: "MVP AI Web App (Freelance)",
+    title: "Voice-First AI MVP",
     date: "03/2025 — 06/2025",
-    body: "Voice-enabled AI web app generating structured documents from real-time conversations. Whisper + GPT-4o mini + ElevenLabs, Python/FastAPI backend, prompt-engineering logic, Supabase integration.",
+    body: "Voice-enabled AI web app that generated structured documents from real-time conversations. Whisper + GPT-4o mini + ElevenLabs, Python / FastAPI backend, prompt-engineering logic, Supabase integration.",
   },
   {
     id: "COFFEE SALES",
-    title: "Coffee Sales Analysis & Prediction",
+    title: "Coffee Sales Forecasting",
     date: "07/2024",
-    body: "PyTorch time-series forecasting on sales + weather data to predict daily café sales. Pandas/NumPy preprocessing, Matplotlib visualizations for business efficiency decisions.",
+    body: "PyTorch time-series forecasting on sales + weather data to predict daily café sales. Pandas / NumPy preprocessing, Matplotlib visualizations for operational decisions.",
   },
 ];
 
@@ -151,16 +227,17 @@ export default function About() {
       <div className="lab-container w-full">
         <SectionHeader
           index="00"
-          kicker="About / Long-form"
+          kicker="About / Practice"
           title={
             <>
-              Engineer of <em>machine perception</em> &amp; agent systems.
+              I build <em>production AI</em> — agents, vision, and the infra
+              under them.
             </>
           }
-          lede="Istanbul-based AI engineer working the seam between computer-vision pipelines and LLM-driven orchestration. Background in mechatronics, fluency in Python, FastAPI and AWS, bias toward shipping."
+          lede="Istanbul-based AI engineer. Four years of computer vision, two years of shipping multi-agent LLM platforms, one thread through all of it — make the AI work the way a backend works: measurable, observable, cost-aware, ready to hand off."
         />
 
-        {/* Portrait + intro */}
+        {/* Portrait + long intro */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-ink/90">
           <div className="md:col-span-4">
             <div className="aspect-[4/5] relative overflow-hidden border border-ink/90">
@@ -173,12 +250,22 @@ export default function About() {
                 priority
               />
             </div>
-            <div className="mt-4 space-y-1 meta">
-              <div className="meta-strong">Baha Kızıl — AI Engineer</div>
-              <div>{siteConfig.coords} · Ortaköy · Istanbul</div>
-              <div>{siteConfig.email}</div>
-              <div>{siteConfig.phone}</div>
-            </div>
+            <dl className="mt-4 space-y-2 meta">
+              <div>
+                <dt className="meta-strong">Baha Kızıl — AI Engineer</dt>
+              </div>
+              <div>
+                <dt className="meta">
+                  {siteConfig.coords} · Ortaköy · Istanbul
+                </dt>
+              </div>
+              <div>
+                <dt className="meta">{siteConfig.email}</dt>
+              </div>
+              <div>
+                <dt className="meta">{siteConfig.phone}</dt>
+              </div>
+            </dl>
           </div>
 
           <div className="md:col-span-8 space-y-6">
@@ -189,12 +276,14 @@ export default function About() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="text-lg leading-relaxed"
             >
-              Ambitious, motivated AI engineer focused on turning advanced
-              research into{" "}
-              <span className="lime-underline">practical products</span>. My
-              thread through four teams in two years: build the AI the way
-              you&apos;d build any other backend — measurable, observable,
-              cost-aware, ship-ready.
+              My practice sits between{" "}
+              <span className="lime-underline font-medium">
+                agentic AI systems
+              </span>{" "}
+              and the backend infrastructure they run on. I started with
+              robotics, picked up mechatronics, then pivoted hard into computer
+              vision when a single YOLO training run showed me what a fine-tuned
+              model can do on consumer hardware.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 12 }}
@@ -207,14 +296,12 @@ export default function About() {
               }}
               className="text-base leading-relaxed text-mute"
             >
-              Currently the sole AI + backend engineer for Maxeo.ai at{" "}
-              <span className="font-medium text-ink">
-                Cool Digital Solutions
-              </span>
-              . Before that, architected enterprise agent workflows at Kafein
-              Technology Solutions, interned at GUESS for IT automation, and
-              started as an R&amp;D intern at TAV Technologies on computer
-              vision and time-series work.
+              Today I build multi-agent platforms on AWS Bedrock, RAG systems
+              on PGVector, and real-time CV pipelines shipped to edge devices.
+              I treat observability (LangSmith · OpenTelemetry), evals, and
+              cost per 1k-tokens as first-class concerns — not as
+              afterthoughts. The best AI I&apos;ve shipped is the AI nobody
+              had to patch at 3 a.m.
             </motion.p>
 
             <div className="flex flex-wrap gap-3 pt-2">
@@ -241,12 +328,69 @@ export default function About() {
           </div>
         </div>
 
-        {/* Experience timeline */}
+        {/* Practice depth */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 py-12 border-b border-ink/90">
           <div className="md:col-span-3">
-            <span className="section-index">§ Chronology</span>
+            <span className="section-index">§ Practice</span>
             <p className="mt-3 text-sm text-mute max-w-xs">
-              Four roles · two years · one throughline — making AI shippable.
+              Five overlapping surfaces where most of the shipping happens.
+            </p>
+          </div>
+          <div className="md:col-span-9 space-y-10">
+            {PRACTICES.map((p, i) => (
+              <motion.article
+                key={p.id}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  duration: 0.7,
+                  delay: i * 0.06,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="grid grid-cols-1 md:grid-cols-[170px_1fr] gap-4 pb-10 border-b border-rule last:border-0"
+              >
+                <div>
+                  <div className="meta-strong">[{p.id}]</div>
+                </div>
+                <div>
+                  <h3 className="display-md mb-3 leading-tight">{p.title}</h3>
+                  <p className="text-base leading-relaxed text-ink/90 mb-4 max-w-3xl">
+                    {p.summary}
+                  </p>
+                  <ul className="space-y-2 text-sm md:text-base leading-relaxed text-mute mb-5">
+                    {p.depth.map((d, j) => (
+                      <li
+                        key={j}
+                        className="flex gap-3 before:content-['–'] before:shrink-0"
+                      >
+                        <span>{d}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <ul className="flex flex-wrap gap-1.5">
+                    {p.stack.map((s) => (
+                      <li
+                        key={s}
+                        className="font-mono text-[0.62rem] tracking-widest uppercase px-2 py-1 border border-current"
+                      >
+                        {s}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+
+        {/* Field experience — anonymized */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 py-12 border-b border-ink/90">
+          <div className="md:col-span-3">
+            <span className="section-index">§ Field Experience</span>
+            <p className="mt-3 text-sm text-mute max-w-xs">
+              Four roles · two years · different domains — same engineering
+              discipline. Employer names live in the CV.
             </p>
           </div>
           <div className="md:col-span-9 space-y-10">
@@ -266,7 +410,7 @@ export default function About() {
                 <div className="meta-strong">{t.period}</div>
                 <div>
                   <div className="display-md mb-1 leading-tight">{t.role}</div>
-                  <div className="meta mb-4">{t.org}</div>
+                  <div className="meta mb-4">{t.domain}</div>
                   <ul className="space-y-2 text-sm md:text-base leading-relaxed text-ink/85">
                     {t.bullets.map((b, j) => (
                       <li
@@ -279,33 +423,6 @@ export default function About() {
                   </ul>
                 </div>
               </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Skills */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 py-12 border-b border-ink/90">
-          <div className="md:col-span-3">
-            <span className="section-index">§ Stack</span>
-            <p className="mt-3 text-sm text-mute max-w-xs">
-              Daily drivers across the agent · vision · infra split.
-            </p>
-          </div>
-          <div className="md:col-span-9 space-y-8">
-            {Object.entries(SKILLS).map(([group, items]) => (
-              <div
-                key={group}
-                className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-4 pb-6 border-b border-rule last:border-0"
-              >
-                <div className="meta-strong">{group}</div>
-                <ul className="flex flex-wrap gap-x-5 gap-y-2">
-                  {items.map((s) => (
-                    <li key={s} className="text-sm leading-snug">
-                      {s}
-                    </li>
-                  ))}
-                </ul>
-              </div>
             ))}
           </div>
         </div>
@@ -344,7 +461,7 @@ export default function About() {
           </div>
         </div>
 
-        {/* Highlighted projects */}
+        {/* Case studies */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 py-12">
           <div className="md:col-span-3">
             <span className="section-index">§ Case Studies</span>
@@ -353,7 +470,7 @@ export default function About() {
             </p>
           </div>
           <div className="md:col-span-9 grid grid-cols-1 md:grid-cols-2 gap-px bg-ink/90 border border-ink/90">
-            {HIGHLIGHT_PROJECTS.map((p, i) => (
+            {CASE_STUDIES.map((p, i) => (
               <motion.div
                 key={p.id}
                 initial={{ opacity: 0, y: 16 }}

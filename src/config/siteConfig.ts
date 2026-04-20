@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Baha Kızıl — AI Engineer",
   title: "Baha Kızıl · AI Engineer · Multi-Agent Systems & Computer Vision",
   description:
-    "Istanbul-based AI engineer building multi-agent systems, RAG pipelines, and computer-vision products. Currently at Cool Digital Solutions.",
+    "Istanbul-based AI engineer designing multi-agent platforms, RAG pipelines, and computer-vision products. Fieldnotes on shipping production AI.",
   url: "https://bahakizil.vercel.app",
   ogImage: "https://bahakizil.vercel.app/og.png",
   email: "kizilbaha26@gmail.com",
@@ -11,11 +11,6 @@ export const siteConfig = {
   coords: "41.05°N · 29.03°E",
   author: "Baha Kızıl",
   cvPath: "/BAHA_KIZIL_CV.pdf",
-  currentRole: {
-    title: "AI Engineer",
-    company: "Cool Digital Solutions",
-    since: "2025-09",
-  },
   links: {
     github: "https://github.com/bahakizil",
     linkedin: "https://linkedin.com/in/bahakizil",
