@@ -60,6 +60,59 @@ async function fetchRepos() {
     .sort((a, b) => b.stargazers_count - a.stargazers_count);
 }
 
+async function fetchContributionCalendar() {
+  if (!GITHUB_TOKEN) {
+    log("GITHUB_TOKEN missing, skipping contribution calendar");
+    return null;
+  }
+  const query = `query($login: String!) {
+    user(login: $login) {
+      contributionsCollection {
+        contributionCalendar {
+          totalContributions
+          weeks {
+            contributionDays { contributionCount date color }
+          }
+        }
+      }
+    }
+  }`;
+  try {
+    const res = await fetch("https://api.github.com/graphql", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${GITHUB_TOKEN}`,
+        "Content-Type": "application/json",
+        "User-Agent": "portfolio-refresh-bot",
+      },
+      body: JSON.stringify({
+        query,
+        variables: { login: GITHUB_USERNAME },
+      }),
+    });
+    if (!res.ok) {
+      log(`graphql ${res.status}, skipping calendar`);
+      return null;
+    }
+    const json = await res.json();
+    const cal = json?.data?.user?.contributionsCollection?.contributionCalendar;
+    if (!cal) return null;
+    return {
+      totalContributions: cal.totalContributions,
+      weeks: cal.weeks.map((w) => ({
+        days: w.contributionDays.map((d) => ({
+          date: d.date,
+          count: d.contributionCount,
+          color: d.color,
+        })),
+      })),
+    };
+  } catch (err) {
+    log(`calendar fetch failed: ${err.message}`);
+    return null;
+  }
+}
+
 async function fetchGithubProfile() {
   try {
     const res = await fetch(`https://github.com/${GITHUB_USERNAME}`, {
@@ -234,11 +287,13 @@ function loadExisting() {
 async function main() {
   log("starting refresh");
 
-  const [repos, githubStats, freshArticles] = await Promise.all([
+  const [repos, profileStats, freshArticles, calendar] = await Promise.all([
     fetchRepos(),
     fetchGithubProfile(),
     fetchMediumArticles(),
+    fetchContributionCalendar(),
   ]);
+  const githubStats = { ...profileStats, calendar };
 
   const previous = loadExisting();
   const articles =

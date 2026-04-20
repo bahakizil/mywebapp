@@ -7,6 +7,8 @@ import { ArticlesSection } from "@/components/sections/articles-section";
 import { InsightsSection } from "@/components/sections/insights-section";
 import { ContactFormSection } from "@/components/contact-form-section";
 import { TopologyDiagram } from "@/components/ui/topology";
+import { TerminalLog } from "@/components/ui/terminal-log";
+import { ActivityHeatmap } from "@/components/ui/activity-heatmap";
 import { usePortfolioData, prioritizeRepos } from "@/hooks/use-portfolio-data";
 
 const HuggingFaceSpacesSection = dynamic(
@@ -19,11 +21,15 @@ export default function Home() {
     usePortfolioData();
   const prioritizedRepos = prioritizeRepos(repos, githubStats);
 
+  const calendar = githubStats?.calendar ?? null;
+
   return (
     <>
       <HeroSection />
       <TopologyDiagram />
+      <TerminalLog />
       <ProjectsSection repos={prioritizedRepos} isLoading={isLoading} />
+      {calendar && <ActivityHeatmap calendar={calendar} />}
       <ArticlesSection articles={articles} isLoading={isLoading} />
       <InsightsSection posts={linkedInPosts} isLoading={isLoading} />
       <HuggingFaceSpacesSection />

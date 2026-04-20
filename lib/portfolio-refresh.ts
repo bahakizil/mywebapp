@@ -74,6 +74,56 @@ async function fetchRepos(): Promise<Repository[]> {
     .sort((a, b) => b.stargazers_count - a.stargazers_count);
 }
 
+async function fetchContributionCalendar() {
+  const token = process.env.GITHUB_API_TOKEN;
+  if (!token) return null;
+  const query = `query($login: String!) {
+    user(login: $login) {
+      contributionsCollection {
+        contributionCalendar {
+          totalContributions
+          weeks {
+            contributionDays { contributionCount date color }
+          }
+        }
+      }
+    }
+  }`;
+  try {
+    const res = await fetch("https://api.github.com/graphql", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+        "User-Agent": "portfolio-refresh",
+      },
+      body: JSON.stringify({
+        query,
+        variables: { login: GITHUB_USERNAME },
+      }),
+      cache: "no-store",
+    });
+    if (!res.ok) return null;
+    const json = await res.json();
+    const cal = json?.data?.user?.contributionsCollection?.contributionCalendar;
+    if (!cal) return null;
+    return {
+      totalContributions: cal.totalContributions as number,
+      weeks: (cal.weeks as Array<{ contributionDays: Array<{ date: string; contributionCount: number; color: string }> }>).map(
+        (w) => ({
+          days: w.contributionDays.map((d) => ({
+            date: d.date,
+            count: d.contributionCount,
+            color: d.color,
+          })),
+        }),
+      ),
+    };
+  } catch {
+    return null;
+  }
+}
+
 async function fetchProfile(): Promise<GitHubStats> {
   try {
     const response = await fetch(`https://github.com/${GITHUB_USERNAME}`, {
@@ -197,13 +247,15 @@ function loadLinkedInPosts(): LinkedInPost[] {
 }
 
 export async function refreshPortfolioData(): Promise<PortfolioData> {
-  const [repos, githubStats, freshArticles] = await Promise.all([
+  const [repos, profileStats, freshArticles, calendar] = await Promise.all([
     fetchRepos(),
     fetchProfile(),
     fetchMediumArticles(),
+    fetchContributionCalendar(),
   ]);
 
   const linkedinPosts = loadLinkedInPosts();
+  const githubStats: GitHubStats = { ...profileStats, calendar };
 
   const portfolio: PortfolioData = {
     lastUpdated: new Date().toISOString(),

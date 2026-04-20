@@ -62,9 +62,25 @@ export interface ContributionChart {
   lastYearContributions: number;
 }
 
+export interface ContributionDay {
+  date: string;
+  count: number;
+  color: string;
+}
+
+export interface ContributionWeek {
+  days: ContributionDay[];
+}
+
+export interface ContributionCalendar {
+  totalContributions: number;
+  weeks: ContributionWeek[];
+}
+
 export interface GitHubStats {
   pinnedRepos: PinnedRepo[];
   contributionChart: ContributionChart | null;
+  calendar?: ContributionCalendar | null;
 }
 
 export interface PortfolioData {
