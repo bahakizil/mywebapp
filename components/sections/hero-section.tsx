@@ -52,7 +52,7 @@ export function HeroSection() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center relative pt-6 md:pt-10 texture-hero"
+      className="relative pt-6 md:pt-10 pb-12 md:pb-20 texture-hero"
     >
       <div className="lab-container w-full">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-10 pt-10 md:pt-14">

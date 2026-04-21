@@ -8,15 +8,13 @@ interface SectionProps {
   className?: string;
 }
 
-export const Section = ({ id, children, className = "" }: SectionProps) => {
-  return (
-    <section 
-      id={id} 
-      className={`min-h-screen flex items-center justify-center relative ${className}`}
-    >
-      <div className="w-full opacity-100">
-        {children}
-      </div>
-    </section>
-  );
-};
+/**
+ * Thin section wrapper — no min-height, no flex centering. Previously
+ * forced every section to at least one viewport which made the page
+ * feel like it was snapping between full-screen blocks.
+ */
+export const Section = ({ id, children, className = "" }: SectionProps) => (
+  <section id={id} className={`relative ${className}`}>
+    {children}
+  </section>
+);
