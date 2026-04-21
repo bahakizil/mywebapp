@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { ArrowUpRight, GitFork, Star } from "lucide-react";
 import { Section } from "@/src/components/Section";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -41,18 +40,10 @@ function RepoCard({ repo, index }: { repo: Repository; index: number }) {
   const topics = (repo.topics ?? []).slice(0, 3);
 
   return (
-    <motion.a
+    <a
       href={repo.html_url}
       target="_blank"
       rel="noopener noreferrer"
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{
-        duration: 0.7,
-        delay: index * 0.06,
-        ease: [0.16, 1, 0.3, 1],
-      }}
       className="invert-card group flex flex-col border border-ink/90 bg-paper text-ink"
     >
       <div className="flex items-center justify-between px-4 py-2.5 border-b border-current">
@@ -119,7 +110,7 @@ function RepoCard({ repo, index }: { repo: Repository; index: number }) {
           </span>
         </div>
       </div>
-    </motion.a>
+    </a>
   );
 }
 

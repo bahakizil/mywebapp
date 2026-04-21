@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { Download, Mail, Phone } from "lucide-react";
 import { Section } from "@/src/components/Section";
 import { SectionHeader } from "@/components/sections/section-header";
@@ -269,11 +268,7 @@ export default function About() {
           </div>
 
           <div className="md:col-span-8 space-y-6">
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            <p
               className="text-lg leading-relaxed"
             >
               My practice sits between{" "}
@@ -284,16 +279,8 @@ export default function About() {
               robotics, picked up mechatronics, then pivoted hard into computer
               vision when a single YOLO training run showed me what a fine-tuned
               model can do on consumer hardware.
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.8,
-                delay: 0.1,
-                ease: [0.16, 1, 0.3, 1],
-              }}
+            </p>
+            <p
               className="text-base leading-relaxed text-mute"
             >
               Today I build multi-agent platforms on AWS Bedrock, RAG systems
@@ -302,7 +289,7 @@ export default function About() {
               cost per 1k-tokens as first-class concerns — not as
               afterthoughts. The best AI I&apos;ve shipped is the AI nobody
               had to patch at 3 a.m.
-            </motion.p>
+            </p>
 
             <div className="flex flex-wrap gap-3 pt-2">
               <a
@@ -338,16 +325,8 @@ export default function About() {
           </div>
           <div className="md:col-span-9 space-y-10">
             {PRACTICES.map((p, i) => (
-              <motion.article
+              <article
                 key={p.id}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{
-                  duration: 0.7,
-                  delay: i * 0.06,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
                 className="grid grid-cols-1 md:grid-cols-[170px_1fr] gap-4 pb-10 border-b border-rule last:border-0"
               >
                 <div>
@@ -379,7 +358,7 @@ export default function About() {
                     ))}
                   </ul>
                 </div>
-              </motion.article>
+              </article>
             ))}
           </div>
         </div>
@@ -395,16 +374,8 @@ export default function About() {
           </div>
           <div className="md:col-span-9 space-y-10">
             {EXPERIENCE.map((t, i) => (
-              <motion.div
+              <div
                 key={t.period}
-                initial={{ opacity: 0, x: -14 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{
-                  duration: 0.7,
-                  delay: i * 0.08,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
                 className="grid grid-cols-1 md:grid-cols-[170px_1fr] gap-4 pb-8 border-b border-rule last:border-0"
               >
                 <div className="meta-strong">{t.period}</div>
@@ -422,7 +393,7 @@ export default function About() {
                     ))}
                   </ul>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -471,16 +442,8 @@ export default function About() {
           </div>
           <div className="md:col-span-9 grid grid-cols-1 md:grid-cols-2 gap-px bg-ink/90 border border-ink/90">
             {CASE_STUDIES.map((p, i) => (
-              <motion.div
+              <div
                 key={p.id}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{
-                  duration: 0.6,
-                  delay: i * 0.06,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
                 className="invert-card bg-paper text-ink p-5 md:p-6 flex flex-col"
               >
                 <div className="flex items-center justify-between mb-3">
@@ -489,7 +452,7 @@ export default function About() {
                 </div>
                 <h3 className="display-md mb-3 leading-tight">{p.title}</h3>
                 <p className="text-sm leading-relaxed text-current">{p.body}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

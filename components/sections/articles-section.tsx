@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Section } from "@/src/components/Section";
 import { SectionHeader } from "./section-header";
@@ -37,18 +36,10 @@ function ArticleRow({
   const published = formatDate(article.publishedDate ?? article.pubDate);
 
   return (
-    <motion.a
+    <a
       href={article.link}
       target="_blank"
       rel="noopener noreferrer"
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.25 }}
-      transition={{
-        duration: 0.6,
-        delay: index * 0.05,
-        ease: [0.16, 1, 0.3, 1],
-      }}
       className="group grid grid-cols-12 gap-6 items-start py-8 border-b border-rule hover:border-ink transition-colors"
     >
       <div className="col-span-12 md:col-span-1 flex md:block items-baseline justify-between gap-2">
@@ -102,7 +93,7 @@ function ArticleRow({
           read <ArrowUpRight className="h-3 w-3" />
         </span>
       </div>
-    </motion.a>
+    </a>
   );
 }
 

@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useMemo } from "react";
 import type {
   ContributionCalendar,
@@ -129,16 +128,12 @@ export function ActivityHeatmap({
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_220px] gap-8">
           {/* Heatmap */}
           <div className="overflow-x-auto no-scrollbar">
-            <motion.svg
+            <svg
               viewBox={`0 0 ${width} ${height}`}
               preserveAspectRatio="xMidYMid meet"
               className="w-full min-w-[720px] h-auto"
               role="img"
               aria-label={`${summary.total} contributions in the last year`}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6 }}
             >
               {/* Day labels (left) */}
               <g
@@ -201,7 +196,7 @@ export function ActivityHeatmap({
                   }),
                 )}
               </g>
-            </motion.svg>
+            </svg>
 
             {/* Legend */}
             <div className="mt-4 flex items-center gap-2 font-mono text-[0.62rem] tracking-widest uppercase text-mute">

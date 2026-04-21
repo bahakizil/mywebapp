@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface SectionHeaderProps {
@@ -41,29 +40,11 @@ export function SectionHeader({
       </div>
 
       <div className="md:col-span-9">
-        <motion.h2
-          initial={{ opacity: 0, y: 22 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
-          className="display-lg text-balance"
-        >
-          {title}
-        </motion.h2>
+        <h2 className="display-lg text-balance">{title}</h2>
         {lede && (
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.6 }}
-            transition={{
-              duration: 0.85,
-              ease: [0.16, 1, 0.3, 1],
-              delay: 0.1,
-            }}
-            className="mt-6 max-w-xl text-mute text-base md:text-lg leading-relaxed"
-          >
+          <p className="mt-6 max-w-xl text-mute text-base md:text-lg leading-relaxed">
             {lede}
-          </motion.p>
+          </p>
         )}
       </div>
     </header>

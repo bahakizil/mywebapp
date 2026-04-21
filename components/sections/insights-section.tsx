@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Section } from "@/src/components/Section";
 import { SectionHeader } from "./section-header";
@@ -34,18 +33,10 @@ function InsightCard({
   const published = formatDate(post.publishedAt || post.date);
 
   return (
-    <motion.a
+    <a
       href={post.url}
       target="_blank"
       rel="noopener noreferrer"
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
-      transition={{
-        duration: 0.6,
-        delay: index * 0.05,
-        ease: [0.16, 1, 0.3, 1],
-      }}
       className="invert-card group flex flex-col justify-between border border-ink/90 bg-paper text-ink p-5 min-h-[280px]"
     >
       <div className="flex items-center justify-between mb-4">
@@ -84,7 +75,7 @@ function InsightCard({
           read <ArrowUpRight className="h-3 w-3" />
         </span>
       </div>
-    </motion.a>
+    </a>
   );
 }
 

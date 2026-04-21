@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { ArrowUpRight, Heart } from "lucide-react";
 import { Section } from "@/src/components/Section";
 import { SectionHeader } from "./sections/section-header";
@@ -98,19 +97,11 @@ export default function HuggingFaceSpacesSection() {
             {spaces.slice(0, 6).map((space, i) => {
               const id = `S-${String(i + 1).padStart(2, "0")}`;
               return (
-                <motion.a
+                <a
                   key={space.id}
                   href={space.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 18 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{
-                    duration: 0.6,
-                    delay: i * 0.06,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
                   className="invert-card group bg-paper text-ink p-5 md:p-6 flex flex-col min-h-[220px]"
                 >
                   <div className="flex items-center justify-between mb-4">
@@ -137,7 +128,7 @@ export default function HuggingFaceSpacesSection() {
                       launch <ArrowUpRight className="h-3 w-3" />
                     </span>
                   </div>
-                </motion.a>
+                </a>
               );
             })}
           </div>
