@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-22T06:32:45.992Z",
+  "lastUpdated": "2026-07-23T06:32:55.235Z",
   "repos": [
     {
       "id": 944608309,
@@ -30,6 +30,20 @@
       "updated_at": "2026-06-12T11:11:18Z"
     },
     {
+      "id": 934368810,
+      "name": "ThreatDetection",
+      "description": "Deepseek 1.5B LLM with  fine-tuned YOLO11 to detect guns and analyze the danger.",
+      "html_url": "https://github.com/bahakizil/ThreatDetection",
+      "homepage": null,
+      "language": "Python",
+      "stargazers_count": 5,
+      "forks_count": 1,
+      "watchers_count": 5,
+      "topics": [],
+      "created_at": "2025-02-17T18:00:33Z",
+      "updated_at": "2026-07-23T01:14:17Z"
+    },
+    {
       "id": 941123282,
       "name": "FireDetection",
       "description": "Fire detection with fine tuned Yolov12n",
@@ -42,20 +56,6 @@
       "topics": [],
       "created_at": "2025-03-01T14:46:33Z",
       "updated_at": "2025-04-19T03:34:02Z"
-    },
-    {
-      "id": 934368810,
-      "name": "ThreatDetection",
-      "description": "Deepseek 1.5B LLM with  fine-tuned YOLO11 to detect guns and analyze the danger.",
-      "html_url": "https://github.com/bahakizil/ThreatDetection",
-      "homepage": null,
-      "language": "Python",
-      "stargazers_count": 4,
-      "forks_count": 0,
-      "watchers_count": 4,
-      "topics": [],
-      "created_at": "2025-02-17T18:00:33Z",
-      "updated_at": "2025-03-13T12:35:25Z"
     },
     {
       "id": 936801635,
@@ -142,7 +142,7 @@
         "github-config"
       ],
       "created_at": "2024-07-13T13:58:58Z",
-      "updated_at": "2026-07-22T02:56:33Z"
+      "updated_at": "2026-07-23T03:18:24Z"
     },
     {
       "id": 999109700,
@@ -156,7 +156,7 @@
       "watchers_count": 0,
       "topics": [],
       "created_at": "2025-06-09T18:51:02Z",
-      "updated_at": "2026-07-21T06:32:52Z"
+      "updated_at": "2026-07-22T06:33:08Z"
     },
     {
       "id": 1149203135,
@@ -2616,6 +2616,11 @@
             },
             {
               "date": "2026-07-22",
+              "count": 0,
+              "color": "#ebedf0"
+            },
+            {
+              "date": "2026-07-23",
               "count": 0,
               "color": "#ebedf0"
             }
