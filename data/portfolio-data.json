@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-10-23T09:11:55.385Z",
+  "lastUpdated": "2026-10-24T08:45:30.876Z",
   "repos": [
     {
       "id": 944608309,
@@ -142,7 +142,21 @@
         "github-config"
       ],
       "created_at": "2024-07-13T13:58:58Z",
-      "updated_at": "2026-10-23T04:03:01Z"
+      "updated_at": "2026-10-24T03:57:09Z"
+    },
+    {
+      "id": 1430983548,
+      "name": "mrp16-chess-kg-explainer",
+      "description": "Verifiable chess knowledge graph + LLM-guided MCTS (TESSERA-style) for explaining chess moves. MRP Project 16, Maastricht University.",
+      "html_url": "https://github.com/bahakizil/mrp16-chess-kg-explainer",
+      "homepage": null,
+      "language": "HTML",
+      "stargazers_count": 0,
+      "forks_count": 0,
+      "watchers_count": 0,
+      "topics": [],
+      "created_at": "2026-10-23T11:53:53Z",
+      "updated_at": "2026-10-23T11:54:56Z"
     },
     {
       "id": 999109700,
@@ -156,7 +170,7 @@
       "watchers_count": 0,
       "topics": [],
       "created_at": "2025-06-09T18:51:02Z",
-      "updated_at": "2026-10-22T09:16:46Z"
+      "updated_at": "2026-10-23T09:11:59Z"
     },
     {
       "id": 1423635188,
@@ -581,7 +595,7 @@
       "lastYearContributions": 0
     },
     "calendar": {
-      "totalContributions": 3890,
+      "totalContributions": 3894,
       "weeks": [
         {
           "days": [
@@ -2640,6 +2654,11 @@
             },
             {
               "date": "2026-10-23",
+              "count": 4,
+              "color": "#9be9a8"
+            },
+            {
+              "date": "2026-10-24",
               "count": 0,
               "color": "#ebedf0"
             }
